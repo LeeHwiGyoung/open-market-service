@@ -1,0 +1,36 @@
+@use 'mixin';
+$border-color : #c4c4c4;
+html {
+    font-size: 10px;
+}
+
+.login-container {
+    @include mixin.flexCenter;
+    flex-direction: column;
+    margin : 10em auto;
+    
+    h1 {
+        width: 23.8em;
+        img  {
+            width: 100%;
+        }
+    }
+
+    form {
+        @include mixin.flexCenter;
+        flex-direction: column;
+        width: 55rem;
+        margin : 7em auto 3em;
+        border : 1px solid $border-color;
+
+        %btn-select { 
+            border-radius: 1em;
+            border : 1px solid  $border-color;
+        }
+        .btn-select-buyer {
+            @extend %btn-select;
+        }
+    }
+
+}
+

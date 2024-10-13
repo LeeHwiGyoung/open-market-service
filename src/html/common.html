@@ -71,6 +71,42 @@
           />
         </div>
       </div>
+
+      <article class="number-select-input">
+        <label for="phone-number">휴대폰번호</label>
+        <select class="sr-only" name="phone-number" id="phone-number">
+          <option value="010">010</option>
+          <option value="011">011</option>
+          <option value="016">016</option>
+          <option value="017">017</option>
+          <option value="018">018</option>
+          <option value="019">019</option>
+        </select>
+
+        <div class="phone-number-dropdown">
+          <button
+            class="dropdown-trigger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span>010</span>
+            <img src="/assets/images/icon-down-arrow.svg" alt="" />
+          </button>
+
+          <ul
+            class="dropdown-options"
+            role="listbox"
+            aria-labelledby="custom-select"
+          >
+            <li class="dropdown-option" role="option" data-value="010">010</li>
+            <li class="dropdown-option" role="option" data-value="011">011</li>
+            <li class="dropdown-option" role="option" data-value="016">016</li>
+            <li class="dropdown-option" role="option" data-value="017">017</li>
+            <li class="dropdown-option" role="option" data-value="018">018</li>
+            <li class="dropdown-option" role="option" data-value="019">019</li>
+          </ul>
+        </div>
+      </article>
     </div>
   </head>
   <body></body>

@@ -7,6 +7,9 @@ $btn-background-color : #21BF48;
 $btn-font-color : #FFF;
 $btn-font-family : 'SpoqaHanSansNeo-Bold';
 $font-login : 'SpoqaHanSansNeo-Medium';
+$placeholder-color : #767676;
+$border-focus-color : #21BF48;
+$border-invalid-color : #EB5757;
 
 
 html {
@@ -95,6 +98,14 @@ html {
         border : none;
         border-bottom : 1px solid #c4c4c4;
         margin-bottom: 0.6rem;
+        &::placeholder {
+            color : $placeholder-color;
+        }
+
+        &:focus{
+            outline: none;
+            border-color : $border-focus-color;
+        }
     }
 
     .msg {

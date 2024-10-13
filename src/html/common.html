@@ -13,7 +13,7 @@
           >border-bottom만 있는 input</label
         >
         <input
-          class="text-input-box-border-bottom"
+          class="text-input-border-bottom"
           type="text"
           name=""
           id="border-bottom"
@@ -21,17 +21,30 @@
         />
       </div>
       <div class="input-text-border-box">
-        <label class="text-input-label" for="text-input-box"
-          >text-input-box</label
-        >
+        <label class="text-input-label" for="text-input">text-input-box</label>
         <input
-          class="text-input-box"
+          class="text-input"
           type="text"
           name=""
-          id="text-input-box"
+          id="text-input"
           placeholder="placeholder"
         />
         <p class="msg">에러 메세지 또는 성공 메세지</p>
+      </div>
+
+      <div class="text-input-limit-box">
+        <label class="text-input-label" for="text-input-limit"
+          >text-input-limit-box</label
+        >
+        <input
+          class="text-input-limit"
+          type="text"
+          name=""
+          id="text-input-limit"
+          placeholder="placeholder"
+          aria-describedby="input-limit-count"
+        />
+        <span id="input-limit-count">13/50</span>
       </div>
     </div>
   </head>

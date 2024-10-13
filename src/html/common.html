@@ -36,15 +36,40 @@
         <label class="text-input-label" for="text-input-limit"
           >text-input-limit-box</label
         >
-        <input
-          class="text-input-limit"
-          type="text"
-          name=""
-          id="text-input-limit"
-          placeholder="placeholder"
-          aria-describedby="input-limit-count"
-        />
-        <span id="input-limit-count">13/50</span>
+        <div class="input-wrapper">
+          <input
+            class="text-input-limit"
+            type="text"
+            name=""
+            id="text-input-limit"
+            placeholder="placeholder"
+            aria-describedby="input-limit-count"
+          />
+          <span id="input-limit-count">13/50</span>
+        </div>
+      </div>
+
+      <div class="input-contain-check-box">
+        <label class="text-input-label" for="input-contain-check"
+          >text-input-limit-box</label
+        >
+        <div class="input-wrapper">
+          <input
+            class="text-input-contain-check"
+            type="text"
+            name=""
+            id="input-contain-check"
+            placeholder="placeholder"
+            aria-describedby="check"
+            aria-invalid="true"
+          />
+          <img
+            id="check"
+            src="/assets/images/icon-check-off.svg"
+            alt="유효하지 않은 입력"
+            aira-live="polite"
+          />
+        </div>
       </div>
     </div>
   </head>

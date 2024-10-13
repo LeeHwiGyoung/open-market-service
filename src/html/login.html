@@ -3,26 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../scss/login.css" />
     <title>Document</title>
   </head>
   <body>
     <section class="login-container">
       <h1>
         <a href="/">
-          <img src="" alt="호두 메인페이지로 이동" />
+          <img
+            src="/assets/images/Logo-hodu.png"
+            alt="호두 메인페이지로 이동"
+          />
         </a>
       </h1>
       <form name="login">
         <!-- action 추가 -->
-        <button class="btn-select-buyer" type="button">구매회원 로그인</button>
-        <button class="btn-select-seller" type="button">판매회원 로그인</button>
-        <label for="id">아이디</label>
-        <input type="text" name="id" id="id" />
-        <label for="password">비밀번호</label>
-        <input type="password" name="password" id="password" />
-        <button class="btn-login-submit" type="submit">로그인</button>
+        <div class="login-select-container">
+          <button class="btn-select-buyer active" type="button">
+            구매회원 로그인
+          </button>
+          <button class="btn-select-seller" type="button">
+            판매회원 로그인
+          </button>
+        </div>
+        <div class="login-submit-container">
+          <label class="sr-only" for="id">아이디</label>
+          <input
+            class="input-login-id"
+            type="text"
+            name="id"
+            id="id"
+            placeholder="아이디"
+          />
+          <label class="sr-only" for="password">비밀번호</label>
+          <input
+            class="input-login-password"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="비밀번호"
+          />
+          <p class="msg">아이디 또는 비밀번호가 일치하지 않습니다.</p>
+          <button class="btn-login-submit" type="submit">로그인</button>
+        </div>
       </form>
-      <ul>
+      <ul class="login-link-more">
         <li>
           <a href="/join"> 회원가입 </a>
         </li>

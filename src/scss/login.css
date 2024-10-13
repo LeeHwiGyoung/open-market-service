@@ -114,16 +114,6 @@ html {
   border-bottom: 1px solid #c4c4c4;
   margin-bottom: 0.6rem;
 }
-.login-submit-container input::-moz-placeholder {
-  color: #767676;
-}
-.login-submit-container input::placeholder {
-  color: #767676;
-}
-.login-submit-container input:focus {
-  outline: none;
-  border-color: #21BF48;
-}
 .login-submit-container .msg {
   display: none;
   width: 100%;

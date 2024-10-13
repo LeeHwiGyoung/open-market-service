@@ -47,7 +47,7 @@
     text-align: left;
     color : var(--label--color);
 }
-.text-input,.text-input-limit {
+.text-input,.text-input-limit,.text-input-contain-check {
     width: 100%;
     font-family: "SpoqaHanSansNeo-Medium";
     font-size: 1.6rem;
@@ -59,11 +59,11 @@
     color : #000000;
 }
 
-.text-input::placeholder,.text-input-limit::placeholder{
+.text-input::placeholder,.text-input-limit::placeholder,.text-input-contain-check::placeholder{
     color : var(--placeholder--color);
 }
 
-.text-input:focus,.text-input-limit:focus {
+.text-input:focus,.text-input-limit:focus,.text-input-contain-check:focus {
     outline: none;
     border-color: var(--border--active--color);
 }
@@ -99,7 +99,17 @@
     line-height: 1.753rem;
     text-align: left;
     color : var(--label--color);
-    bottom : 0;
     top :50%;
+    transform: translateY(-50%);
     right: 1.6rem;
+}
+
+.input-wrapper { 
+    position: relative;
+}
+#check {
+    position: absolute;
+    top : 50%;
+    right: 1.6rem;
+    transform: translateY(-50%);
 }

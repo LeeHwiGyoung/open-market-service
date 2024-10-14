@@ -1,7 +1,3 @@
-@use '_mixin';
-@use '_font';
-@use '_common';
-
 $border-color : #c4c4c4;
 $btn-background-color : #21BF48;
 $btn-font-color : #FFF;
@@ -10,3 +6,8 @@ $font-login : 'SpoqaHanSansNeo-Medium';
 $placeholder-color : #767676;
 $border-focus-color : #21BF48;
 $invalid-color : #EB5757;
+$label-color : #767676;
+$font-bold : 'SpoqaHanSansNeo-Bold';
+$font-medium : 'SpoqaHanSansNeo-Medium';
+$font-regular : 'SpoqaHanSansNeo-Regular';
+

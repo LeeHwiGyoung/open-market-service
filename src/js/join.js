@@ -16,11 +16,13 @@ const dropdown_list = dropdown_menu.querySelector(".dropdown-options");
 const dropdown_scroll_track = dropdown_menu.querySelector(".scroll-wrap");
 const dropdown_scroll_thumb = dropdown_menu.querySelector(".scroll-bar");
 const btn_join = join_form.querySelector(".btn-join");
+const msg = join_form.querySelectorAll(".msg");
 
 dropdown_scroll_track.style.height = `${dropdown_menu.scrollHeight}px`;
 let join_type = "BUYER";
 let scrollPersent;
 let toggle_drop_Down = false;
+const input_blank = new Array(7).fill(false);
 const SCROLL_THUMBS_HEIGHT = 90;
 
 function throttle(mainFunc, delay) {
@@ -59,6 +61,80 @@ join_type_container.addEventListener("click", (e) => {
   }
 });
 
+//focusout 이벤트 : 유효성 검사
+//keyup 이벤트 : 입력시 상위 인풋을 입력하지 않은 경우
+//keyup 이벤트 리팩토링 하기
+function is_fill(idx) {
+  for (let i = 0; i < idx; i++) {
+    if (!is_fill[i]) {
+      // 상위 인풋이 채워지지 않은 경우
+      msg[i].textContent = "필수 정보입니다.";
+      msg[i].classList.add("display");
+    } else {
+      msg[i].textContent = "";
+      msg[i].classList.remove("display");
+    }
+  }
+}
+
+input_id.addEventListener("keyup", (e) => {
+  const idx = e.target.dataset.idx;
+  if (e.target.value === "") {
+    is_fill[idx] = false;
+  } else {
+    is_fill[idx] = true;
+  }
+});
+input_password.addEventListener("focusout", (e) => {});
+input_password.addEventListener("keyup", (e) => {
+  const idx = e.target.dataset.idx;
+  is_fill(idx);
+  if (e.target.value === "") {
+    is_fill[idx] = false;
+  } else {
+    is_fill[idx] = true;
+  }
+});
+input_password_check.addEventListener("focusout", (e) => {});
+input_password_check.addEventListener("keyup", (e) => {
+  const idx = e.target.dataset.idx;
+  is_fill(idx);
+  if (e.target.value === "") {
+    is_fill[idx] = false;
+  } else {
+    is_fill[idx] = true;
+  }
+});
+input_name.addEventListener("focusout", (e) => {});
+input_name.addEventListener("keyup", (e) => {
+  const idx = e.target.dataset.idx;
+  is_fill(idx);
+  if (e.target.value === "") {
+    is_fill[idx] = false;
+  } else {
+    is_fill[idx] = true;
+  }
+});
+input_phone_middle.addEventListener("focusout", (e) => {});
+input_phone_middle.addEventListener("keyup", (e) => {
+  const idx = e.target.dataset.idx;
+  is_fill(idx);
+  if (e.target.value === "") {
+    is_fill[idx] = false;
+  } else {
+    is_fill[idx] = true;
+  }
+});
+input_phone_last.addEventListener("focusout", (e) => {});
+input_phone_last.addEventListener("keyup", (e) => {
+  const idx = e.target.dataset.idx;
+  is_fill(idx);
+  if (e.target.value === "") {
+    is_fill[idx] = false;
+  } else {
+    is_fill[idx] = true;
+  }
+});
 document.addEventListener("click", (e) => {
   //드롭다운 외부를 클릭했을 시 드롭다운이 닫히는 이벤트
   if (!phone_number_dropdown.contains(e.target)) {

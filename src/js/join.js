@@ -77,6 +77,22 @@ function is_fill(idx) {
   }
 }
 
+input_id.addEventListener("focusout", (e) => {
+  const idx = e.target.dataset.idx;
+  const pattern = /^[a-zA-Z0-9]{1,20}$/;
+  console.log(pattern.test(e.target.value));
+  if (pattern.test(e.target.value)) {
+    msg[idx].setAttribute("aria-invalid", false);
+    msg[idx].classList.add("display");
+    msg[idx].textContent = "멋진 아이디네요:)";
+  } else {
+    msg[idx].setAttribute("aria-invalid", true);
+    msg[idx].classList.add("display");
+    msg[idx].textContent =
+      "20자 이내의 영문 소문자,대문자,숫자만 사용 가능합니다..";
+  }
+});
+
 input_id.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
   if (e.target.value === "") {

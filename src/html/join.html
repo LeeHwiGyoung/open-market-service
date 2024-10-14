@@ -20,10 +20,20 @@
       <form name="join">
         <!-- action 추가 -->
         <div class="join-select-container">
-          <button class="btn-select-buyer active" type="button">
+          <button
+            class="btn-select-buyer active"
+            type="button"
+            data-join-type="BUYER"
+          >
             구매회원가입
           </button>
-          <button class="btn-select-seller" type="button">판매회원가입</button>
+          <button
+            class="btn-select-seller"
+            type="button"
+            data-join-type="SELLER"
+          >
+            판매회원가입
+          </button>
         </div>
         <div class="join-submit-container">
           <label class="input-label" for="text-input">아이디</label>
@@ -82,17 +92,10 @@
           <div class="phone-number-wrap">
             <article class="number-select-input">
               <label class="input-label" for="phone-number">휴대폰번호</label>
-              <select class="sr-only" name="phone-number" id="phone-number">
-                <option value="010">010</option>
-                <option value="011">011</option>
-                <option value="016">016</option>
-                <option value="017">017</option>
-                <option value="018">018</option>
-                <option value="019">019</option>
-              </select>
               <div class="phone-number-dropdown">
                 <button
                   type="button"
+                  id="phone-number"
                   class="dropdown-trigger"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -106,22 +109,52 @@
                     role="listbox"
                     aria-labelledby="phone-number"
                   >
-                    <li class="dropdown-option" role="option" data-value="010">
+                    <li
+                      class="dropdown-option"
+                      tabindex="0"
+                      role="option"
+                      data-value="010"
+                    >
                       010
                     </li>
-                    <li class="dropdown-option" role="option" data-value="011">
+                    <li
+                      class="dropdown-option"
+                      tabindex="0"
+                      role="option"
+                      data-value="011"
+                    >
                       011
                     </li>
-                    <li class="dropdown-option" role="option" data-value="016">
+                    <li
+                      class="dropdown-option"
+                      tabindex="0"
+                      role="option"
+                      data-value="016"
+                    >
                       016
                     </li>
-                    <li class="dropdown-option" role="option" data-value="017">
+                    <li
+                      class="dropdown-option"
+                      tabindex="0"
+                      role="option"
+                      data-value="017"
+                    >
                       017
                     </li>
-                    <li class="dropdown-option" role="option" data-value="018">
+                    <li
+                      class="dropdown-option"
+                      tabindex="0"
+                      role="option"
+                      data-value="018"
+                    >
                       018
                     </li>
-                    <li class="dropdown-option" role="option" data-value="019">
+                    <li
+                      class="dropdown-option"
+                      tabindex="0"
+                      role="option"
+                      data-value="019"
+                    >
                       019
                     </li>
                   </ul>

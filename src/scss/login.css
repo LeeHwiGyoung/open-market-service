@@ -13,6 +13,10 @@
   src: url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff");
   font-weight: 700;
 }
+html {
+  font-size: 10px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -24,10 +28,6 @@
           clip-path: inset(50%);
   border: 0;
   clip: rect(0 0 0 0);
-}
-
-html {
-  font-size: 10px;
 }
 
 .login-container {

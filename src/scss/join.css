@@ -191,6 +191,7 @@
   margin-top: 1rem;
 }
 .phone-number-wrap .dropdown-menu {
+  display: none;
   position: absolute;
   margin-top: 0.6rem;
   height: 15rem;
@@ -205,6 +206,9 @@
 .phone-number-wrap .dropdown-menu::-webkit-scrollbar {
   display: none;
 }
+.phone-number-wrap .dropdown-menu.active {
+  display: block;
+}
 .phone-number-wrap .dropdown-trigger {
   max-width: 15.2rem;
   padding: 1.7rem 1.2rem 1.7rem 5rem;
@@ -215,6 +219,14 @@
   font-size: 1.6rem;
   line-height: 2.03rem;
   white-space: nowrap;
+}
+.phone-number-wrap .dropdown-trigger:active {
+  outline: none;
+  border-color: #21BF48;
+}
+.phone-number-wrap .dropdown-trigger:focus {
+  outline: none;
+  border-color: #21BF48;
 }
 .phone-number-wrap .dropdown-trigger span {
   padding-right: 3.7rem;

@@ -171,6 +171,7 @@
     }
 
     .dropdown-menu {
+        display: none;
         position: absolute;
         margin-top: 0.6rem;
         height: 15rem;
@@ -184,7 +185,9 @@
         &::-webkit-scrollbar {
             display: none;
         }
-      //  display: none;
+        &.active {
+            display: block;
+        }
     }
 
     .dropdown-trigger {
@@ -197,7 +200,16 @@
        font-size: 1.6rem;
        line-height: 2.03rem;
        white-space: nowrap;
-   }
+       &:active {
+        outline: none;
+           border-color: $border-focus-color;
+        }
+        &:focus {
+            outline: none;
+          border-color: $border-focus-color;  
+        }
+    }
+
    .dropdown-trigger span {
        padding-right: 3.7rem;
    }

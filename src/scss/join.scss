@@ -1,0 +1,296 @@
+@use 'mixin';
+@use '_font';
+@import '_variable';
+
+.sr-only {
+    @include mixin.sr-only;
+}
+.join-container {
+    @include mixin.flexCenter;
+    flex-direction: column;
+    margin : 10rem auto;
+    
+    h1 {
+        width: 23.8rem;
+        img  {
+            width: 100%;
+        }
+    }
+
+    form {
+        width: 55rem;
+        height: 100%;
+        margin : 7rem auto 0rem;
+
+    }
+}
+
+.join-select-container { 
+    @include mixin.flexCenter;
+    position: relative;
+}
+
+%btn-select { 
+    max-width: 27.5rem;
+    border-radius: 1rem;
+    border : 1px solid  $border-color;
+    padding : 2rem 8.8rem 3.8rem 8.7rem;
+    font-family: $font-login;
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 2.2rem;
+    text-align: center;
+    white-space:nowrap;
+    color : #000000;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.btn-select-buyer,.btn-select-seller {
+    @extend %btn-select;      
+    z-index: 10;
+}
+
+.btn-select-buyer.active , .btn-select-seller.active {
+    background-color: #fff;
+    border-bottom: none;
+    z-index : 30;
+}
+
+.btn-select-buyer.active {
+    border-right: none;
+    border-bottom-left-radius: 0;
+}
+
+.btn-select-seller.active {
+    border-left: none;
+    border-bottom-right-radius: 0;
+}   
+
+.join-submit-container {
+    @include mixin.flexCenter;
+    position: relative;
+    flex-direction: column;
+    padding : 4rem 3.5rem 3.6rem;
+    transform: translateY(-2rem);
+    background-color: #fff;
+    z-index: 20;
+    border : 1px solid $border-color;
+    border-radius: 1rem;
+    .msg {
+        align-self: flex-start;
+        margin-top : 1rem;
+        display: none;
+    }
+}
+
+%input {
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 2.03rem;
+    padding : 1.7rem 1.6rem;
+    border: 1px solid $border-color;
+    border-radius: 0.5rem;
+    color : #000;
+}
+
+.input-label {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.03rem;
+    color : $label-color;
+    align-self: flex-start;
+    margin-bottom : 1rem;
+}
+
+.input-wrapper { 
+    @include mixin.flexCenter;
+    position: relative;
+    width: 100%;
+    gap: 1.2rem;
+}
+
+.text-input,.input-contain-check {
+   @extend %input;
+   &:focus {
+    outline: none;
+    border-color: $border-focus-color;
+   }
+}
+
+.text-input {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    font-weight: 400;
+}
+
+.input-contain-check { 
+    font-family: 'SpoqaHanSansNeo-Bold';
+    font-weight: 700;
+}
+
+
+#check {
+    position: absolute;
+    top : 50%;
+    right: 1.6rem;
+    transform: translateY(-50%);
+}
+
+
+.btn-check-id {
+    padding : 1.7rem 3.1rem 1.7rem 3.2rem;
+    white-space: nowrap;
+    color : $btn-font-color;
+    background-color: $btn-background-color;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-family: $font-medium;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.03rem;
+}
+/* 
+.text-input:invalid {
+    border-color: $invalid-color;
+}
+ */
+
+.phone-number-wrap {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: row;
+    gap : 1.2rem;
+    margin-top: 1.6rem;
+    box-sizing: border-box;
+    .phone-number-dropdown{
+        position: relative;
+        margin-top: 1rem;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        margin-top: 0.6rem;
+        height: 15rem;
+        width: 15.2rem;
+        overflow-y: hidden;
+        z-index: 10;
+        border-radius: 0.5rem;
+        border : 1px solid #c4c4c4;
+        display: none;
+    }
+
+    .dropdown-trigger {
+       max-width: 15.2rem;
+       padding : 1.7rem 1.2rem 1.7rem 5rem;
+       border: 1px solid $border-color;
+       border-radius: 0.5rem;
+       background-color: #FFF;
+       font-family: $font-regular;
+       font-size: 1.6rem;
+       line-height: 2.03rem;
+       white-space: nowrap;
+   }
+   .dropdown-trigger span {
+       padding-right: 3.7rem;
+   }
+   
+   .dropdown-trigger img {
+       width: 2.4rem;
+       height: 1.4rem;
+       object-fit: cover;
+       vertical-align: middle;
+   }
+   .dropdown-options {
+       position: absolute;
+       display: flex;
+       flex-direction: column;
+       border-radius: 0.5rem;
+       background-color: #FFF;
+   }
+   
+   .dropdown-option {
+       display: inline-block;
+       height: 4rem;
+       font-family: $font-medium;
+       font-size: 1.6rem;
+       font-weight: 500;
+       line-height: 2.03rem;
+       text-align: center;
+       padding : 1rem 5.2rem;
+
+       &:hover{
+        background-color: #e0e0e0;
+       }
+   }
+
+   .input-phone-number {
+     @extend %input;
+     font-family: $font-regular;
+    }
+ }
+
+ .scroll-wrap {
+    position: absolute;
+    right: 0;
+    width: 1.8rem;
+    height: 100%;
+    background-color: #f2f2f2;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    .scroll-bar {
+        margin : 0 auto;
+        width: 0.6rem;
+        height: 9rem;
+        border-radius: 1rem;
+        background-color: #c4c4c4;
+    }
+ }
+
+
+ .personnal-check{
+     display: block;
+     margin : 1.4rem auto 3.4rem;
+     font-family: $font-regular;
+     font-weight: 400;
+     font-size: 1.6rem;
+     line-height: 2.03rem;
+     color : #767676;
+     cursor: pointer;
+     em {
+         font-family: $font-bold;
+         font-weight: 700;
+         text-decoration: underline;
+    }
+
+    &::before {
+        content: url('/assets/images/check-box.svg');
+        margin: 0.2rem 1rem 0 0;
+        width: 1.6rem;
+    }
+
+    &.clicked::before{
+        content: url('/assets/images/check-fill-box.svg');
+        margin: 0.2rem 1rem 0 0;
+        width: 1.6rem;
+    }
+}
+
+.btn-join {
+    width: 100%;
+    padding : 1.9rem 20.6rem 1.9rem 20.7rem;
+    border : none;
+    border-radius: 0.5rem;
+    font-family: $font-bold;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+    text-align: center;
+    background-color: $btn-background-color;
+    color : #FFF;
+    &:disabled {
+        background-color: #c4c4c4;
+    }
+}

@@ -9,7 +9,7 @@ $btn-font-family : 'SpoqaHanSansNeo-Bold';
 $font-login : 'SpoqaHanSansNeo-Medium';
 $placeholder-color : #767676;
 $border-focus-color : #21BF48;
-$border-invalid-color : #EB5757;
+$invalid-color : #EB5757;
 
 
 html {
@@ -55,6 +55,7 @@ html {
     white-space:nowrap;
     color : #000000;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .btn-select-buyer,.btn-select-seller {
@@ -115,7 +116,11 @@ html {
         font-weight: 500;
         line-height: 2.03rem;
         text-align: left;
+        color : $invalid-color;
         margin: 2.2rem 0 -0.4rem;
+    }
+    .msg.display {
+        display: block;
     }
     .btn-login-submit { 
         margin-top : 3rem;
@@ -130,6 +135,7 @@ html {
         line-height: 2.2rem;
         text-align: center;
         white-space: nowrap;
+        cursor: pointer;
     }
 }
 

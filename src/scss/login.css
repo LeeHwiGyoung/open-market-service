@@ -69,6 +69,7 @@ html {
   white-space: nowrap;
   color: #000000;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .btn-select-buyer, .btn-select-seller {
@@ -132,7 +133,11 @@ html {
   font-weight: 500;
   line-height: 2.03rem;
   text-align: left;
+  color: #EB5757;
   margin: 2.2rem 0 -0.4rem;
+}
+.login-submit-container .msg.display {
+  display: block;
 }
 .login-submit-container .btn-login-submit {
   margin-top: 3rem;
@@ -147,6 +152,7 @@ html {
   line-height: 2.2rem;
   text-align: center;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .login-link-more {

@@ -195,10 +195,14 @@
   margin-top: 0.6rem;
   height: 15rem;
   width: 15.2rem;
-  overflow-y: hidden;
   z-index: 10;
   border-radius: 0.5rem;
   border: 1px solid #c4c4c4;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+.phone-number-wrap .dropdown-menu::-webkit-scrollbar {
   display: none;
 }
 .phone-number-wrap .dropdown-trigger {
@@ -224,8 +228,6 @@
 }
 .phone-number-wrap .dropdown-options {
   position: absolute;
-  display: flex;
-  flex-direction: column;
   border-radius: 0.5rem;
   background-color: #FFF;
 }
@@ -261,6 +263,7 @@
   height: 9rem;
   border-radius: 1rem;
   background-color: #c4c4c4;
+  transition: ease;
 }
 
 .personnal-check {

@@ -15,6 +15,7 @@ const dropdown_menu = phone_number_dropdown.querySelector(".dropdown-menu");
 const dropdown_list = dropdown_menu.querySelector(".dropdown-options");
 const dropdown_scroll_track = dropdown_menu.querySelector(".scroll-wrap");
 const dropdown_scroll_thumb = dropdown_menu.querySelector(".scroll-bar");
+const btn_check_id = join_form.querySelector(".btn-check-id");
 const btn_join = join_form.querySelector(".btn-join");
 const msg = join_form.querySelectorAll(".msg");
 
@@ -24,6 +25,7 @@ let scrollPersent;
 let toggle_drop_Down = false;
 const input_blank = new Array(7).fill(false);
 const SCROLL_THUMBS_HEIGHT = 90;
+const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
 
 function throttle(mainFunc, delay) {
   let timerFlag = null;
@@ -47,6 +49,33 @@ function calcScroll(event) {
   return translateY;
 }
 
+async function postFetch(url, data) {
+  try {
+    const response = await fetch(`${BASE_URL}/${url}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    console.log("response", response);
+    const json = response.json();
+    console.log("json", json);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function is_fill(idx) {
+  for (let i = 0; i < idx; i++) {
+    if (!is_fill[i]) {
+      // 상위 인풋이 채워지지 않은 경우
+      msg[i].textContent = "필수 정보입니다.";
+      msg[i].classList.add("display");
+    } else {
+      msg[i].textContent = "";
+      msg[i].classList.remove("display");
+    }
+  }
+}
 join_type_container.addEventListener("click", (e) => {
   if (e.target.nodeName === "BUTTON") {
     //button 사이의 빈 공간 클릭시 undefined가 할당되는 것을 막기 위해
@@ -64,23 +93,22 @@ join_type_container.addEventListener("click", (e) => {
 //focusout 이벤트 : 유효성 검사
 //keyup 이벤트 : 입력시 상위 인풋을 입력하지 않은 경우
 //keyup 이벤트 리팩토링 하기
-function is_fill(idx) {
-  for (let i = 0; i < idx; i++) {
-    if (!is_fill[i]) {
-      // 상위 인풋이 채워지지 않은 경우
-      msg[i].textContent = "필수 정보입니다.";
-      msg[i].classList.add("display");
-    } else {
-      msg[i].textContent = "";
-      msg[i].classList.remove("display");
-    }
+
+function is_valid(pattern, e, errMsg) {
+  const idx = e.target.dataset.idx;
+  if (pattern.test(e.target.value)) {
+    msg[idx].setAttribute("aria-invalid", false);
+    msg[idx].classList.remove("display");
+  } else {
+    msg[idx].setAttribute("aria-invalid", true);
+    msg[idx].classList.add("display");
+    msg.textContent = errMsg;
   }
 }
 
 input_id.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
   const pattern = /^[a-zA-Z0-9]{1,20}$/;
-  console.log(pattern.test(e.target.value));
   if (pattern.test(e.target.value)) {
     msg[idx].setAttribute("aria-invalid", false);
     msg[idx].classList.add("display");
@@ -101,7 +129,10 @@ input_id.addEventListener("keyup", (e) => {
     is_fill[idx] = true;
   }
 });
-input_password.addEventListener("focusout", (e) => {});
+input_password.addEventListener("focusout", (e) => {
+  const pattern = /^(?=.*[a-z])(?=.*\d)[^\s]{8,}$/; //8자 이상이면서 영어소문자 1자 이상 , 숫자 1자 이상 공백을 포함하지 않는 문자열
+  is_valid(pattern, e);
+});
 input_password.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
   is_fill(idx);
@@ -110,6 +141,10 @@ input_password.addEventListener("keyup", (e) => {
   } else {
     is_fill[idx] = true;
   }
+});
+
+btn_check_id.addEventListener("click", (e) => {
+  postFetch("accounts/validate-username/", { username: input_id.value });
 });
 input_password_check.addEventListener("focusout", (e) => {});
 input_password_check.addEventListener("keyup", (e) => {

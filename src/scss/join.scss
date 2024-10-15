@@ -1,5 +1,4 @@
 @use 'mixin';
-@use '_font';
 @import '_variable';
 
 .sr-only {
@@ -81,6 +80,15 @@
         align-self: flex-start;
         margin-top : 1rem;
         display: none;
+        &.display {
+            display: block
+        };
+        &[aria-invalid="false"] {
+            color : $valid-color;
+        }
+        &[aria-invalid="true"] {
+            color : $invalid-color;
+        }
     }
 }
 
@@ -130,7 +138,7 @@
 }
 
 
-#check {
+.check {
     position: absolute;
     top : 50%;
     right: 1.6rem;

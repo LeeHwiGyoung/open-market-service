@@ -106,6 +106,15 @@
   margin-top: 1rem;
   display: none;
 }
+.join-submit-container .msg.display {
+  display: block;
+}
+.join-submit-container .msg[aria-invalid=false] {
+  color: #21BF48;
+}
+.join-submit-container .msg[aria-invalid=true] {
+  color: #EB5757;
+}
 
 .phone-number-wrap .input-phone-number, .text-input, .input-contain-check {
   width: 100%;
@@ -151,7 +160,7 @@
   font-weight: 700;
 }
 
-#check {
+.check {
   position: absolute;
   top: 50%;
   right: 1.6rem;

@@ -13,6 +13,21 @@
   src: url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff");
   font-weight: 700;
 }
+@font-face {
+  font-family: "SpoqaHanSansNeo-Regular";
+  src: url("../../assets/fonts/SpoqaHanSansNeo-Regular.woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Medium";
+  src: url("../../assets/fonts/SpoqaHanSansNeo-Medium.woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Bold";
+  src: url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff");
+  font-weight: 700;
+}
 footer {
   background-color: #f2f2f2;
 }
@@ -183,12 +198,14 @@ img {
   width: 100%;
   border-radius: 1rem;
   border: 1px solid #c4c4c4;
+  margin-bottom: 1.6rem;
 }
 .product-list-container .product-item .store-name {
   color: #767676;
 }
 .product-list-container .product-item .product-name {
   font-size: 1.8rem;
+  margin: 1rem 0;
 }
 .product-list-container .product-item .product-price {
   line-height: 2.003rem;

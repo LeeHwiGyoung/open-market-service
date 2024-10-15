@@ -60,22 +60,40 @@
             <p class="product-price"><span>17,500</span>원</p>
             <p class="delivery-info">택배배송 / 무료배송</p>
             <hr />
-            <button class="btn-minus"></button>
-            <label for="product-quantity"></label>
-            <input
-              type="number"
-              name="product-quantity"
-              id="product-quantity"
-            />
+            <div class="product-quantity-wrap">
+              <button class="btn-quantity" type="button">
+                <img
+                  src="/assets/images/icon-minus-line.svg"
+                  alt="수량 마이너스 버튼"
+                />
+              </button>
+              <label class="sr-only" for="product-quantity">선택된 수량</label>
+              <input
+                type="text"
+                name="product-quantity"
+                id="product-quantity"
+                class="input-product-quantity"
+                min="1"
+                value="1"
+              />
+              <button class="btn-quantity" type="button">
+                <img
+                  src="/assets/images/icon-plus-line.svg"
+                  alt="수량 플러스 버튼"
+                />
+              </button>
+            </div>
             <hr />
-            <div>
+            <div class="total-price-wrap">
               <p>총 상품 금액</p>
-              <p>총 수량<span></span>개</p>
-              <p class="total-price">원</p>
+              <p class="total-quantity">총 수량<span></span>개</p>
+              <p class="total-price"><span></span>원</p>
             </div>
             <div class="product-detail-btn-container">
-              <a class="btn-buy">바로구매</a>
-              <a class="btn-shopping-cart">장바구니</a>
+              <a href="/src/html/payments" class="btn-buy">바로구매</a>
+              <a href="/src/html/shopping-cart" class="btn-shopping-cart"
+                >장바구니</a
+              >
             </div>
           </section>
         </div>

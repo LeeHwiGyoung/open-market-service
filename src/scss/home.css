@@ -168,5 +168,33 @@ header {
 .product-list-container .product-item {
   flex-basis: 38rem;
   height: 49rem;
-  border: 1px solid black;
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  color: #000;
+}
+.product-list-container .product-item a {
+  text-decoration: none;
+}
+.product-list-container .product-item a:visited, .product-list-container .product-item a:link {
+  color: #000;
+}
+.product-list-container .product-item img {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid #c4c4c4;
+}
+.product-list-container .product-item .store-name {
+  color: #767676;
+}
+.product-list-container .product-item .product-name {
+  font-size: 1.8rem;
+}
+.product-list-container .product-item .product-price {
+  line-height: 2.003rem;
+}
+.product-list-container .product-item .product-price span {
+  font-size: 2.4rem;
+  line-height: 3.005rem;
+  font-family: "SpoqaHanSansNeo-Bold";
 }/*# sourceMappingURL=home.css.map */

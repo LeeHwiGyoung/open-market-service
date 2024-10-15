@@ -3,44 +3,120 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/css/reset.css" />
+    <link rel="stylesheet" href="/src/scss/home.css" />
     <title>Document</title>
   </head>
   <body>
     <header>
-      <h1>
-        <a href="/"><img src="" alt="호두 메인페이지로 이동" /></a>
-      </h1>
-      <label>
-        <input
-          type="text"
-          name="search-bar"
-          id="search-bar"
-          placeholder="상품을 검색해보세요!"
-        />
-        <button type="button">
-          <img src="" alt="" />
-        </button>
-      </label>
-
-      <nav>
-        <ul>
-          <li>
-            <button type="button">
-              <img src="" alt="장바구니" />
-              장바구니
-            </button>
-          </li>
-          <li>
-            <button type="button">
-              <img src="" alt="마이페이지" />
-              마이페이지
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <div class="header-container">
+        <h1>
+          <a href="/src/html/home.html"
+            ><img
+              src="/assets/images/Logo-hodu.png"
+              alt="호두 메인페이지로 이동"
+          /></a>
+        </h1>
+        <div class="search-bar-wrap">
+          <label class="sr-only" for="search-bar">검색창</label>
+          <input
+            type="text"
+            name="search-bar"
+            id="search-bar"
+            placeholder="상품을 검색해보세요!"
+          />
+          <button class="btn-search" type="button">
+            <img src="/assets/images/icon-search.svg" alt="" />
+          </button>
+        </div>
+        <nav class="gnb-nav">
+          <ul>
+            <li class="gnb-nav-item">
+              <a href="#">
+                <img
+                  src="/assets/images/icon-shopping-cart.svg"
+                  alt="장바구니"
+                />
+                <p>장바구니</p>
+              </a>
+            </li>
+            <li class="gnb-nav-item">
+              <button type="button">
+                <img src="/assets/images/icon-user.svg" alt="로그인" />
+                <p>마이페이지</p>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
-    <section class="product-slider-container"></section>
-    <main class="product-list-container"></main>
-    <footer></footer>
+    <section class="product-slider-container">
+      <ul class="product-slider-list"></ul>
+    </section>
+    <main>
+      <div class="product-list-container">
+        <!--
+        동적 추가 요소 
+        <article class="product-item">
+          <a href="/src/html/detail.html">
+            <img src="" alt="프로덕트 이미지" />
+            <p>판매처</p>
+            <h2>상품명</h2>
+            <p>가격</p>
+          </a>
+        </article>
+      --></div>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <nav>
+          <ul class="footer-nav-list">
+            <li><a href="#"> 호두샵 소개</a></li>
+            <li><a href="#"> 이용약관</a></li>
+            <li>
+              <a href="#"> <em>개인정보처리방침</em></a>
+            </li>
+            <li><a href="#"> 전자금융거래약관</a></li>
+            <li><a href="#"> 청소년보호정책</a></li>
+            <li><a href="#"> 제휴문의</a></li>
+          </ul>
+          <ul class="sns-list">
+            <li>
+              <a href="">
+                <img
+                  src="/assets/images/icon-insta.svg"
+                  alt="호두샵 인스타그램으로 이동"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img
+                  src="/assets/images/icon-fb.svg"
+                  alt="호두샵 페이스북으로 이동"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img
+                  src="/assets/images/icon-insta.svg"
+                  alt="호두샵 유튜브로 이동"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <section>
+          <address>
+            <h2>(주)HODU SHOP</h2>
+            <p>제주특별자치도 제주시 동광고 137 제주코딩베이스캠프</p>
+            <p>사업자 번호 : 000-0000-0000 | 통신판매업</p>
+            <p>대표 : 김호두</p>
+          </address>
+        </section>
+      </div>
+    </footer>
   </body>
 </html>

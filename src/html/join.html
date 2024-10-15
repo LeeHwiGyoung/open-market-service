@@ -10,7 +10,7 @@
   <body>
     <section class="join-container">
       <h1>
-        <a href="/">
+        <a href="/src/html/home.html">
           <img
             src="/assets/images/Logo-hodu.png"
             alt="호두 메인페이지로 이동"
@@ -48,7 +48,7 @@
             />
             <button class="btn-check-id" type="button">중복확인</button>
           </div>
-          <p class="msg" aria-invalid="false">에러 메세지 또는 성공 메세지</p>
+          <p class="msg" aria-invalid="true">에러 메세지 또는 성공 메세지</p>
 
           <label class="input-label" for="password">비밀번호</label>
           <div class="input-wrapper">
@@ -58,18 +58,17 @@
               name="password"
               id="password"
               data-idx="1"
-              aria-describedby="check"
-              aria-invalid="true"
               required
             />
             <img
-              id="check"
+              id="password-img"
+              class="check"
               src="/assets/images/icon-check-off.svg"
               alt="유효하지 않은 입력"
-              aira-live="polite"
+              aria-live="polite"
             />
           </div>
-          <p class="msg">에러 메세지 또는 성공 메세지</p>
+          <p class="msg" aria-invalid="true">에러 메세지 또는 성공 메세지</p>
           <label class="input-label" for="check-password"
             >비밀번호 재확인</label
           >
@@ -80,18 +79,17 @@
               name="check-password"
               id="check-password"
               data-idx="2"
-              aria-describedby="check"
-              aria-invalid="true"
               required
             />
             <img
-              id="check"
+              class="check"
+              id="password-check-img"
               src="/assets/images/icon-check-off.svg"
               alt="유효하지 않은 입력"
-              aira-live="polite"
+              aria-live="polite"
             />
           </div>
-          <p class="msg">에러 메세지 또는 성공 메세지</p>
+          <p class="msg" aria-invalid="true">에러 메세지 또는 성공 메세지</p>
           <label class="input-label" for="user-name">이름</label>
           <input
             class="text-input"
@@ -100,7 +98,7 @@
             id="user-name"
             data-idx="3"
           />
-          <p class="msg">에러 메세지 또는 성공 메세지</p>
+          <p class="msg" aria-invalid="true">에러 메세지 또는 성공 메세지</p>
           <div class="phone-number-wrap">
             <article class="number-select-input">
               <label class="input-label" for="phone-number">휴대폰번호</label>
@@ -202,7 +200,7 @@
               data-idx="4"
               required
             />
-            <p class="msg">메시지 테스트</p>
+            <p class="msg" aria-invalid="true">메시지 테스트</p>
           </div>
           <input
             class="sr-only"

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/css/reset.css" />
+    <link rel="stylesheet" href="/src/scss/detail.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <h1>
+          <a href="/src/html/home.html"
+            ><img
+              src="/assets/images/Logo-hodu.png"
+              alt="호두 메인페이지로 이동"
+          /></a>
+        </h1>
+        <div class="search-bar-wrap">
+          <label class="sr-only" for="search-bar">검색창</label>
+          <input
+            type="text"
+            name="search-bar"
+            id="search-bar"
+            placeholder="상품을 검색해보세요!"
+          />
+          <button class="btn-search" type="button">
+            <img src="/assets/images/icon-search.svg" alt="" />
+          </button>
+        </div>
+        <nav class="gnb-nav">
+          <ul>
+            <li class="gnb-nav-item">
+              <a href="#">
+                <img
+                  src="/assets/images/icon-shopping-cart.svg"
+                  alt="장바구니"
+                />
+                <p>장바구니</p>
+              </a>
+            </li>
+            <li class="gnb-nav-item">
+              <button type="button">
+                <img src="/assets/images/icon-user.svg" alt="로그인" />
+                <p>마이페이지</p>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="product-detail-container">
+        <div class="product-detail-price-container">
+          <img class="img-product" />
+          <section class="product-detail-price-info-container">
+            <p class="store-name">스토어명</p>
+            <h2 class="product-name">상품명</h2>
+            <p class="product-price"><span>17,500</span>원</p>
+            <p class="delivery-info">택배배송 / 무료배송</p>
+            <hr />
+            <button class="btn-minus"></button>
+            <label for="product-quantity"></label>
+            <input
+              type="number"
+              name="product-quantity"
+              id="product-quantity"
+            />
+            <hr />
+            <div>
+              <p>총 상품 금액</p>
+              <p>총 수량<span></span>개</p>
+              <p class="total-price">원</p>
+            </div>
+            <div class="product-detail-btn-container">
+              <a class="btn-buy">바로구매</a>
+              <a class="btn-shopping-cart">장바구니</a>
+            </div>
+          </section>
+        </div>
+        <section class="product-detail-info-container">
+          <div class="product-detail-tablist" role="tablist">
+            <button
+              class="product-detail-tab-item active"
+              type="button"
+              role="tab"
+            >
+              상세정보
+            </button>
+            <!-- 버튼이라는 내부 텍스트가 문맥상 맞지 않는 것 같아 변경했습니다. -->
+            <button class="product-detail-tab-item" type="button" role="tab">
+              리뷰
+            </button>
+            <button class="product-detail-tab-item" type="button" role="tab">
+              Q&A
+            </button>
+            <button class="product-detail-tab-item" type="button" role="tab">
+              반품/교환정보
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <nav>
+          <ul class="footer-nav-list">
+            <li><a href="#"> 호두샵 소개</a></li>
+            <li><a href="#"> 이용약관</a></li>
+            <li>
+              <a href="#"> <em>개인정보처리방침</em></a>
+            </li>
+            <li><a href="#"> 전자금융거래약관</a></li>
+            <li><a href="#"> 청소년보호정책</a></li>
+            <li><a href="#"> 제휴문의</a></li>
+          </ul>
+          <ul class="sns-list">
+            <li>
+              <a href="">
+                <img
+                  src="/assets/images/icon-insta.svg"
+                  alt="호두샵 인스타그램으로 이동"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img
+                  src="/assets/images/icon-fb.svg"
+                  alt="호두샵 페이스북으로 이동"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img
+                  src="/assets/images/icon-insta.svg"
+                  alt="호두샵 유튜브로 이동"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <section>
+          <address>
+            <h2>(주)HODU SHOP</h2>
+            <p>제주특별자치도 제주시 동광고 137 제주코딩베이스캠프</p>
+            <p>사업자 번호 : 000-0000-0000 | 통신판매업</p>
+            <p>대표 : 김호두</p>
+          </address>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

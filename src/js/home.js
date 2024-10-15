@@ -14,15 +14,6 @@ async function getProduct() {
   }
 }
 
-/* 
-<article class="product-item">
-  <a href="/src/html/detail.html">
-    <img src="" alt="프로덕트 이미지" />
-    <p>판매처</p>
-    <h2>상품명</h2>
-    <p>가격</p>
-  </a>
-</article>; */
 function createProduct(product) {
   if (product.length === 0) {
     return;
@@ -33,7 +24,7 @@ function createProduct(product) {
     const article = document.createElement("article");
     article.className = "product-item";
     article.innerHTML = `
-    <a href="/src/html/detail.html/">
+    <a href="/src/html/detail.html">
       <img src="${product[i].image}" alt=""/>
       <p class="store-name">${product[i].seller.store_name}</p>
       <p class="product-name">${product[i].name}</p>

@@ -1,0 +1,179 @@
+@use 'mixin.scss';
+@import '_variable.scss';
+@import '_header.scss';
+@import '_footer.scss';
+
+.sr-only {
+    @include mixin.sr-only;
+}
+
+.product-detail-container{
+    margin: 0 auto;
+    padding-top: 8rem;
+    max-width: 128rem;
+}
+
+.product-detail-price-container {
+    display: flex;
+    justify-content: space-between;
+    gap : 5rem;
+    img {
+        width: 60rem;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+}
+
+.product-detail-price-info-container {
+    flex : 1;
+    font-family: $font-regular;
+    font-size : 1.8rem;
+    line-height: 2.254rem;
+    color : #000000;
+    .store-name {
+        color : #767676;
+        margin-bottom: 1.6rem;  
+    }
+    .product-name {
+        font-size: 3.6rem;
+        line-height: 4.507rem;
+        margin-bottom: 2rem;
+    }
+    .product-price {
+        span {
+            font-size : 3.6rem;
+            line-height: 4.507rem;
+            font-family: $font-bold;
+        }
+    }
+    
+    .delivery-info {
+        margin: 13.8rem auto 2rem;
+        font-size : 1.6rem;
+        line-height: 2.003rem;
+        color : #767676;
+    }
+    hr {
+        margin : 0;
+        border : 1px solid #c4c4c4;
+    }
+} 
+
+.product-quantity-wrap {
+    display: inline-flex;
+    border : 1px solid $border-color;
+    border-radius: 0.5rem;
+    background-color: #FFF;
+    margin : 3rem auto;
+    .btn-quantity {
+        border : none;
+        background-color: transparent;
+        padding : 1.5rem 1.4rem;  
+        img {
+            width : 100%;
+            object-fit: cover;
+        }
+    }
+    .input-product-quantity {
+        width: calc(1ch + 4.2rem);
+        padding : 1.3rem 2.1rem 1.4rem 2.0rem;
+        border : 1px solid $border-color;
+        border-top : none;
+        border-bottom: none;
+        font-family: $font-regular;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 2.254rem;
+    }
+}
+
+.total-price-wrap {
+    @include mixin.flexCenter;
+    margin : 3.2rem auto 2.2rem;
+    font-family: $font-medium;
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 2.254rem;
+
+    .total-quantity {
+        font-family: $font-regular;
+        font-weight: 400;
+        color :#767676;
+        margin-left: auto;
+        span {
+            font-family: $font-bold;
+            font-weight: 700;
+            color : $identity-color;
+        }
+        &::after { 
+            content: "|";
+            padding : 0 1.1rem 0 1.8rem,
+        }
+    }
+    .total-price {
+        font-family: $font-bold;
+        font-size: 3.6rem;
+        font-weight: 700;
+        line-height: 4.507rem;
+        color: $identity-color;
+     }
+    font-family: $font-regular;
+    font-weight: 400;
+}
+
+
+.product-detail-btn-container {
+    display: flex;
+    gap : 1.4rem;
+    %button {
+        flex-grow: 1;
+        color : #fff;
+        font-family: $font-bold;
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 2.2rem;
+        text-align: center;
+        border : none;
+        border-radius: 0.5rem;
+        cursor : pointer;
+    }
+
+    .btn-buy {
+        @extend %button;
+        background-color: $btn-background-color;
+        padding: 1.9rem 17.25rem;
+    }
+
+    .btn-shopping-cart{
+        @extend %button;
+        background-color: #767676;
+        padding : 1.9rem 6.5rem;
+    }
+}
+
+.product-detail-info-container {
+    padding-top: 14rem;
+    padding-bottom : 20rem;
+    .product-detail-tablist {
+        display: flex;
+        .product-detail-tab-item {
+            flex-grow: 1;
+            padding-top : 1.9rem;
+            padding-bottom : 1.9rem;
+            background-color: #FFF;
+            font-family: $font-medium;
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 2.254rem;
+            text-align: center;
+            border : none;
+            border-bottom : 6px solid #E0E0E0;
+            color :#767676;
+            &.active {
+                border-bottom-color : $identity-color;
+                color : $identity-color;
+            }
+        }
+
+    }
+}

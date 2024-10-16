@@ -221,6 +221,7 @@ footer {
   border: none;
   background-color: transparent;
   padding: 1.5rem 1.4rem;
+  cursor: pointer;
 }
 .product-quantity-wrap .btn-quantity img {
   width: 100%;

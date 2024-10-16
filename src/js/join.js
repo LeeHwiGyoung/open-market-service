@@ -24,10 +24,11 @@ dropdown_scroll_track.style.height = `${dropdown_menu.scrollHeight}px`;
 let join_type = "BUYER";
 let scrollPersent;
 let toggle_drop_Down = false;
-let phone_number = "010";
 const input_blank = new Array(7).fill(false);
 const SCROLL_THUMBS_HEIGHT = 90;
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
+
+let phone_identification_number = "010";
 
 function throttle(mainFunc, delay) {
   let timerFlag = null;
@@ -177,7 +178,7 @@ input_password.addEventListener("focusout", (e) => {
   if (!validation(pattern, e.target.value)) {
     display_msg(
       idx,
-      "영문 소문자,숫자를 포함한 8자 이상의 비밀번호이어야 합니다.",
+      "8자 이상,영문 대 소문자,숫자,특수문자를 사용하세요.",
       false
     );
     img_password[0].setAttribute("src", "/assets/images/icon-check-off.svg");
@@ -213,11 +214,10 @@ input_password_check.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
 });
 
-input_name.addEventListener("focusout", (e) => {});
-
 input_name.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
 });
+
 input_phone_middle.addEventListener("focusout", (e) => {});
 input_phone_middle.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
@@ -244,12 +244,10 @@ btn_dropdown.addEventListener("click", () => {
 
   if (toggle_drop_Down == true) {
     Array.prototype.forEach.call(dropdown_list.children, (options) => {
-      console.log(options);
-      console.log(options.value === btn_dropdown.value);
-      if (options.classList.contains("active")) {
+      if (options.dataset.value === phone_identification_number) {
         options.focus();
       }
-    }); //dropdown 이 열려있을 때만
+    }); //dropdown 이 열려있을 때 선택된 요소로 focus이동
   }
 });
 
@@ -257,6 +255,7 @@ dropdown_list.addEventListener("keydown", (e) => {
   //키보드 유저를 위한 enter로 드랍다운 아이템 고르기
   if (e.key === "Enter") {
     btn_dropdown.firstElementChild.textContent = e.target.dataset.value;
+    phone_identification_number = e.target.dataset.value;
     dropdown_menu.classList.remove("active");
     toggle_drop_Down = false;
     btn_dropdown.ariaExpanded = toggle_drop_Down;
@@ -267,6 +266,7 @@ dropdown_list.addEventListener("click", (e) => {
   //드롭다운 아이템 중 li 태그를 클릭했을 때 trigger의 value를 바꾸는 이벤트
   if (e.target.nodeName === "LI") {
     btn_dropdown.firstElementChild.textContent = e.target.dataset.value;
+    phone_identification_number = e.target.dataset.value;
     dropdown_menu.classList.remove("active");
     toggle_drop_Down = false;
     btn_dropdown.ariaExpanded = toggle_drop_Down;

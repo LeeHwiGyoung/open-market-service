@@ -4,6 +4,7 @@ const btn_select_buyer = join_form.querySelector(".btn-select-buyer");
 const btn_select_seller = join_form.querySelector("btn-select-seller");
 const input_id = join_form.querySelector("#id");
 const input_password = join_form.querySelector("#password");
+const img_password = join_form.querySelectorAll(".check");
 const input_password_check = join_form.querySelector("#check-password");
 const input_name = join_form.querySelector("#user-name");
 const input_phone_middle = join_form.querySelector("#phone-number-middle");
@@ -49,33 +50,19 @@ function calcScroll(event) {
   return translateY;
 }
 
-async function postFetch(url, data) {
-  try {
-    const response = await fetch(`${BASE_URL}/${url}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    console.log("response", response);
-    const json = response.json();
-    console.log("json", json);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-function is_fill(idx) {
+function check_required(idx) {
   for (let i = 0; i < idx; i++) {
-    if (!is_fill[i]) {
+    if (!input_blank[i]) {
       // 상위 인풋이 채워지지 않은 경우
       msg[i].textContent = "필수 정보입니다.";
       msg[i].classList.add("display");
-    } else {
+    } else if (input_blank[i] && i !== 0) {
       msg[i].textContent = "";
       msg[i].classList.remove("display");
     }
   }
 }
+
 join_type_container.addEventListener("click", (e) => {
   if (e.target.nodeName === "BUTTON") {
     //button 사이의 빈 공간 클릭시 undefined가 할당되는 것을 막기 위해
@@ -94,6 +81,43 @@ join_type_container.addEventListener("click", (e) => {
 //keyup 이벤트 : 입력시 상위 인풋을 입력하지 않은 경우
 //keyup 이벤트 리팩토링 하기
 
+function validation(pattern, validate_target) {
+  if (pattern.test(validate_target)) {
+    return true;
+  }
+  return false;
+}
+
+function display_msg(idx, msg_content, is_valid) {
+  msg[idx].setAttribute("aria-invalid", !is_valid);
+  msg[idx].textContent = msg_content;
+  msg[idx].classList.add("display");
+}
+
+function remove_msg(idx) {
+  msg[idx].classList.remove("display");
+}
+
+async function duplicated_id(username) {
+  try {
+    const response = await fetch(`${BASE_URL}/accounts/validate-username/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: username }),
+    });
+    const json = await response.json();
+
+    if (Object.hasOwn(json, "error")) {
+      //error 메시지를 갖고 있으면
+      display_msg(0, json.error, false);
+      return;
+    }
+    display_msg(0, "멋진 아이디네요:)", true);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function is_valid(pattern, e, errMsg) {
   const idx = e.target.dataset.idx;
   if (pattern.test(e.target.value)) {
@@ -109,81 +133,96 @@ function is_valid(pattern, e, errMsg) {
 input_id.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
   const pattern = /^[a-zA-Z0-9]{1,20}$/;
-  if (pattern.test(e.target.value)) {
-    msg[idx].setAttribute("aria-invalid", false);
-    msg[idx].classList.add("display");
-    msg[idx].textContent = "멋진 아이디네요:)";
-  } else {
-    msg[idx].setAttribute("aria-invalid", true);
-    msg[idx].classList.add("display");
-    msg[idx].textContent =
-      "20자 이내의 영문 소문자,대문자,숫자만 사용 가능합니다..";
+  if (!validation(pattern, e.target.value)) {
+    display_msg(
+      idx,
+      "20자 이내의 영문 소문자,대문자,숫자만 사용 가능합니다.",
+      false
+    );
+    return;
   }
+  msg[0].getAttribute("aria-invalid") || remove_msg(idx); //중복확인이 성공한 경우에는 포커스 아웃시 메시지를 없애지 않기 위해서
 });
 
 input_id.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
+  remove_msg(idx); //중복 확인 통과 후 id를 바꾸면 성공 메시지를 지우기 위해
   if (e.target.value === "") {
-    is_fill[idx] = false;
+    input_blank[idx] = false;
   } else {
-    is_fill[idx] = true;
-  }
-});
-input_password.addEventListener("focusout", (e) => {
-  const pattern = /^(?=.*[a-z])(?=.*\d)[^\s]{8,}$/; //8자 이상이면서 영어소문자 1자 이상 , 숫자 1자 이상 공백을 포함하지 않는 문자열
-  is_valid(pattern, e);
-});
-input_password.addEventListener("keyup", (e) => {
-  const idx = e.target.dataset.idx;
-  is_fill(idx);
-  if (e.target.value === "") {
-    is_fill[idx] = false;
-  } else {
-    is_fill[idx] = true;
+    input_blank[idx] = true;
   }
 });
 
 btn_check_id.addEventListener("click", (e) => {
-  postFetch("accounts/validate-username/", { username: input_id.value });
+  const pattern = /^[a-zA-Z0-9]{1,20}$/;
+  const target = input_id.value;
+  if (!validation(pattern, target)) {
+    //유효성 검사
+    display_msg(
+      0,
+      "20자 이내의 영문 소문자,대문자,숫자만 사용 가능합니다.",
+      false
+    );
+    return;
+  }
+  //유효성 검사 성공시
+  duplicated_id(target);
 });
-input_password_check.addEventListener("focusout", (e) => {});
-input_password_check.addEventListener("keyup", (e) => {
+
+input_password.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
-  is_fill(idx);
+  const pattern = /^(?=.*[a-z])(?=.*\d)[^\s]{8,}$/; //8자 이상이면서 영어소문자 1자 이상 , 숫자 1자 이상 공백을 포함하지 않는 문자열
+});
+
+input_password.addEventListener("keyup", (e) => {
+  const idx = e.target.dataset.idx;
+  check_required(idx);
   if (e.target.value === "") {
-    is_fill[idx] = false;
+    input_blank[idx] = false;
   } else {
-    is_fill[idx] = true;
+    input_blank[idx] = true;
   }
 });
+
+input_password_check.addEventListener("focusout", (e) => {});
+/* input_password_check.addEventListener("keyup", (e) => {
+  const idx = e.target.dataset.idx;
+  check_required(idx);
+  if (e.target.value === "") {
+    input_blank[idx] = false;
+  } else {
+    input_blank[idx] = true;
+  }
+}); */
 input_name.addEventListener("focusout", (e) => {});
 input_name.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
-  is_fill(idx);
+  check_required(idx);
   if (e.target.value === "") {
-    is_fill[idx] = false;
+    input_blank[idx] = false;
   } else {
-    is_fill[idx] = true;
+    input_blank[idx] = true;
   }
 });
 input_phone_middle.addEventListener("focusout", (e) => {});
 input_phone_middle.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
-  is_fill(idx);
+  check_required(idx);
   if (e.target.value === "") {
-    is_fill[idx] = false;
+    input_blank[idx] = false;
   } else {
-    is_fill[idx] = true;
+    input_blank[idx] = true;
   }
 });
 input_phone_last.addEventListener("focusout", (e) => {});
 input_phone_last.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
-  is_fill(idx);
+  check_required(idx);
   if (e.target.value === "") {
-    is_fill[idx] = false;
+    input_blank[idx] = false;
   } else {
-    is_fill[idx] = true;
+    input_blank[idx] = true;
   }
 });
 document.addEventListener("click", (e) => {

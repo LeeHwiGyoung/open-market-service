@@ -24,6 +24,7 @@ dropdown_scroll_track.style.height = `${dropdown_menu.scrollHeight}px`;
 let join_type = "BUYER";
 let scrollPersent;
 let toggle_drop_Down = false;
+let phone_number = "010";
 const input_blank = new Array(7).fill(false);
 const SCROLL_THUMBS_HEIGHT = 90;
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
@@ -173,58 +174,59 @@ btn_check_id.addEventListener("click", (e) => {
 input_password.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
   const pattern = /^(?=.*[a-z])(?=.*\d)[^\s]{8,}$/; //8자 이상이면서 영어소문자 1자 이상 , 숫자 1자 이상 공백을 포함하지 않는 문자열
+  if (!validation(pattern, e.target.value)) {
+    display_msg(
+      idx,
+      "영문 소문자,숫자를 포함한 8자 이상의 비밀번호이어야 합니다.",
+      false
+    );
+    img_password[0].setAttribute("src", "/assets/images/icon-check-off.svg");
+    img_password[0].setAttribute("alt", "유효하지 않은 비밀번호입니다.");
+    return;
+  }
+  img_password[0].setAttribute("src", "/assets/images/icon-check-on.svg");
+  img_password[0].setAttribute("alt", "유효한 비밀번호입니다.");
+  remove_msg(idx);
 });
 
 input_password.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
-  check_required(idx);
-  if (e.target.value === "") {
-    input_blank[idx] = false;
-  } else {
-    input_blank[idx] = true;
-  }
 });
 
-input_password_check.addEventListener("focusout", (e) => {});
-/* input_password_check.addEventListener("keyup", (e) => {
+input_password_check.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
-  check_required(idx);
-  if (e.target.value === "") {
-    input_blank[idx] = false;
-  } else {
-    input_blank[idx] = true;
+
+  if (e.target.value !== input_password.value) {
+    //비밀번호와 일치하지 않으면
+    display_msg(idx, "비밀번호가 일치하지 않습니다.", false);
+    img_password[1].setAttribute("src", "/assets/images/icon-check-off.svg");
+    img_password[1].setAttribute("alt", "비밀번호가 일치하지 않습니다.");
+    return;
   }
-}); */
+
+  img_password[1].setAttribute("src", "/assets/images/icon-check-on.svg");
+  img_password[1].setAttribute("alt", "비밀번호가 일치합니다.");
+  remove_msg(idx);
+});
+
+input_password_check.addEventListener("keyup", (e) => {
+  const idx = e.target.dataset.idx;
+});
+
 input_name.addEventListener("focusout", (e) => {});
+
 input_name.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
-  check_required(idx);
-  if (e.target.value === "") {
-    input_blank[idx] = false;
-  } else {
-    input_blank[idx] = true;
-  }
 });
 input_phone_middle.addEventListener("focusout", (e) => {});
 input_phone_middle.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
-  check_required(idx);
-  if (e.target.value === "") {
-    input_blank[idx] = false;
-  } else {
-    input_blank[idx] = true;
-  }
 });
 input_phone_last.addEventListener("focusout", (e) => {});
 input_phone_last.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
-  check_required(idx);
-  if (e.target.value === "") {
-    input_blank[idx] = false;
-  } else {
-    input_blank[idx] = true;
-  }
 });
+
 document.addEventListener("click", (e) => {
   //드롭다운 외부를 클릭했을 시 드롭다운이 닫히는 이벤트
   if (!phone_number_dropdown.contains(e.target)) {
@@ -239,12 +241,26 @@ btn_dropdown.addEventListener("click", () => {
   btn_dropdown.ariaExpanded = !toggle_drop_Down;
   toggle_drop_Down = !toggle_drop_Down;
   dropdown_menu.classList.toggle("active");
+
+  if (toggle_drop_Down == true) {
+    Array.prototype.forEach.call(dropdown_list.children, (options) => {
+      console.log(options);
+      console.log(options.value === btn_dropdown.value);
+      if (options.classList.contains("active")) {
+        options.focus();
+      }
+    }); //dropdown 이 열려있을 때만
+  }
 });
 
 dropdown_list.addEventListener("keydown", (e) => {
   //키보드 유저를 위한 enter로 드랍다운 아이템 고르기
-
-  console.log(e);
+  if (e.key === "Enter") {
+    btn_dropdown.firstElementChild.textContent = e.target.dataset.value;
+    dropdown_menu.classList.remove("active");
+    toggle_drop_Down = false;
+    btn_dropdown.ariaExpanded = toggle_drop_Down;
+  }
 });
 
 dropdown_list.addEventListener("click", (e) => {

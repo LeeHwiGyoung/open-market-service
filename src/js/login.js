@@ -24,27 +24,25 @@ async function postLogin() {
       }),
     });
 
-    if (!response.ok) {
-      //아이디나 비밀번호가 틀린 경우 back에서 401코드를 보냄
-      displayMsg("아이디 또는 비밀번호가 일치하지 않습니다.");
-      input_password.value = "";
-      return;
-    }
-
     const json = await response.json();
-    if (json.user.user_type !== login_type) {
-      //아이디와 비밀번호가 일치하나 타입이 다른 경우
-      displayMsg("로그인 정보가 없습니다. 로그인 유형을 확인하세요.");
-      input_password.value = "";
+
+    if (Object.hasOwn(json, "error")) {
+      //validation 실패시
+      displayMsg(json.error);
+      input_password.value = ""; //패스워드 초기화
+      input_password.focus();
       return;
     }
 
-    //아이디와 비밀번호가 일치하는 경우
+    //로그인 성공 시
+    //토큰 저장
     localStorage.setItem("access_token", json.access);
     localStorage.setItem("refresh_token", json.refresh);
-    referrer.length
+
+    //referrer가 있으면 이전페이지로 아니면 홈으로 이동
+    referrer.length !== 0
       ? (location.href = referrer)
-      : (location.herf = "/index.html"); //이전 링크가 없는 경우에 referrer 은 빈 문자열을 반환
+      : (location.href = "/src/html/home.html"); //이전 링크가 없는 경우에 referrer 은 빈 문자열을 반환
     return;
   } catch (error) {
     console.log(error);
@@ -62,27 +60,27 @@ function hideMsg() {
   msg.classList.remove("display");
 }
 
-function fullfiled_login() {
-  if (user_name === "") {
+function validation_login() {
+  if (input_id.value === "") {
     //id가 입력되지 않으면
     input_id.focus(); //id로 focus 이동
     displayMsg("아이디를 입력하세요.");
-    return;
+    return false;
   }
-  if (password === "") {
+
+  if (input_password.value === "") {
     //password가 입력되지 않으면
     input_password.focus(); //password로 포커스 이동
     displayMsg("비밀번호를 입력하세요.");
-    return;
+    return false;
   }
+
+  if (!display_msg) {
+    return true;
+  }
+  return false;
 }
 
-function validation() {
-  fullfiled_login();
-  if (!displayMsg) {
-    postLogin();
-  }
-}
 //login_type 을 선택하는 이벤트
 login_type_container.addEventListener("click", (e) => {
   if (e.target.nodeName === "BUTTON") {
@@ -100,24 +98,19 @@ login_type_container.addEventListener("click", (e) => {
 
 login_form.addEventListener("submit", (e) => {
   e.preventDefault();
-  validation();
-});
-
-login_form.addEventListener("keyup", (e) => {
-  console.log(e);
-  if (e.key === "Enter") {
-    validation();
+  if (validation_login()) {
+    postLogin();
   }
 });
 
-input_id.addEventListener("keydown", (e) => {
+input_id.addEventListener("change", (e) => {
   user_name = e.target.value;
   if (display_msg) {
     hideMsg();
   }
 });
 
-input_password.addEventListener("keydown", (e) => {
+input_password.addEventListener("change", (e) => {
   password = e.target.value;
   if (display_msg) {
     hideMsg();

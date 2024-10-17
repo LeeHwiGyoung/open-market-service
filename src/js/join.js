@@ -39,18 +39,6 @@ const buyer_data = {
 
 let phone_identification_number = "010";
 
-function throttle(mainFunc, delay) {
-  let timerFlag = null;
-  return (...args) => {
-    if (timerFlag === null) {
-      mainFunc(...args);
-      timerFlag = setTimeout(() => {
-        timerFlag = null;
-      }, delay);
-    }
-  };
-}
-
 function ignore_key(key) {
   //입력이 되지 않는 키인 경우 true 리턴
   const ignore_key_set = new Set([
@@ -81,6 +69,7 @@ function ignore_key(key) {
 
 // 폼의 유효성을 확인하는 함수
 function checkFormValidity() {
+  console.log("checkform");
   if (join_type === "BUYER") {
     //구매자 회원가입
     for (let i = 0; i <= BUYER_MAX_IDX; i++) {
@@ -178,18 +167,17 @@ async function duplicated_id(username) {
   }
 }
 
-function is_valid(pattern, e, errMsg) {
+function phone_valid(e) {
+  const phone_middle = input_phone_middle.value;
+  const phone_last = input_phone_last.value;
   const idx = e.target.dataset.idx;
-  if (pattern.test(e.target.value)) {
-    msg[idx].setAttribute("aria-invalid", false);
-    msg[idx].classList.remove("display");
+  // 두 개의 인풋이 모두 4자리가 입력되었을 때만 valid 상태 true로 설정
+  if (phone_middle.length >= 3 && phone_last.length === 4) {
+    input_valid[idx] = true;
   } else {
-    msg[idx].setAttribute("aria-invalid", true);
-    msg[idx].classList.add("display");
-    msg.textContent = errMsg;
+    input_valid[idx] = false;
   }
 }
-
 //focusout 이벤트 : 유효성 검사
 //keyup 이벤트 : 입력시 상위 인풋을 입력하지 않은 경우
 //keyup 이벤트 리팩토링 하기
@@ -222,7 +210,7 @@ input_id.addEventListener("focusout", (e) => {
   msg[0].getAttribute("aria-invalid") || remove_msg(idx); //중복확인이 성공한 경우에는 포커스 아웃시 메시지를 없애지 않기 위해서
 });
 
-input_id.addEventListener("keyup", (e) => {
+input_id.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
   if (ignore_key(e.key)) {
     //input의 value를 건드리지 않는 키
@@ -324,6 +312,7 @@ input_name.addEventListener("focusout", (e) => {
   }
   input_valid[idx] = true;
 });
+
 input_name.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
   if (ignore_key(e.key)) {
@@ -359,6 +348,9 @@ input_phone_last.addEventListener("keydown", (e) => {
   remove_msg(idx); //경고 메시지 초기화
   check_required(idx);
 });
+
+input_phone_last.addEventListener("focusout", phone_valid);
+input_phone_middle.addEventListener("focusout", phone_valid);
 
 document.addEventListener("click", (e) => {
   //드롭다운 외부를 클릭했을 시 드롭다운이 닫히는 이벤트
@@ -412,4 +404,5 @@ dropdown_menu.addEventListener("scroll", (e) => {
   dropdown_scroll_thumb.style.transform = `translateY(${translateY}px)`;
 });
 
-join_form.addEventListener("input", checkFormValidity);
+input_personnal_check.addEventListener("input", checkFormValidity);
+join_form.addEventListener("focusout", checkFormValidity);

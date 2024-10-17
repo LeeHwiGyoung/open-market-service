@@ -30,11 +30,13 @@ const input_valid = new Array(7).fill(false); // 0 : username , 1 : password , 2
 const SCROLL_THUMBS_HEIGHT = 90;
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
 
-const buyer_data = {
+const userdata = {
   username: "",
   password: "",
   name: "",
   phone_number: "",
+  phone_middle: "",
+  phone_last: "",
 };
 
 let phone_identification_number = "010";
@@ -168,8 +170,8 @@ async function duplicated_id(username) {
 }
 
 function phone_valid(e) {
-  const phone_middle = input_phone_middle.value;
-  const phone_last = input_phone_last.value;
+  const phone_middle = userdata.phone_middle;
+  const phone_last = userdata.phone_last;
   const idx = e.target.dataset.idx;
   // 두 개의 인풋이 모두 4자리가 입력되었을 때만 valid 상태 true로 설정
   if (phone_middle.length >= 3 && phone_last.length === 4) {
@@ -212,6 +214,7 @@ input_id.addEventListener("focusout", (e) => {
 
 input_id.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
+  userdata.username = e.target.value;
   if (ignore_key(e.key)) {
     //input의 value를 건드리지 않는 키
     return;
@@ -223,7 +226,7 @@ input_id.addEventListener("keydown", (e) => {
 
 btn_check_id.addEventListener("click", (e) => {
   const pattern = /^[a-zA-Z0-9]{1,20}$/;
-  const target = input_id.value;
+  const target = userdata.username;
   if (!validation(pattern, target)) {
     //유효성 검사
     display_msg(
@@ -240,6 +243,7 @@ btn_check_id.addEventListener("click", (e) => {
 input_password.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
   const pattern = /^(?=.*[a-z])(?=.*\d)[^\s]{8,}$/; //8자 이상이면서 영어소문자 1자 이상 , 숫자 1자 이상 공백을 포함하지 않는 문자열
+  userdata.password = e.target.value;
   if (!validation(pattern, e.target.value)) {
     display_msg(
       idx,
@@ -278,7 +282,7 @@ input_password_check.addEventListener("focusout", (e) => {
     return;
   }
 
-  if (e.target.value !== input_password.value) {
+  if (e.target.value !== userdata.password) {
     //비밀번호와 일치하지 않으면
     display_msg(idx, "비밀번호가 일치하지 않습니다.", false);
     img_password[1].setAttribute("src", "/assets/images/icon-check-off.svg");
@@ -307,6 +311,7 @@ input_password_check.addEventListener("keydown", (e) => {
 
 input_name.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
+
   if (e.target.value === "") {
     input_valid[idx] = false;
   }
@@ -315,6 +320,8 @@ input_name.addEventListener("focusout", (e) => {
 
 input_name.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
+  userdata.name = e.target.value;
+
   if (ignore_key(e.key)) {
     //input의 value를 건드리지 않는 키
     return;
@@ -327,6 +334,7 @@ input_name.addEventListener("keydown", (e) => {
 
 input_phone_middle.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
+  userdata.phone_middle = e.target.value;
   if (ignore_key(e.key)) {
     //input의 value를 건드리지 않는 키
     return;
@@ -339,6 +347,7 @@ input_phone_middle.addEventListener("keydown", (e) => {
 
 input_phone_last.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
+  userdata.phone_last = userdata.phone_last;
   if (ignore_key(e.key)) {
     //input의 value를 건드리지 않는 키
     return;

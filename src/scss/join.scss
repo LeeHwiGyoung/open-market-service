@@ -316,6 +316,7 @@
     line-height: 2.2rem;
     text-align: center;
     background-color: $btn-background-color;
+    cursor: pointer;
     color : #FFF;
     &:disabled {
         background-color: #c4c4c4;

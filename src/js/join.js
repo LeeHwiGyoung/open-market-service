@@ -19,8 +19,7 @@ const dropdown_scroll_thumb = dropdown_menu.querySelector(".scroll-bar");
 const btn_check_id = join_form.querySelector(".btn-check-id");
 const btn_join = join_form.querySelector(".btn-join");
 const msg = join_form.querySelectorAll(".msg");
-
-dropdown_scroll_track.style.height = `${dropdown_menu.scrollHeight}px`;
+const referrer = document.referrer;
 let join_type = "BUYER";
 let scrollPersent;
 let toggle_drop_Down = false;
@@ -29,6 +28,8 @@ const SELLER_MAX_IDX = 6;
 const input_valid = new Array(7).fill(false); // 0 : username , 1 : password , 2:password_check , 3:name , 4:phone , 5~6 : seller
 const SCROLL_THUMBS_HEIGHT = 90;
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
+
+dropdown_scroll_track.style.height = `${dropdown_menu.scrollHeight}px`;
 
 const userdata = {
   username: "",
@@ -97,18 +98,29 @@ function checkFormValidity() {
   btn_join.disabled = !join_form.checkValidity();
 }
 
-async function post_signup() {
-  const response = await fetch(`${BASE_URL}/accounts/buyer/signup/`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username: "buyer1", // 아이디
-      password: "weniv1234",
-      name: "weniv", // 이름
-      phone_number: "01000000000",
-    }),
-  });
-  const json = await response.json();
+async function post_signup(userdata) {
+  try {
+    const response = await fetch(`${BASE_URL}/accounts/buyer/signup/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userdata),
+    });
+    const json = await response.json();
+    const phone_number = json.phone_number;
+    if (typeof phone_number !== "string") {
+      //phone_number 중복
+      input_valid[4] = false;
+      display_msg(4, phone_number[0], false);
+      return;
+    }
+    //referrer가 있으면 이전페이지로 아니면 홈으로 이동
+    referrer.length !== 0
+      ? (location.href = referrer)
+      : (location.href = "/src/html/home.html"); //이전 링크가 없는 경우에 referrer 은 빈 문자열을 반환
+    return;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function calc_scroll(event) {
@@ -347,7 +359,7 @@ input_phone_middle.addEventListener("keydown", (e) => {
 
 input_phone_last.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
-  userdata.phone_last = userdata.phone_last;
+  userdata.phone_last = e.target.value;
   if (ignore_key(e.key)) {
     //input의 value를 건드리지 않는 키
     return;
@@ -415,3 +427,14 @@ dropdown_menu.addEventListener("scroll", (e) => {
 
 input_personnal_check.addEventListener("input", checkFormValidity);
 join_form.addEventListener("focusout", checkFormValidity);
+
+btn_join.addEventListener("click", (e) => {
+  e.preventDefault();
+  post_signup({
+    username: userdata.username,
+    password: userdata.password,
+    name: userdata.name,
+    phone_number:
+      phone_identification_number + userdata.phone_middle + userdata.phone_last,
+  });
+});

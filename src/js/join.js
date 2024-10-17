@@ -24,9 +24,35 @@ dropdown_scroll_track.style.height = `${dropdown_menu.scrollHeight}px`;
 let join_type = "BUYER";
 let scrollPersent;
 let toggle_drop_Down = false;
-const input_blank = new Array(7).fill(false);
+const input_valid = new Array(7).fill(false); // 0 : username , 1 : password , 2:password_check , 3:name , 4:phone , 5~6 : seller
 const SCROLL_THUMBS_HEIGHT = 90;
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
+const nonCharacterKeys = new Set([
+  "Shift",
+  "Control",
+  "Alt",
+  "CapsLock",
+  "Meta",
+  "Fn",
+  "Escape",
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "Insert",
+  "Delete",
+  "Home",
+  "End",
+  "PageUp",
+  "PageDown",
+]);
+
+const buyer_data = {
+  username: "",
+  password: "",
+  name: "",
+  phone_number: "",
+};
 
 let phone_identification_number = "010";
 
@@ -41,8 +67,26 @@ function throttle(mainFunc, delay) {
     }
   };
 }
+// 폼의 유효성을 확인하는 함수
+function checkFormValidity() {
+  btn_join.disabled = !join_form.checkValidity();
+}
 
-function calcScroll(event) {
+async function post_signup() {
+  const response = await fetch(`${BASE_URL}/accounts/buyer/signup/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: "buyer1", // 아이디
+      password: "weniv1234",
+      name: "weniv", // 이름
+      phone_number: "01000000000",
+    }),
+  });
+  const json = await response.json();
+}
+
+function calc_scroll(event) {
   /* 스크롤 퍼센트에 따라 translateY의 값을 계산해주는 함수 */
   const maxY = Math.floor(event.target.scrollHeight - SCROLL_THUMBS_HEIGHT);
   const scrollPercent =
@@ -52,7 +96,7 @@ function calcScroll(event) {
   return translateY;
 }
 
-function check_required(idx) {
+/* function check_required(idx) {
   for (let i = 0; i < idx; i++) {
     if (!input_blank[i]) {
       // 상위 인풋이 채워지지 않은 경우
@@ -63,25 +107,7 @@ function check_required(idx) {
       msg[i].classList.remove("display");
     }
   }
-}
-
-join_type_container.addEventListener("click", (e) => {
-  if (e.target.nodeName === "BUTTON") {
-    //button 사이의 빈 공간 클릭시 undefined가 할당되는 것을 막기 위해
-    join_type = e.target.dataset.joinType;
-    Array.prototype.forEach.call(e.currentTarget.children, (element) => {
-      if (element.dataset.joinType === join_type) {
-        element.classList.add("active");
-      } else {
-        element.classList.remove("active");
-      }
-    });
-  }
-});
-
-//focusout 이벤트 : 유효성 검사
-//keyup 이벤트 : 입력시 상위 인풋을 입력하지 않은 경우
-//keyup 이벤트 리팩토링 하기
+} */
 
 function validation(pattern, validate_target) {
   if (pattern.test(validate_target)) {
@@ -114,7 +140,9 @@ async function duplicated_id(username) {
       display_msg(0, json.error, false);
       return;
     }
+
     display_msg(0, "멋진 아이디네요:)", true);
+    input_valid[0] = true;
   } catch (error) {
     console.error(error);
   }
@@ -132,6 +160,24 @@ function is_valid(pattern, e, errMsg) {
   }
 }
 
+//focusout 이벤트 : 유효성 검사
+//keyup 이벤트 : 입력시 상위 인풋을 입력하지 않은 경우
+//keyup 이벤트 리팩토링 하기
+
+join_type_container.addEventListener("click", (e) => {
+  if (e.target.nodeName === "BUTTON") {
+    //button 사이의 빈 공간 클릭시 undefined가 할당되는 것을 막기 위해
+    join_type = e.target.dataset.joinType;
+    Array.prototype.forEach.call(e.currentTarget.children, (element) => {
+      if (element.dataset.joinType === join_type) {
+        element.classList.add("active");
+      } else {
+        element.classList.remove("active");
+      }
+    });
+  }
+});
+
 input_id.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
   const pattern = /^[a-zA-Z0-9]{1,20}$/;
@@ -146,14 +192,21 @@ input_id.addEventListener("focusout", (e) => {
   msg[0].getAttribute("aria-invalid") || remove_msg(idx); //중복확인이 성공한 경우에는 포커스 아웃시 메시지를 없애지 않기 위해서
 });
 
-input_id.addEventListener("keyup", (e) => {
+input_id.addEventListener("keydown", (e) => {
+  const prev_value = input_id.value;
+
   const idx = e.target.dataset.idx;
-  remove_msg(idx); //중복 확인 통과 후 id를 바꾸면 성공 메시지를 지우기 위해
-  if (e.target.value === "") {
+  if (prev_value !== input_id.value) {
+    input_valid[idx] = false;
+  }
+});
+input_id.addEventListener("keyup", (e) => {
+  //  remove_msg(idx); //중복 확인 통과 후 id를 바꾸면 성공 메시지를 지우기 위해
+  /*   if (e.target.value === "") {
     input_blank[idx] = false;
   } else {
     input_blank[idx] = true;
-  }
+  } */
 });
 
 btn_check_id.addEventListener("click", (e) => {
@@ -183,10 +236,12 @@ input_password.addEventListener("focusout", (e) => {
     );
     img_password[0].setAttribute("src", "/assets/images/icon-check-off.svg");
     img_password[0].setAttribute("alt", "유효하지 않은 비밀번호입니다.");
+    img_password[0].setAttribute("data-state", 0);
     return;
   }
   img_password[0].setAttribute("src", "/assets/images/icon-check-on.svg");
   img_password[0].setAttribute("alt", "유효한 비밀번호입니다.");
+  img_password[0].setAttribute("data-state", 1);
   remove_msg(idx);
 });
 
@@ -196,6 +251,12 @@ input_password.addEventListener("keyup", (e) => {
 
 input_password_check.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
+  const password_validity = Boolean(parseInt(img_password[0].dataset.state));
+
+  if (!password_validity) {
+    //비밀번호의 validity가 맞지 않으면
+    return;
+  }
 
   if (e.target.value !== input_password.value) {
     //비밀번호와 일치하지 않으면
@@ -218,11 +279,10 @@ input_name.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
 });
 
-input_phone_middle.addEventListener("focusout", (e) => {});
 input_phone_middle.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
 });
-input_phone_last.addEventListener("focusout", (e) => {});
+
 input_phone_last.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
 });
@@ -275,6 +335,8 @@ dropdown_list.addEventListener("click", (e) => {
 
 dropdown_menu.addEventListener("scroll", (e) => {
   //dropdown scroll
-  const translateY = calcScroll(e);
+  const translateY = calc_scroll(e);
   dropdown_scroll_thumb.style.transform = `translateY(${translateY}px)`;
 });
+
+join_form.addEventListener("input", checkFormValidity);

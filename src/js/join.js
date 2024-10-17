@@ -71,7 +71,6 @@ function ignore_key(key) {
     "Tab",
     "NumLock",
   ]);
-
   if (ignore_key_set.has(key)) {
     return true;
   }
@@ -107,18 +106,14 @@ function calc_scroll(event) {
   return translateY;
 }
 
-/* function check_required(idx) {
+function check_required(idx) {
   for (let i = 0; i < idx; i++) {
-    if (!input_blank[i]) {
+    if (!input_valid[i]) {
       // 상위 인풋이 채워지지 않은 경우
-      msg[i].textContent = "필수 정보입니다.";
-      msg[i].classList.add("display");
-    } else if (input_blank[i] && i !== 0) {
-      msg[i].textContent = "";
-      msg[i].classList.remove("display");
+      display_msg(i, "필수정보입니다.", false);
     }
   }
-} */
+}
 
 function validation(pattern, validate_target) {
   if (pattern.test(validate_target)) {
@@ -203,13 +198,13 @@ input_id.addEventListener("focusout", (e) => {
   msg[0].getAttribute("aria-invalid") || remove_msg(idx); //중복확인이 성공한 경우에는 포커스 아웃시 메시지를 없애지 않기 위해서
 });
 
-input_id.addEventListener("keydown", (e) => {
+input_id.addEventListener("keyup", (e) => {
   const idx = e.target.dataset.idx;
   if (ignore_key(e.key)) {
     //input의 value를 건드리지 않는 키
     return;
   }
-  //input의 value가 초기화 되면
+  //input의 value가 변경 되면
   input_valid[idx] = false; //validation 결과값 초기화
   remove_msg(idx); //경고 메시지 초기화
 });
@@ -241,22 +236,30 @@ input_password.addEventListener("focusout", (e) => {
     );
     img_password[0].setAttribute("src", "/assets/images/icon-check-off.svg");
     img_password[0].setAttribute("alt", "유효하지 않은 비밀번호입니다.");
-    img_password[0].setAttribute("data-state", 0);
+    input_valid[1] = false;
     return;
   }
   img_password[0].setAttribute("src", "/assets/images/icon-check-on.svg");
   img_password[0].setAttribute("alt", "유효한 비밀번호입니다.");
-  img_password[0].setAttribute("data-state", 1);
+  input_valid[1] = true;
   remove_msg(idx);
 });
 
-input_password.addEventListener("keyup", (e) => {
+input_password.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
+  if (ignore_key(e.key)) {
+    //input의 value를 건드리지 않는 키
+    return;
+  }
+  //input의 value가 변경되면 되면
+  input_valid[idx] = false; //validation 결과값 초기화
+  remove_msg(idx); //경고 메시지 초기화
+  check_required(idx);
 });
 
 input_password_check.addEventListener("focusout", (e) => {
   const idx = e.target.dataset.idx;
-  const password_validity = Boolean(parseInt(img_password[0].dataset.state));
+  const password_validity = input_valid[1];
 
   if (!password_validity) {
     //비밀번호의 validity가 맞지 않으면
@@ -276,20 +279,52 @@ input_password_check.addEventListener("focusout", (e) => {
   remove_msg(idx);
 });
 
-input_password_check.addEventListener("keyup", (e) => {
+input_password_check.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
+  if (ignore_key(e.key)) {
+    //input의 value를 건드리지 않는 키
+    return;
+  }
+  //input의 value가 변경되면 되면
+  input_valid[idx] = false; //validation 결과값 초기화
+  remove_msg(idx); //경고 메시지 초기화
+  check_required(idx);
 });
 
-input_name.addEventListener("keyup", (e) => {
+input_name.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
+  if (ignore_key(e.key)) {
+    //input의 value를 건드리지 않는 키
+    return;
+  }
+  //input의 value가 변경되면 되면
+  input_valid[idx] = false; //validation 결과값 초기화
+  remove_msg(idx); //경고 메시지 초기화
+  check_required(idx);
 });
 
-input_phone_middle.addEventListener("keyup", (e) => {
+input_phone_middle.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
+  if (ignore_key(e.key)) {
+    //input의 value를 건드리지 않는 키
+    return;
+  }
+  //input의 value가 변경되면 되면
+  input_valid[idx] = false; //validation 결과값 초기화
+  remove_msg(idx); //경고 메시지 초기화
+  check_required(idx);
 });
 
-input_phone_last.addEventListener("keyup", (e) => {
+input_phone_last.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
+  if (ignore_key(e.key)) {
+    //input의 value를 건드리지 않는 키
+    return;
+  }
+  //input의 value가 변경되면 되면
+  input_valid[idx] = false; //validation 결과값 초기화
+  remove_msg(idx); //경고 메시지 초기화
+  check_required(idx);
 });
 
 document.addEventListener("click", (e) => {

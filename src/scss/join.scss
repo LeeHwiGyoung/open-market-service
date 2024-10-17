@@ -76,10 +76,15 @@
     z-index: 20;
     border : 1px solid $border-color;
     border-radius: 1rem;
+    font-family: $font-regular;
+    font-size : 1.6rem;
+    font-weight: 400;
+    line-height: 2.003rem;
+
     .msg {
         align-self: flex-start;
-        margin-top : 1rem;
         display: none;
+        margin-bottom: 0.2rem;
         &.display {
             display: block
         };
@@ -117,6 +122,7 @@
     position: relative;
     width: 100%;
     gap: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .text-input,.input-contain-check {
@@ -164,15 +170,26 @@
     border-color: $invalid-color;
 }
  */
+.personnal-information-container { 
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    
 
+    input {
+        margin-bottom: 1.6rem;
+    }
+}
 .phone-number-wrap {
     display: flex;
     align-items: flex-end;
     justify-content: center;
     flex-direction: row;
     gap : 1.2rem;
-    margin-top: 1.6rem;
     box-sizing: border-box;
+    input {
+        margin-bottom: 0;
+    }
     .phone-number-dropdown{
         position: relative;
         margin-top: 1rem;
@@ -319,6 +336,7 @@
     cursor: pointer;
     color : #FFF;
     &:disabled {
+        cursor : default;
         background-color: #c4c4c4;
     }
 }

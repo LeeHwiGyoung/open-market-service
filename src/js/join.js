@@ -24,6 +24,8 @@ dropdown_scroll_track.style.height = `${dropdown_menu.scrollHeight}px`;
 let join_type = "BUYER";
 let scrollPersent;
 let toggle_drop_Down = false;
+const BUYER_MAX_IDX = 4;
+const SELLER_MAX_IDX = 6;
 const input_valid = new Array(7).fill(false); // 0 : username , 1 : password , 2:password_check , 3:name , 4:phone , 5~6 : seller
 const SCROLL_THUMBS_HEIGHT = 90;
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
@@ -79,6 +81,28 @@ function ignore_key(key) {
 
 // 폼의 유효성을 확인하는 함수
 function checkFormValidity() {
+  if (join_type === "BUYER") {
+    //구매자 회원가입
+    for (let i = 0; i <= BUYER_MAX_IDX; i++) {
+      if (!input_valid[i]) {
+        //valid하지 못한 값이 있으면
+        btn_join.disabled = true; //버튼 비활성화
+        return;
+      }
+    }
+    //모든 인풋 값이 유효하고  form 내의 요소가 입력이 다 되었을 때
+    btn_join.disabled = !join_form.checkValidity();
+    return;
+  }
+  //판매자 회원가입
+  for (let i = 0; i <= SELLER_MAX_IDX; i++) {
+    if (!input_valid[i]) {
+      //valid하지 못한 값이 있으면
+      btn_join.disabled = true; //버튼 비활성화
+      return;
+    }
+  }
+  //모든 인풋 값이 유효하면
   btn_join.disabled = !join_form.checkValidity();
 }
 
@@ -271,11 +295,13 @@ input_password_check.addEventListener("focusout", (e) => {
     display_msg(idx, "비밀번호가 일치하지 않습니다.", false);
     img_password[1].setAttribute("src", "/assets/images/icon-check-off.svg");
     img_password[1].setAttribute("alt", "비밀번호가 일치하지 않습니다.");
+    input_valid[idx] = false;
     return;
   }
 
   img_password[1].setAttribute("src", "/assets/images/icon-check-on.svg");
   img_password[1].setAttribute("alt", "비밀번호가 일치합니다.");
+  input_valid[idx] = true;
   remove_msg(idx);
 });
 
@@ -291,6 +317,13 @@ input_password_check.addEventListener("keydown", (e) => {
   check_required(idx);
 });
 
+input_name.addEventListener("focusout", (e) => {
+  const idx = e.target.dataset.idx;
+  if (e.target.value === "") {
+    input_valid[idx] = false;
+  }
+  input_valid[idx] = true;
+});
 input_name.addEventListener("keydown", (e) => {
   const idx = e.target.dataset.idx;
   if (ignore_key(e.key)) {

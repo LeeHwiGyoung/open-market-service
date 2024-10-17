@@ -27,25 +27,6 @@ let toggle_drop_Down = false;
 const input_valid = new Array(7).fill(false); // 0 : username , 1 : password , 2:password_check , 3:name , 4:phone , 5~6 : seller
 const SCROLL_THUMBS_HEIGHT = 90;
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
-const nonCharacterKeys = new Set([
-  "Shift",
-  "Control",
-  "Alt",
-  "CapsLock",
-  "Meta",
-  "Fn",
-  "Escape",
-  "ArrowUp",
-  "ArrowDown",
-  "ArrowLeft",
-  "ArrowRight",
-  "Insert",
-  "Delete",
-  "Home",
-  "End",
-  "PageUp",
-  "PageDown",
-]);
 
 const buyer_data = {
   username: "",
@@ -67,6 +48,36 @@ function throttle(mainFunc, delay) {
     }
   };
 }
+
+function ignore_key(key) {
+  //입력이 되지 않는 키인 경우 true 리턴
+  const ignore_key_set = new Set([
+    "Shift",
+    "Control",
+    "Alt",
+    "CapsLock",
+    "Meta",
+    "Fn",
+    "Escape",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "Insert",
+    "Home",
+    "End",
+    "PageUp",
+    "PageDown",
+    "Tab",
+    "NumLock",
+  ]);
+
+  if (ignore_key_set.has(key)) {
+    return true;
+  }
+  return false;
+}
+
 // 폼의 유효성을 확인하는 함수
 function checkFormValidity() {
   btn_join.disabled = !join_form.checkValidity();
@@ -193,20 +204,14 @@ input_id.addEventListener("focusout", (e) => {
 });
 
 input_id.addEventListener("keydown", (e) => {
-  const prev_value = input_id.value;
-
   const idx = e.target.dataset.idx;
-  if (prev_value !== input_id.value) {
-    input_valid[idx] = false;
+  if (ignore_key(e.key)) {
+    //input의 value를 건드리지 않는 키
+    return;
   }
-});
-input_id.addEventListener("keyup", (e) => {
-  //  remove_msg(idx); //중복 확인 통과 후 id를 바꾸면 성공 메시지를 지우기 위해
-  /*   if (e.target.value === "") {
-    input_blank[idx] = false;
-  } else {
-    input_blank[idx] = true;
-  } */
+  //input의 value가 초기화 되면
+  input_valid[idx] = false; //validation 결과값 초기화
+  remove_msg(idx); //경고 메시지 초기화
 });
 
 btn_check_id.addEventListener("click", (e) => {

@@ -265,6 +265,9 @@
 .phone-number-wrap .dropdown-option:hover {
   background-color: #e0e0e0;
 }
+.phone-number-wrap .dropdown-option:focus {
+  outline: auto;
+}
 .phone-number-wrap .input-phone-number {
   font-family: "SpoqaHanSansNeo-Regular";
 }
@@ -307,7 +310,8 @@
   margin: 0.2rem 1rem 0 0;
   width: 1.6rem;
 }
-.personnal-check.clicked::before {
+
+#personnal-check:checked + .personnal-check::before {
   content: url("/assets/images/check-fill-box.svg");
   margin: 0.2rem 1rem 0 0;
   width: 1.6rem;

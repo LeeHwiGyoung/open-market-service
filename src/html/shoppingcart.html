@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/css/reset.css" />
+    <link rel="stylesheet" href="/src/scss/shoppingcart.css" />
     <title>Document</title>
   </head>
   <body>
@@ -29,7 +31,7 @@
         </div>
         <nav class="gnb-nav">
           <ul>
-            <li class="gnb-nav-item">
+            <li class="gnb-nav-item" id="btn-shoppingcart">
               <a href="#">
                 <img
                   src="/assets/images/icon-shopping-cart.svg"
@@ -58,16 +60,20 @@
       <section class="shoppingcart-container">
         <h2>장바구니</h2>
         <ul class="shoppingcart-menu">
-          <li>
-            <button type="button">선택</button>
+          <li class="menu-check">
+            <button class="btn-shoppingcart-check" type="button"></button>
           </li>
-          <li>상품정보</li>
-          <li>수량</li>
-          <li>상품금액</li>
+          <li class="menu-product-info">상품정보</li>
+          <li class="menu-product-quantity">수량</li>
+          <li class="menu-product-price">상품금액</li>
         </ul>
+        <!-- <div class="shoppingcart-item-none-wrap">
+          <strong> 장바구니에 담긴 상품이 없습니다.</strong>
+          <p>원하는 상품을 장바구니에 담아보세요!</p>
+        </div> -->
         <ul class="shoppingcart-list">
-          <li>
-            <button type="button">선택</button>
+          <li class="shoppingcart-item">
+            <button class="btn-shoppingcart-check" type="button"></button>
             <div class="product-info-container">
               <img src="" alt="상품 이미지" />
               <div>
@@ -76,7 +82,7 @@
                 <p class="product-price">
                   <span>${product[ i ].price.toLocaleString()}</span>원
                 </p>
-                <p>택배배송 / 무료배송</p>
+                <p class="product-delivery">택배배송 / 무료배송</p>
               </div>
             </div>
             <div class="product-quantity-container">
@@ -105,10 +111,15 @@
             </div>
             <div class="product-price-info-container">
               <p>17500원</p>
-              <button>주문하기</button>
+              <a class="btn-order" herf="#">주문하기</a>
             </div>
           </li>
         </ul>
+        <section class=" ">
+          <h2 class="sr-only">선택된 상품 금액 정보</h2>
+          <p></p>
+        </section>
+        <a class="btn-order" href="#">주문하기</a>
       </section>
     </main>
     <footer>
@@ -162,5 +173,6 @@
         </section>
       </div>
     </footer>
+    <script src="/src/js/header.js" type="module"></script>
   </body>
 </html>

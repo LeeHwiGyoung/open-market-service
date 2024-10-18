@@ -224,6 +224,7 @@ img {
   margin: 0 auto;
   flex-wrap: wrap;
   align-content: center;
+  justify-content: center;
 }
 .product-list-container .product-item {
   flex-basis: 38rem;

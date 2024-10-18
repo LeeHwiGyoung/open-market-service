@@ -1,3 +1,5 @@
+import { set_access_token, set_refresh_token } from "./auth.js";
+
 const login_form = document.getElementsByName("login")[0];
 const login_type_container = login_form.querySelector(
   ".login-select-container"
@@ -36,9 +38,8 @@ async function postLogin() {
 
     //로그인 성공 시
     //토큰 저장
-    localStorage.setItem("access_token", json.access);
-    localStorage.setItem("refresh_token", json.refresh);
-
+    set_access_token(json.access);
+    set_refresh_token(json.refresh);
     //referrer가 있으면 이전페이지로 아니면 홈으로 이동
     referrer.length !== 0
       ? (location.href = referrer)

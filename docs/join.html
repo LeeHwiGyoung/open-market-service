@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/css/reset.css" />
+    <link rel="stylesheet" href="/src/scss/join.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="join-container">
+      <h1>
+        <a href="/src/html/home.html">
+          <img
+            src="/assets/images/Logo-hodu.png"
+            alt="호두 메인페이지로 이동"
+          />
+        </a>
+      </h1>
+      <form name="join">
+        <!-- action 추가 -->
+        <div class="join-select-container">
+          <button
+            class="btn-select-buyer active"
+            type="button"
+            data-join-type="BUYER"
+          >
+            구매회원가입
+          </button>
+          <button
+            class="btn-select-seller"
+            type="button"
+            data-join-type="SELLER"
+          >
+            판매회원가입
+          </button>
+        </div>
+        <div class="join-submit-container">
+          <label class="input-label" for="id">아이디</label>
+          <div class="input-wrapper">
+            <input
+              class="text-input"
+              type="text"
+              name="id"
+              id="id"
+              data-idx="0"
+              required
+            />
+            <button class="btn-check-id" type="button">중복확인</button>
+          </div>
+          <p class="msg" aria-invalid="true"></p>
+
+          <label class="input-label" for="password">비밀번호</label>
+          <div class="input-wrapper">
+            <input
+              class="input-contain-check"
+              type="password"
+              name="password"
+              id="password"
+              data-idx="1"
+              required
+            />
+            <img
+              id="password-img"
+              class="check"
+              src="/assets/images/icon-check-off.svg"
+              alt="유효하지 않은 입력"
+              aria-live="polite"
+            />
+          </div>
+          <p class="msg" aria-invalid="true"></p>
+          <label class="input-label" for="check-password"
+            >비밀번호 재확인</label
+          >
+          <div class="input-wrapper">
+            <input
+              class="input-contain-check"
+              type="password"
+              name="check-password"
+              id="check-password"
+              data-idx="2"
+              required
+            />
+            <img
+              class="check"
+              id="password-check-img"
+              src="/assets/images/icon-check-off.svg"
+              alt="유효하지 않은 입력"
+              aria-live="polite"
+            />
+          </div>
+          <p class="msg" aria-invalid="true"></p>
+          <div class="personnal-information-container">
+            <label class="input-label" for="user-name">이름</label>
+            <input
+              class="text-input"
+              type="text"
+              name="user-name"
+              id="user-name"
+              data-idx="3"
+            />
+            <p class="msg" aria-invalid="true"></p>
+            <div class="phone-number-wrap">
+              <article class="number-select-input">
+                <label class="input-label" for="phone-number">휴대폰번호</label>
+                <div class="phone-number-dropdown">
+                  <button
+                    type="button"
+                    id="phone-number"
+                    class="dropdown-trigger"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    data-idx="4"
+                  >
+                    <span>010</span>
+                    <img src="/assets/images/icon-down-arrow.svg" alt="" />
+                  </button>
+                  <div class="dropdown-menu">
+                    <ul
+                      class="dropdown-options"
+                      role="listbox"
+                      aria-labelledby="phone-number"
+                    >
+                      <li
+                        class="dropdown-option"
+                        tabindex="0"
+                        role="option"
+                        data-value="010"
+                      >
+                        010
+                      </li>
+                      <li
+                        class="dropdown-option"
+                        tabindex="0"
+                        role="option"
+                        data-value="011"
+                      >
+                        011
+                      </li>
+                      <li
+                        class="dropdown-option"
+                        tabindex="0"
+                        role="option"
+                        data-value="016"
+                      >
+                        016
+                      </li>
+                      <li
+                        class="dropdown-option"
+                        tabindex="0"
+                        role="option"
+                        data-value="017"
+                      >
+                        017
+                      </li>
+                      <li
+                        class="dropdown-option"
+                        tabindex="0"
+                        role="option"
+                        data-value="018"
+                      >
+                        018
+                      </li>
+                      <li
+                        class="dropdown-option"
+                        tabindex="0"
+                        role="option"
+                        data-value="019"
+                      >
+                        019
+                      </li>
+                    </ul>
+                    <div class="scroll-wrap">
+                      <div class="scroll-bar"></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <label for="phone-number-middle" class="sr-only"
+                >휴대폰 번호 중간 4자리</label
+              >
+              <input
+                class="input-phone-number"
+                type="text"
+                name="phone-number-middle"
+                id="phone-number-middle"
+                maxlength="4"
+                data-idx="4"
+                required
+              />
+              <label for="phone-number-last" class="sr-only"
+                >휴대폰 번호 마지막 4자리</label
+              >
+              <input
+                class="input-phone-number"
+                type="text"
+                name="phone-number-last"
+                id="phone-number-last"
+                maxlength="4"
+                data-idx="4"
+                required
+              />
+              <p class="msg" aria-invalid="true"></p>
+            </div>
+          </div>
+        </div>
+        <input
+          class="sr-only"
+          type="checkbox"
+          name="personnal-check"
+          id="personnal-check"
+          required
+        />
+        <label class="personnal-check" for="personnal-check"
+          >호두샵의 <em>이용약관</em> 및 <em>개인정보처리방침</em>에 대한 내용을
+          확인하였고 동의합니다.</label
+        >
+        <button class="btn-join" type="submit" disabled>가입하기</button>
+      </form>
+    </section>
+    <script src="/src/js/join.js"></script>
+  </body>
+</html>

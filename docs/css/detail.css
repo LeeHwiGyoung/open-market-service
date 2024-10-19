@@ -13,6 +13,7 @@
   src: url("../assets/fonts/SpoqaHanSansNeo-Bold.woff");
   font-weight: 700;
 }
+
 header {
   background-color: #FFF;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1019607843);
@@ -80,21 +81,6 @@ header {
   color: #767676;
 }
 
-@font-face {
-  font-family: "SpoqaHanSansNeo-Regular";
-  src: url("../../assets/fonts/SpoqaHanSansNeo-Regular.woff");
-  font-weight: 400;
-}
-@font-face {
-  font-family: "SpoqaHanSansNeo-Medium";
-  src: url("../../assets/fonts/SpoqaHanSansNeo-Medium.woff");
-  font-weight: 500;
-}
-@font-face {
-  font-family: "SpoqaHanSansNeo-Bold";
-  src: url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff");
-  font-weight: 700;
-}
 footer {
   background-color: #f2f2f2;
 }

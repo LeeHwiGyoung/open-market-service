@@ -53,26 +53,6 @@ function createProduct(product) {
       </a> 
     `;
 
-    /*    const link = article.querySelector(".product-link");
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const productId = product[i].id;
-      loadDetail().then((detailHTML) => {
-        if (detailHTML) {
-          htmlElement.innerHTML = detailHTML;
-
-          // Manually re-load any scripts needed
-          const script = document.createElement("script");
-          script.src = "/src/js/detail.js"; // The JavaScript file you need
-          script.onload = () => {
-            console.log("Script loaded successfully!");
-            // Initialize any functionality here if needed
-          };
-          document.body.appendChild(script);
-        }
-      });
-      history.pushState(null, "", `/detail/${productId}`);
-    }); */
     fragment.append(article);
   }
 

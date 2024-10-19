@@ -1,6 +1,3 @@
-const url = location.pathname;
-//const product_id = url.match(/detail\/(\d+)/)[1];
-const product_id = 1;
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
 const detail_contanier = document.querySelector(
   ".product-detail-price-container"
@@ -21,7 +18,7 @@ const total_price = detail_contanier.querySelector(".total-price");
 let product = [];
 let quantity = 1;
 
-async function getDetail() {
+async function getDetail(product_id) {
   const res = await fetch(`${BASE_URL}/products/${product_id}`);
   const json = await res.json();
   return json;
@@ -40,12 +37,6 @@ function calc_price(product_price) {
     quantity * product_price
   ).toLocaleString()}</span>원`;
 }
-
-(async function () {
-  product = await getDetail();
-  setDetail(product);
-  calc_price(product.price);
-})();
 
 function click_btn_quantity(e) {
   const button = e.target.closest("button"); // 클릭된 이미지의 부모 버튼을 찾음
@@ -73,7 +64,6 @@ const original_Descriptor = Object.getOwnPropertyDescriptor(
 
 Object.defineProperty(input_product_quantity, "value", {
   set(new_value) {
-    console.log("Value changed (by script or user):", new_value); // 값 변경 감지
     original_value = new_value; // 값을 업데이트
     original_Descriptor.set.call(this, new_value); // 실제로 값을 설정
     calc_price(product.price);
@@ -86,3 +76,11 @@ Object.defineProperty(input_product_quantity, "value", {
 btn_quantity_wrap.addEventListener("click", (e) => {
   click_btn_quantity(e);
 });
+
+(async function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const product_id = urlParams.get("id");
+  product = await getDetail(product_id);
+  setDetail(product);
+  calc_price(product.price);
+})();

@@ -21,7 +21,7 @@ class Image_slider {
     this.products.forEach((product) => {
       const li = document.createElement("li");
       li.className = "product-slider-item";
-      li.innerHTML = `<a href=./detail><img src="${product.image}" alt=""/></a>`;
+      li.innerHTML = `<a href=./detail?id=${product.id}><img src="${product.image}" alt=""/></a>`;
       fragment.append(li);
     });
     slider_list.append(fragment);

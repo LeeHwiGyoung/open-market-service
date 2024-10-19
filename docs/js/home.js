@@ -43,7 +43,7 @@ function createProduct(product) {
     const article = document.createElement("article");
     article.className = "product-item";
     article.innerHTML = `
-    <a class="product-link" href="./detail">
+    <a class="product-link" href="./detail?id=${product[i].id}">
       <img src="${product[i].image}" alt=""/>
       <p class="store-name">${product[i].seller.store_name}</p>
       <p class="product-name">${product[i].name}</p>

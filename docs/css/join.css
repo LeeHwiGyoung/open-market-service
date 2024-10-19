@@ -322,12 +322,12 @@
   text-decoration: underline;
 }
 .personnal-check::before {
-  content: url("/assets/images/check-box.svg");
+  content: url("/docs/assets/images/check-box.svg");
   margin: 0.2rem 1rem 0 0;
   width: 1.6rem;
 }
 #personnal-check:checked + .personnal-check::before {
-  content: url("/assets/images/check-fill-box.svg");
+  content: url("/docs/assets/images/check-fill-box.svg");
   margin: 0.2rem 1rem 0 0;
   width: 1.6rem;
 }

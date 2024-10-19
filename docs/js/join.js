@@ -260,12 +260,12 @@ input_password.addEventListener("focusout", (e) => {
       "8자 이상,영문 대 소문자,숫자,특수문자를 사용하세요.",
       false
     );
-    img_password[0].setAttribute("src", "/assets/images/icon-check-off.svg");
+    img_password[0].setAttribute("src", "./assets/images/icon-check-off.svg");
     img_password[0].setAttribute("alt", "유효하지 않은 비밀번호입니다.");
     input_valid[1] = false;
     return;
   }
-  img_password[0].setAttribute("src", "/assets/images/icon-check-on.svg");
+  img_password[0].setAttribute("src", "./assets/images/icon-check-on.svg");
   img_password[0].setAttribute("alt", "유효한 비밀번호입니다.");
   input_valid[1] = true;
   remove_msg(idx);
@@ -295,13 +295,13 @@ input_password_check.addEventListener("focusout", (e) => {
   if (e.target.value !== userdata.password) {
     //비밀번호와 일치하지 않으면
     display_msg(idx, "비밀번호가 일치하지 않습니다.", false);
-    img_password[1].setAttribute("src", "/assets/images/icon-check-off.svg");
+    img_password[1].setAttribute("src", "./assets/images/icon-check-off.svg");
     img_password[1].setAttribute("alt", "비밀번호가 일치하지 않습니다.");
     input_valid[idx] = false;
     return;
   }
 
-  img_password[1].setAttribute("src", "/assets/images/icon-check-on.svg");
+  img_password[1].setAttribute("src", "./assets/images/icon-check-on.svg");
   img_password[1].setAttribute("alt", "비밀번호가 일치합니다.");
   input_valid[idx] = true;
   remove_msg(idx);

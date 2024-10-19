@@ -10,5 +10,5 @@ btn_shoppingcart.addEventListener("click", (e) => {
     return;
   }
   login_with_token("/cart");
-  location.href = "/src/html/shoppingcart.html";
+  location.href = "./shoppingcart";
 });

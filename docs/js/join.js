@@ -116,7 +116,7 @@ async function post_signup(userdata) {
     //referrer가 있으면 이전페이지로 아니면 홈으로 이동
     referrer.length !== 0
       ? (location.href = referrer)
-      : (location.href = "/src/html/home.html"); //이전 링크가 없는 경우에 referrer 은 빈 문자열을 반환
+      : (location.href = "../"); //이전 링크가 없는 경우에 referrer 은 빈 문자열을 반환
     return;
   } catch (err) {
     console.error(err);

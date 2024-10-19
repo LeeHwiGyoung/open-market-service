@@ -11,9 +11,9 @@
     <header>
       <div class="header-container">
         <h1>
-          <a href="/src/html/home.html"
+          <a href="/"
             ><img
-              src="/assets/images/Logo-hodu.png"
+              src="./assets/images/Logo-hodu.png"
               alt="호두 메인페이지로 이동"
           /></a>
         </h1>
@@ -26,15 +26,15 @@
             placeholder="상품을 검색해보세요!"
           />
           <button class="btn-search" type="button">
-            <img src="/assets/images/icon-search.svg" alt="" />
+            <img src="./assets/images/icon-search.svg" alt="" />
           </button>
         </div>
         <nav class="gnb-nav">
           <ul>
             <li class="gnb-nav-item" id="btn-shoppingcart">
-              <a href="#">
+              <a href="/shoppingcart">
                 <img
-                  src="/assets/images/icon-shopping-cart.svg"
+                  src="./assets/images/icon-shopping-cart.svg"
                   alt="장바구니"
                 />
                 <p>장바구니</p>
@@ -42,7 +42,7 @@
             </li>
             <li class="gnb-nav-item">
               <button type="button">
-                <img src="/assets/images/icon-user.svg" alt="로그인" />
+                <img src="./assets/images/icon-user.svg" alt="로그인" />
                 <p>마이페이지</p>
               </button>
             </li>
@@ -91,10 +91,8 @@
               <p class="total-price"><span></span>원</p>
             </div>
             <div class="product-detail-btn-container">
-              <a href="/src/html/payments" class="btn-buy">바로구매</a>
-              <a href="/src/html/shopping-cart" class="btn-shopping-cart"
-                >장바구니</a
-              >
+              <a href="/payments" class="btn-buy">바로구매</a>
+              <a href="/shoppingcart" class="btn-shopping-cart">장바구니</a>
             </div>
           </section>
         </div>
@@ -172,7 +170,7 @@
         </section>
       </div>
     </footer>
-    <script src="/src/js/detail.js"></script>
-    <script src="/src/js/header.js" type="module"></script>
+    <script src="./js/detail.js"></script>
+    <script src="./js/header.js" type="module"></script>
   </body>
 </html>

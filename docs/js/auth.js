@@ -14,6 +14,14 @@ export function get_refresh_token() {
   return sessionStorage.getItem("refresh_token");
 }
 
+export function remove_access_token() {
+  sessionStorage.removeItem("access_token");
+}
+
+export function remove_refresh_token() {
+  sessionStorage.removeItem("refresh_token");
+}
+
 export async function check_access_token(url) {
   try {
     const access_token = get_access_token();

@@ -40,7 +40,7 @@ class Shoppingcart_list {
     <div class="product-quantity-container">
       <button class="btn-quantity" data-type="minus" type="button">
         <img
-          src="../assets/images/icon-minus-line.svg"
+          src="./assets/images/icon-minus-line.svg"
           alt="수량 마이너스 버튼"
         />
       </button>
@@ -56,7 +56,7 @@ class Shoppingcart_list {
       />
       <button class="btn-quantity" data-type="plus" type="button">
         <img
-          src="../assets/images/icon-plus-line.svg"
+          src="./assets/images/icon-plus-line.svg"
           alt="수량 플러스 버튼"
         />
       </button>
@@ -75,12 +75,12 @@ class Shoppingcart_list {
       <p>총 상품금액</p>
       <p><span>46,500</span>원</p>
       </div>
-      <img src="../assets/images/icon-minus.svg" alt="할인 가격 빼기" />
+      <img src="./assets/images/icon-minus.svg" alt="할인 가격 빼기" />
       <div class="price-discount-wrap">
       <p>상품 할인</p>
       <p><span>0</span>원</p>
       </div>
-      <img src="../assets/images/icon-plus.svg" alt="배달비 더하기" />
+      <img src="./assets/images/icon-plus.svg" alt="배달비 더하기" />
       <div class="price-delivery-wrap">
       <p>배송비</p>
       <p><span>0</span>원</p>

@@ -40,7 +40,7 @@ class Shoppingcart_list {
     <div class="product-quantity-container">
       <button class="btn-quantity" data-type="minus" type="button">
         <img
-          src="/assets/images/icon-minus-line.svg"
+          src="../assets/images/icon-minus-line.svg"
           alt="수량 마이너스 버튼"
         />
       </button>
@@ -56,7 +56,7 @@ class Shoppingcart_list {
       />
       <button class="btn-quantity" data-type="plus" type="button">
         <img
-          src="/assets/images/icon-plus-line.svg"
+          src="../assets/images/icon-plus-line.svg"
           alt="수량 플러스 버튼"
         />
       </button>

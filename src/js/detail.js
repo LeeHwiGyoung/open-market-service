@@ -1,3 +1,7 @@
+import { get_access_token, check_login } from "./auth.js";
+import { displayModal } from "./modal.js";
+import { post_cart } from "./shoppingcart_utils.js";
+
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
 const detail_contanier = document.querySelector(
   ".product-detail-price-container"
@@ -12,10 +16,12 @@ const input_product_quantity = detail_contanier.querySelector(
 const btn_quantity_wrap = detail_contanier.querySelector(
   ".product-quantity-wrap"
 );
-
 const total_quantity = detail_contanier.querySelector(".total-quantity");
 const total_price = detail_contanier.querySelector(".total-price");
-let product = [];
+const btn_shopping_cart = detail_contanier.querySelector(".btn-shopping-cart");
+const btn_buy = detail_contanier.querySelector(".btn-buy");
+
+let product = {};
 let quantity = 1;
 
 async function getDetail(product_id) {
@@ -78,12 +84,57 @@ btn_quantity_wrap.addEventListener("click", (e) => {
   click_btn_quantity(e);
 });
 
+btn_shopping_cart.addEventListener("click", (e) => {
+  e.preventDefault();
+  const access_token = get_access_token();
+
+  if (access_token === null) {
+    displayModal(); // 로그인 모달 띄우기
+    return;
+  }
+
+  check_login("cart")
+    .then((state) => {
+      if (state) {
+        if (product.stock === 0) {
+          return new Error(alert("재고가 없습니다."));
+        }
+        post_cart(product.id, quantity, access_token);
+        location.href = "/src/html/shoppingcart.html";
+      } else {
+        return new Error(displayModal());
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
+btn_buy.addEventListener("click", (e) => {
+  e.preventDefault();
+  const access_token = get_access_token();
+  if (access_token === null) {
+    displayModal(); // 로그인 모달 띄우기
+    return;
+  }
+  check_login("order")
+    .then((state) => {
+      if (state) {
+        location.href = "#";
+      } else {
+        throw new Error();
+      }
+    })
+    .catch((error) => {
+      displayModal();
+    });
+});
+
 (async function () {
   const urlParams = new URLSearchParams(window.location.search);
   const product_id = urlParams.get("id");
 
   product = await getDetail(product_id);
-
   setDetail(product);
   calc_price(product.price);
 })();

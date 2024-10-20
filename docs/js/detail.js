@@ -1,5 +1,6 @@
-import { check_login, get_access_token } from "./auth.js";
+import { get_access_token, check_login } from "./auth.js";
 import { displayModal } from "./modal.js";
+import { post_cart } from "./shoppingcart_utils.js";
 
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
 const detail_contanier = document.querySelector(
@@ -15,10 +16,12 @@ const input_product_quantity = detail_contanier.querySelector(
 const btn_quantity_wrap = detail_contanier.querySelector(
   ".product-quantity-wrap"
 );
-
 const total_quantity = detail_contanier.querySelector(".total-quantity");
 const total_price = detail_contanier.querySelector(".total-price");
-let product = [];
+const btn_shopping_cart = detail_contanier.querySelector(".btn-shopping-cart");
+const btn_buy = detail_contanier.querySelector(".btn-buy");
+
+let product = {};
 let quantity = 1;
 
 async function getDetail(product_id) {
@@ -67,6 +70,7 @@ const original_Descriptor = Object.getOwnPropertyDescriptor(
 
 Object.defineProperty(input_product_quantity, "value", {
   set(new_value) {
+    console.log("Value changed (by script or user):", new_value); // 값 변경 감지
     original_value = new_value; // 값을 업데이트
     original_Descriptor.set.call(this, new_value); // 실제로 값을 설정
     calc_price(product.price);
@@ -80,24 +84,27 @@ btn_quantity_wrap.addEventListener("click", (e) => {
   click_btn_quantity(e);
 });
 
-btn_shopping_cart.addEventListener("click", (e) => {
+btn_shopping_cart.addEventListener("click", async (e) => {
   e.preventDefault();
   const access_token = get_access_token();
+
   if (access_token === null) {
     displayModal(); // 로그인 모달 띄우기
     return;
   }
-  check_login("cart")
-    .then((state) => {
-      if (state) {
-        location.href = "./shoppingcart";
-      } else {
-        throw new Error();
-      }
-    })
-    .catch((error) => {
-      displayModal();
-    });
+  const state = await check_login("cart");
+
+  if (!state) {
+    displayModal();
+    return;
+  }
+
+  if (product.stock === 0) {
+    alert("재고가 없습니다.");
+    return;
+  }
+  post_cart(product.id, quantity, access_token);
+  location.href = "./shoppingcart";
 });
 
 btn_buy.addEventListener("click", (e) => {
@@ -123,6 +130,7 @@ btn_buy.addEventListener("click", (e) => {
 (async function () {
   const urlParams = new URLSearchParams(window.location.search);
   const product_id = urlParams.get("id");
+
   product = await getDetail(product_id);
   setDetail(product);
   calc_price(product.price);

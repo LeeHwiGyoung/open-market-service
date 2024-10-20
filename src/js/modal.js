@@ -2,6 +2,7 @@ const modal_container = document.querySelector(".modal-container");
 const dimd = modal_container.querySelector(".dimd");
 const btn_no = modal_container.querySelector(".btn-modal-no");
 const btn_yes = modal_container.querySelector(".btn-modal-yes");
+const btn_cancle = modal_container.querySelector(".btn-cancle");
 const modal_type = modal_container.dataset.type;
 
 export function displayModal() {
@@ -17,6 +18,10 @@ dimd.addEventListener("click", (e) => {
 });
 
 btn_no.addEventListener("click", (e) => {
+  removeModal();
+});
+
+btn_cancle.addEventListener("click", (e) => {
   removeModal();
 });
 

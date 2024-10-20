@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/css/reset.css" />
     <link rel="stylesheet" href="/src/scss/home.css" />
+    <link rel="stylesheet" href="/src/scss/modal.css" />
     <title>Document</title>
   </head>
   <body>
@@ -121,6 +122,22 @@
         </section>
       </div>
     </footer>
+    <article class="modal-container" data-type="login">
+      <div class="dimd"></div>
+      <div class="modal-content-container">
+        <button class="btn-cancle">
+          <img src="/assets/images/icon-delete.svg" alt="취소 버튼" />
+        </button>
+        <div class="modal-login-content">
+          <p>로그인이 필요한 서비스입니다.</p>
+          <p>로그인 하시겠습니까?</p>
+        </div>
+        <div class="modal-btn-wrap">
+          <button class="btn-modal-no" type="button">아니오</button>
+          <button class="btn-modal-yes" type="button">예</button>
+        </div>
+      </div>
+    </article>
     <script src="/src/js/home.js" type="module"></script>
     <script src="/src/js/header.js" type="module"></script>
   </body>

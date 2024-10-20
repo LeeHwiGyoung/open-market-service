@@ -1,3 +1,6 @@
+import { check_login, get_access_token } from "./auth.js";
+import { displayModal } from "./modal.js";
+
 const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
 const detail_contanier = document.querySelector(
   ".product-detail-price-container"
@@ -75,6 +78,46 @@ Object.defineProperty(input_product_quantity, "value", {
 
 btn_quantity_wrap.addEventListener("click", (e) => {
   click_btn_quantity(e);
+});
+
+btn_shopping_cart.addEventListener("click", (e) => {
+  e.preventDefault();
+  const access_token = get_access_token();
+  if (access_token === null) {
+    displayModal(); // 로그인 모달 띄우기
+    return;
+  }
+  check_login("cart")
+    .then((state) => {
+      if (state) {
+        location.href = "./shoppingcart";
+      } else {
+        throw new Error();
+      }
+    })
+    .catch((error) => {
+      displayModal();
+    });
+});
+
+btn_buy.addEventListener("click", (e) => {
+  e.preventDefault();
+  const access_token = get_access_token();
+  if (access_token === null) {
+    displayModal(); // 로그인 모달 띄우기
+    return;
+  }
+  check_login("order")
+    .then((state) => {
+      if (state) {
+        location.href = "#";
+      } else {
+        throw new Error();
+      }
+    })
+    .catch((error) => {
+      displayModal();
+    });
 });
 
 (async function () {

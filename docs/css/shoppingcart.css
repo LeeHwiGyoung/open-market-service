@@ -192,6 +192,7 @@ header {
   flex-direction: column;
   max-width: 128rem;
   margin: 0 auto;
+  padding-bottom: 16rem;
 }
 .shoppingcart-container h2 {
   font-family: "SpoqaHanSansNeo-Bold";

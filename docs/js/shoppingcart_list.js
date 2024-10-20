@@ -75,12 +75,12 @@ class Shoppingcart_list {
       <p>총 상품금액</p>
       <p><span>46,500</span>원</p>
       </div>
-      <img src="/assets/images/icon-minus.svg" alt="할인 가격 빼기" />
+      <img src="../assets/images/icon-minus.svg" alt="할인 가격 빼기" />
       <div class="price-discount-wrap">
       <p>상품 할인</p>
       <p><span>0</span>원</p>
       </div>
-      <img src="/assets/images/icon-plus.svg" alt="배달비 더하기" />
+      <img src="../assets/images/icon-plus.svg" alt="배달비 더하기" />
       <div class="price-delivery-wrap">
       <p>배송비</p>
       <p><span>0</span>원</p>

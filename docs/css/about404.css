@@ -1,0 +1,83 @@
+@font-face {
+  font-family: "SpoqaHanSansNeo-Regular";
+  src: url("assets/fonts/SpoqaHanSansNeo-Regular.woff") format('.woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Medium";
+  src: url("assets/fonts/SpoqaHanSansNeo-Medium.woff") format('.woff');
+  font-weight: 500;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Bold";
+  src: url("assets/fonts/SpoqaHanSansNeo-Bold.woff") format('.woff');
+  font-weight: 700;
+}
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about404-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  height: 23.6rem;
+}
+
+.about404-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.003rem;
+  color: #767676;
+}
+.about404-info p:first-child {
+  font-family: "SpoqaHanSansNeo-Bold";
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 4.4rem;
+  color: #000;
+  margin-bottom: 2rem;
+}
+
+.btn-main, .btn-before {
+  padding: 1.9rem 0;
+  border-radius: 0.5rem;
+  font-family: "SpoqaHanSansNeo-Bold";
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.2rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-top: 4rem;
+}
+
+.btn-main, .btn-before {
+  flex-basis: 20rem;
+  box-sizing: border-box;
+}
+
+.btn-main {
+  border: none;
+  background-color: #21BF48;
+  color: #fff;
+}
+
+.btn-before {
+  background-color: #fff;
+  color: #767676;
+  border: 1px solid #767676;
+}/*# sourceMappingURL=about404.css.map */

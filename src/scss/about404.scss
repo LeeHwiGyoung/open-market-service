@@ -1,0 +1,72 @@
+@use 'mixin.scss';
+@import '_variable.scss';
+
+section { 
+    height: 100vh;
+    @include mixin.flexCenter;
+
+}
+
+.about404-container {
+    @include mixin.flexCenter;
+    gap : 5rem;
+    height: 23.6rem;
+}
+
+.about404-info { 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: $font-regular;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.003rem;
+    color : #767676;
+    
+    p:first-child {
+        font-family: $font-bold;
+        font-size: 3.6rem;
+        font-weight: 700;
+        line-height: 4.4rem;
+        color : #000;
+        margin-bottom: 2rem;
+    }    
+
+}
+
+
+%btn-404 {
+    padding : 1.9rem 0;
+    border-radius: 0.5rem;
+    font-family: $font-bold;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.2rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    margin-top :4rem;
+}
+
+.btn-main,.btn-before {
+    @extend %btn-404;
+    flex-basis: 20rem;
+    box-sizing: border-box;
+}
+
+.btn-main {
+    border : none;
+    background-color: $identity-color;
+    color :#fff;
+}
+
+.btn-before {
+    background-color: #fff;
+    color :#767676;
+    border : 1px solid #767676;
+}

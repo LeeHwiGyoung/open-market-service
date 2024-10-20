@@ -16,6 +16,7 @@ const input_product_quantity = detail_contanier.querySelector(
 const btn_quantity_wrap = detail_contanier.querySelector(
   ".product-quantity-wrap"
 );
+const btn_plus = btn_quantity_wrap.querySelector(".plus");
 const total_quantity = detail_contanier.querySelector(".total-quantity");
 const total_price = detail_contanier.querySelector(".total-price");
 const btn_shopping_cart = detail_contanier.querySelector(".btn-shopping-cart");
@@ -35,6 +36,12 @@ function setDetail(product) {
   store_name.textContent = product.seller.store_name;
   product_name.textContent = product.name;
   product_price.innerHTML = `<span>${product.price.toLocaleString()}</span>원`;
+
+  if (product.stock === 0) {
+    btn_shopping_cart.disabled = true;
+    btn_buy.disabled = true;
+    btn_plus.disabled = true;
+  }
 }
 
 function calc_price(product_price) {

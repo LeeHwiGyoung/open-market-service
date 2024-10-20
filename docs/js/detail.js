@@ -54,7 +54,7 @@ function setDetail(product) {
   store_name.textContent = product.seller.store_name;
   product_name.textContent = product.name;
   product_price.innerHTML = `<span>${product.price.toLocaleString()}</span>원`;
-  delivery_info.textContent = getDeliveryInfo();
+  delivery_info.textContent = getDeliveryInfo(product);
 
   if (product.stock === 0) {
     btn_shopping_cart.disabled = true;

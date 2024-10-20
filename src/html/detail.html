@@ -32,8 +32,8 @@
         </div>
         <nav class="gnb-nav">
           <ul>
-            <li class="gnb-nav-item" id="btn-shoppingcart">
-              <a href="#">
+            <li class="gnb-nav-item" id="btn-nav-shoppingcart">
+              <a href="/src/html/shoppingcart.html">
                 <img
                   src="/assets/images/icon-shopping-cart.svg"
                   alt="장바구니"
@@ -41,11 +41,26 @@
                 <p>장바구니</p>
               </a>
             </li>
-            <li class="gnb-nav-item">
+            <li class="gnb-nav-item" id="btn-nav-login">
+              <a href="/src/html/login.html">
+                <img src="/assets/images/icon-user.svg" alt="" />
+                <p>로그인</p>
+              </a>
+            </li>
+            <li class="gnb-nav-item hide" id="btn-nav-dropdown-trigger">
               <button type="button">
-                <img src="/assets/images/icon-user.svg" alt="로그인" />
+                <img src="/assets/images/icon-user.svg" alt="" />
                 <p>마이페이지</p>
               </button>
+
+              <ul class="dropdown-list">
+                <li>
+                  <button type="button">마이페이지</button>
+                </li>
+                <li>
+                  <button type="button" id="btn-nav-logout">로그아웃</button>
+                </li>
+              </ul>
             </li>
           </ul>
         </nav>
@@ -173,7 +188,7 @@
         </section>
       </div>
     </footer>
-    <article class="modal-container">
+    <article class="modal-container" data-type="login">
       <div class="dimd"></div>
       <div class="modal-content-container">
         <button class="btn-cancle">
@@ -189,7 +204,7 @@
         </div>
       </div>
     </article>
-    <script src="/src/js/detail.js"></script>
+    <script src="/src/js/detail.js" type="module"></script>
     <script src="/src/js/header.js" type="module"></script>
   </body>
 </html>

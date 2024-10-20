@@ -29,10 +29,11 @@
             <img src="./assets/images/icon-search.svg" alt="" />
           </button>
         </div>
+
         <nav class="gnb-nav">
           <ul>
-            <li class="gnb-nav-item" id="btn-shoppingcart">
-              <a href="/shoppingcart">
+            <li class="gnb-nav-item" id="btn-nav-shoppingcart">
+              <a href="./shoppingcart">
                 <img
                   src="./assets/images/icon-shopping-cart.svg"
                   alt="장바구니"
@@ -40,18 +41,27 @@
                 <p>장바구니</p>
               </a>
             </li>
-            <li class="gnb-nav-item">
+            <li class="gnb-nav-item" id="btn-nav-login">
               <a href="./login">
                 <img src="./assets/images/icon-user.svg" alt="로그인" />
                 <p>로그인</p>
               </a>
             </li>
-            <!--   <li class="gnb-nav-item">
-                <button type="button">
-                  <img src="./assets/images/icon-user.svg" alt="로그인" />
-                  <p>마이페이지</p>
-                </button>
-              </li> -->
+            <li class="gnb-nav-item hide" id="btn-nav-dropdown-trigger">
+              <button type="button">
+                <img src="./assets/images/icon-user.svg" alt="" />
+                <p>마이페이지</p>
+              </button>
+
+              <ul class="dropdown-list">
+                <li>
+                  <button type="button">마이페이지</button>
+                </li>
+                <li>
+                  <button type="button" id="btn-nav-logout">로그아웃</button>
+                </li>
+              </ul>
+            </li>
           </ul>
         </nav>
       </div>

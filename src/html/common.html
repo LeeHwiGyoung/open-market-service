@@ -111,9 +111,7 @@
         <p>마이페이지</p>
       </button>
       <div class="dropdown-list-wrap">
-        <div class="triangle-top"></div>
-        <div class="triangle-left"></div>
-        <div class="triangle-right"></div>
+        <div class="triangle"></div>
         <ul class="dropdown-list">
           <li>
             <a href="#">마이페이지</a>
@@ -123,6 +121,56 @@
           </li>
         </ul>
       </div>
+      <article class="modal-container">
+        <button class="btn-cancle">
+          <img src="/assets/images/icon-delete.svg" alt="취소 버튼" />
+        </button>
+        <p>로그인이 필요한 서비스입니다.</p>
+        <p>로그인 하시겠습니까?</p>
+        <button class="btn-modal-no" type="button">아니오</button>
+        <button class="btn-modal-yes" type="button">예</button>
+      </article>
+      <article class="modal-container">
+        <button class="btn-cancle">
+          <img src="/assets/images/icon-delete.svg" alt="취소 버튼" />
+        </button>
+        <div class="product-quantity-wrap">
+          <button class="btn-quantity" data-type="minus" type="button">
+            <img
+              src="/assets/images/icon-minus-line.svg"
+              alt="수량 마이너스 버튼"
+            />
+          </button>
+          <label class="sr-only" for="product-quantity">선택된 수량</label>
+          <input
+            type="text"
+            name="product-quantity"
+            id="product-quantity"
+            class="input-product-quantity"
+            min="1"
+            value="1"
+            readonly
+          />
+          <button class="btn-quantity" data-type="plus" type="button">
+            <img
+              src="/assets/images/icon-plus-line.svg"
+              alt="수량 플러스 버튼"
+            />
+          </button>
+        </div>
+        <button class="btn-modal-no" type="button">취소</button>
+        <button class="btn-modal-yes" type="button">수정</button>
+      </article>
+      <article class="modal-container">
+        <button class="btn-cancle">
+          <img src="/assets/images/icon-delete.svg" alt="취소 버튼" />
+        </button>
+        <p>상품을 삭제하시겠습니까?</p>
+        <div class="modal-btn-wrap">
+          <button class="btn-modal-no" type="button">취소</button>
+          <button class="btn-modal-yes" type="button">확인</button>
+        </div>
+      </article>
     </div>
   </body>
 </html>

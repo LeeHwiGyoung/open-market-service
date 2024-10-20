@@ -84,7 +84,7 @@ btn_quantity_wrap.addEventListener("click", (e) => {
   click_btn_quantity(e);
 });
 
-btn_shopping_cart.addEventListener("click", (e) => {
+btn_shopping_cart.addEventListener("click", async (e) => {
   e.preventDefault();
   const access_token = get_access_token();
 
@@ -92,22 +92,19 @@ btn_shopping_cart.addEventListener("click", (e) => {
     displayModal(); // 로그인 모달 띄우기
     return;
   }
+  const state = await check_login("cart");
 
-  check_login("cart")
-    .then((state) => {
-      if (state) {
-        if (product.stock === 0) {
-          return new Error(alert("재고가 없습니다."));
-        }
-        post_cart(product.id, quantity, access_token);
-        location.href = "/src/html/shoppingcart.html";
-      } else {
-        return new Error(displayModal());
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  if (!state) {
+    displayModal();
+    return;
+  }
+
+  if (product.stock === 0) {
+    alert("재고가 없습니다.");
+    return;
+  }
+  post_cart(product.id, quantity, access_token);
+  location.href = "/src/html/shoppingcart.html";
 });
 
 btn_buy.addEventListener("click", (e) => {

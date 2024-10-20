@@ -1,2 +1,2 @@
 # open-market-service
-vanilla javascript 로 구현한 오픈 마켓 서비스 
+배포 링크 : https://leehwigyoung.github.io/open-market-service/

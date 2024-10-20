@@ -50,6 +50,9 @@ table {
 a{
 	text-decoration: none;
 }
+a:link {
+	color : #000;
+}
 
 * {
 	box-sizing: border-box;

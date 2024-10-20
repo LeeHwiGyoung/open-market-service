@@ -10,6 +10,7 @@ const product_img = detail_contanier.querySelector(".img-product");
 const store_name = detail_contanier.querySelector(".store-name");
 const product_name = detail_contanier.querySelector(".product-name");
 const product_price = detail_contanier.querySelector(".product-price");
+const delivery_info = detail_contanier.querySelector(".delivery-info");
 const input_product_quantity = detail_contanier.querySelector(
   ".input-product-quantity"
 );
@@ -31,16 +32,32 @@ async function getDetail(product_id) {
   return json;
 }
 
+function getDeliveryInfo(product) {
+  if (product.shipping_method === "DELIVERY" && product.shipping_fee === 0) {
+    return `택배배송 / 무료배송`;
+  } else if (
+    product.shipping_method === "DELIVERY" &&
+    product.shipping_fee !== 0
+  ) {
+    return `택배배송 / ${product.shipping_fee} 원`;
+  } else if (
+    product.shipping_method === "PARCEL" &&
+    product.shipping_fee === 0
+  ) {
+    return `소포배송 / 무료배송`;
+  } else {
+    return `소포 배송 / ${product.shipping_fee} 원`;
+  }
+}
 function setDetail(product) {
   product_img.setAttribute("src", `${product.image}`);
   store_name.textContent = product.seller.store_name;
   product_name.textContent = product.name;
   product_price.innerHTML = `<span>${product.price.toLocaleString()}</span>원`;
+  delivery_info.textContent = getDeliveryInfo;
 
   if (product.stock === 0) {
     btn_shopping_cart.disabled = true;
-    btn_buy.disabled = true;
-    btn_plus.disabled = true;
   }
 }
 

@@ -13,21 +13,6 @@
   src: url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff");
   font-weight: 700;
 }
-@font-face {
-  font-family: "SpoqaHanSansNeo-Regular";
-  src: url("../../assets/fonts/SpoqaHanSansNeo-Regular.woff");
-  font-weight: 400;
-}
-@font-face {
-  font-family: "SpoqaHanSansNeo-Medium";
-  src: url("../../assets/fonts/SpoqaHanSansNeo-Medium.woff");
-  font-weight: 500;
-}
-@font-face {
-  font-family: "SpoqaHanSansNeo-Bold";
-  src: url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff");
-  font-weight: 700;
-}
 footer {
   background-color: #f2f2f2;
 }
@@ -125,16 +110,17 @@ header {
   cursor: pointer;
 }
 
-.gnb-nav ul {
+.gnb-nav > ul {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2.6rem;
 }
 .gnb-nav .gnb-nav-item {
+  position: relative;
   text-align: center;
 }
-.gnb-nav .gnb-nav-item button {
+.gnb-nav .gnb-nav-item > button {
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -145,6 +131,45 @@ header {
   font-size: 1.2rem;
   line-height: 1.4rem;
   color: #767676;
+}
+.gnb-nav .gnb-nav-item.hide {
+  display: none;
+}
+
+.dropdown-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  position: absolute;
+  z-index: 100;
+  width: 13rem;
+  height: 10.8rem;
+  border-radius: 1rem;
+  background-color: #FFF;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2509803922);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+.dropdown-list > li {
+  width: 100%;
+}
+.dropdown-list > li > button {
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding: 1rem 1.8rem;
+  flex-grow: 1;
+  cursor: pointer;
+}
+.dropdown-list > li > button:focus, .dropdown-list > li > button:hover {
+  outline: none;
+  border: 1px solid #767676;
+  border-radius: 1rem;
+}
+.dropdown-list.active {
+  display: flex;
 }
 
 .sr-only {
@@ -246,6 +271,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin: 3.5rem auto 8rem;
   gap: 1rem;
   width: 100%;
@@ -280,6 +306,14 @@ header {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.shoppingcart-item .product-info-container div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  height: 16rem;
+  width: 41.8rem;
+}
 .shoppingcart-item .product-info-container .product-name {
   font-size: 1.8rem;
   line-height: 2.2rem;
@@ -291,12 +325,17 @@ header {
   line-height: 2.003rem;
   color: #000;
 }
+.shoppingcart-item .product-info-container .product-deliver {
+  margin-top: auto;
+  margin-bottom: 1.6rem;
+}
+
 .product-quantity-container {
   display: inline-flex;
   border: 1px solid #c4c4c4;
   border-radius: 0.5rem;
   background-color: #FFF;
-  margin: 3rem auto;
+  margin-right: auto;
 }
 .product-quantity-container .btn-quantity {
   border: none;
@@ -341,6 +380,7 @@ header {
   border-radius: 0.5rem;
   background-color: #21BF48;
   color: #fff;
+  cursor: pointer;
 }
 
 .btn-order {

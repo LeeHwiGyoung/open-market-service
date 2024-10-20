@@ -66,6 +66,7 @@
   font-size: 1.6rem;
   line-height: 2.003rem;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .modal-btn-wrap {
@@ -93,4 +94,5 @@
   border: none;
   background-color: transparent;
   padding: 0;
+  cursor: pointer;
 }/*# sourceMappingURL=modal.css.map */

@@ -60,6 +60,20 @@
     |'/shoppingcart'|docs/shoppingcart.html| 장바구니 화면|
 
 ## 3 요구사항 명세
+![image](https://github.com/user-attachments/assets/1869ea5e-ac48-4223-8966-8be1e6b07b07)
+![image](https://github.com/user-attachments/assets/f839e4ec-5519-4b80-91ca-7fc865056684)
+![image](https://github.com/user-attachments/assets/03040d67-a755-47ce-a6a8-0a7d8765a256)
+![image](https://github.com/user-attachments/assets/309c380b-2b28-4ef8-b206-58128af5b5d2)
+![image](https://github.com/user-attachments/assets/e931b766-b452-411d-a5a9-e8bc6752921c)
+![image](https://github.com/user-attachments/assets/e0266b6d-0440-4c32-8e67-95a0f0578c75)
+![image](https://github.com/user-attachments/assets/efd0c077-eaf9-4ef8-8ee3-345fd14cde4f)
+![image](https://github.com/user-attachments/assets/05b8f7d6-6d85-4dad-a14a-4dda187a2fbf)
+![image](https://github.com/user-attachments/assets/cb2c7179-a817-4d8c-9732-970ebcc1f928)
+![image](https://github.com/user-attachments/assets/b959aed7-32e1-4e65-8339-ed6bdd36238a)
+![image](https://github.com/user-attachments/assets/1631d8fb-2b8c-4270-92c9-f23d1410aaff)
+
+
+
 
 ## 4 프로젝트 구조
 
@@ -114,12 +128,11 @@ docs<br>
    
  ![상품상세페이지](https://github.com/user-attachments/assets/f80d3465-d8cd-4100-b67b-b9a8afa9b1a5)
 
- - 장바구니 페이지
-    -로그인 x
+ - 장바구니 페이지 (로그인X)
 
 ![장바구니로그인X](https://github.com/user-attachments/assets/948925fc-25ee-4f8c-a38a-3adf0fadd161)
 
-    -로그인 o
+- 장바구니 페이지(로그인 O)
     
  ![장바구니로그인](https://github.com/user-attachments/assets/cd8d4d0d-44a3-42ae-82de-1d836cf29886)
 

@@ -60,17 +60,7 @@
     |'/shoppingcart'|docs/shoppingcart.html| 장바구니 화면|
 
 ## 3 요구사항 명세
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-5.png)
-![alt text](image-6.png)
-![alt text](image-7.png)
-![alt text](image-8.png)
-![alt text](image-9.png)
-![alt text](image-10.png)
+
 ## 4 프로젝트 구조
 
 ### 4.1 프로젝트 구조
@@ -109,26 +99,34 @@ docs<br>
 ┃  📜requirement.pdf<br>
 ┃  📜requirement.hwpx<br>
 ## 5. 화면 구성
- - 메인 페이지
-![alt text](메인페이지.gif)
- - 로그인 페이지
-![alt text](로그인.gif)
- - 회원 가입 페이지
-![alt text](회원가입.gif)
- - 상품 상세 페이지
-![alt text](상품상세페이지.gif)
- - 장바구니 페이지
+- 메인 페이지
+  
+![메인페이지](https://github.com/user-attachments/assets/a2ed5017-ecf3-4008-978b-56b5b6ee35ea)
+- 로그인 페이지
+  
+![로그인](https://github.com/user-attachments/assets/352204dd-b25d-4a48-9e4d-79b89d106469)
 
+- 회원 가입 페이지
+  
+ ![회원가입](https://github.com/user-attachments/assets/9a07f413-d14e-4c8b-817b-9201b2742199)
+
+ - 상품 상세 페이지
+   
+ ![상품상세페이지](https://github.com/user-attachments/assets/f80d3465-d8cd-4100-b67b-b9a8afa9b1a5)
+
+ - 장바구니 페이지
     -로그인 x
 
-    ![alt text](장바구니로그인X.gif)
- 
-    -로그인 o
+![장바구니로그인X](https://github.com/user-attachments/assets/948925fc-25ee-4f8c-a38a-3adf0fadd161)
 
-    ![alt text](장바구니로그인.gif)
+    -로그인 o
+    
+ ![장바구니로그인](https://github.com/user-attachments/assets/cd8d4d0d-44a3-42ae-82de-1d836cf29886)
 
  - 로그 아웃 기능
- ![alt text](로그아웃.gif)
+   
+ ![로그아웃](https://github.com/user-attachments/assets/01fa7e37-632f-48ac-b858-2693dd50b919)
+
 ## 6. 에러와 에러 해결
 ## 7. 개발하며 느낀점
 

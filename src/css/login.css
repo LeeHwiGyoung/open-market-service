@@ -1,0 +1,173 @@
+@font-face {
+  font-family: "SpoqaHanSansNeo-Regular";
+  src: url("../../assets/fonts/SpoqaHanSansNeo-Regular.woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Medium";
+  src: url("../../assets/fonts/SpoqaHanSansNeo-Medium.woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Bold";
+  src: url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff");
+  font-weight: 700;
+}
+html {
+  font-size: 10px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10rem auto;
+}
+.login-container h1 {
+  width: 23.8rem;
+}
+.login-container h1 img {
+  width: 100%;
+}
+.login-container form {
+  width: 55rem;
+  height: 100%;
+  margin: 7rem auto 1rem;
+}
+
+.login-select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.btn-select-buyer, .btn-select-seller {
+  max-width: 27.5rem;
+  border-radius: 1rem;
+  border: 1px solid #c4c4c4;
+  padding: 2rem 7.8rem 3.8rem 7.7rem;
+  font-family: "SpoqaHanSansNeo-Medium";
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 2.2rem;
+  text-align: center;
+  white-space: nowrap;
+  color: #000000;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.btn-select-buyer, .btn-select-seller {
+  z-index: 10;
+}
+
+.btn-select-buyer.active, .btn-select-seller.active {
+  background-color: #fff;
+  border-bottom: none;
+  z-index: 30;
+}
+
+.btn-select-buyer.active {
+  border-right: none;
+  border-bottom-left-radius: 0;
+}
+
+.btn-select-seller.active {
+  border-left: none;
+  border-bottom-right-radius: 0;
+}
+
+.login-submit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  padding: 3.4rem 3.5rem 3.6rem;
+  transform: translateY(-2rem);
+  background-color: #fff;
+  z-index: 20;
+  border: 1px solid #c4c4c4;
+  border-radius: 1rem;
+}
+.login-submit-container input {
+  width: 100%;
+  font-family: "SpoqaHanSansNeo-Medium";
+  font-size: 1.6rem;
+  line-height: 2.03rem;
+  padding: 2rem 0;
+  border: none;
+  border-bottom: 1px solid #c4c4c4;
+  margin-bottom: 0.6rem;
+}
+.login-submit-container input::-moz-placeholder {
+  color: #767676;
+}
+.login-submit-container input::placeholder {
+  color: #767676;
+}
+.login-submit-container input:focus {
+  outline: none;
+  border-color: #21BF48;
+}
+.login-submit-container .msg {
+  display: none;
+  width: 100%;
+  font-family: "SpoqaHanSansNeo-Medium";
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.03rem;
+  text-align: left;
+  color: #EB5757;
+  margin: 2.2rem 0 -0.4rem;
+}
+.login-submit-container .msg.display {
+  display: block;
+}
+.login-submit-container .btn-login-submit {
+  margin-top: 3rem;
+  padding: 1.9rem 21.5rem;
+  font-family: "SpoqaHanSansNeo-Bold";
+  background-color: #21BF48;
+  color: #FFF;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.login-link-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-size: 1.6rem;
+  line-height: 2.03rem;
+  gap: 1.4rem;
+}
+.login-link-more li > a {
+  color: #333333;
+}
+.login-link-more li:not(:last-child)::after {
+  content: "|";
+  padding-left: 1.4rem;
+}/*# sourceMappingURL=login.css.map */

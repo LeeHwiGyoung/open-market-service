@@ -1,5 +1,5 @@
+import { get_fetch } from "../utils/fetch.js";
 import Image_slider from "./image_slider.js";
-//import { dynamic_route_detail } from "./route_datail.js";
 const main = document.querySelector("main");
 const product_list_container = document.querySelector(
   ".product-list-container"
@@ -7,18 +7,7 @@ const product_list_container = document.querySelector(
 const btn_prev = document.querySelector(".btn-prev-slider");
 const btn_next = document.querySelector(".btn-next-slider");
 
-const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
-let product = [];
-
-async function getProduct() {
-  try {
-    const response = await fetch(`${BASE_URL}/products/`);
-    const json = await response.json();
-    return json;
-  } catch (error) {
-    console.error(error);
-  }
-}
+const products = [];
 
 function createProduct(product) {
   if (product.length === 0) {
@@ -45,17 +34,17 @@ function createProduct(product) {
   product_list_container.append(fragment);
 }
 
-getProduct().then((res) => {
-  product = res.results;
-  createProduct(product);
-  const slider = new Image_slider(product);
-
+async function init() {
+  const json = await get_fetch("products");
+  products.push(...json.results);
+  createProduct(products);
+  const slider = new Image_slider(products);
   btn_next.addEventListener("click", () => {
     slider.move_slide("next");
   });
-
-  // prev 버튼 이벤트 리스너 등록
   btn_prev.addEventListener("click", () => {
     slider.move_slide("prev");
   });
-});
+}
+
+init();

@@ -3,7 +3,7 @@ import {
   get_access_token,
   remove_access_token,
   remove_refresh_token,
-} from "./auth.js";
+} from "../utils/auth.js";
 
 import { displayModal } from "./modal.js";
 const btn_shoppingcart = document.querySelector("#btn-nav-shoppingcart");

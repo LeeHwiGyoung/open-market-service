@@ -1,4 +1,5 @@
-import { set_access_token, set_refresh_token } from "./auth.js";
+import { post_fetch } from "../utils/fetch.js";
+import { set_access_token, set_refresh_token } from "../utils/auth.js";
 
 const login_form = document.getElementsByName("login")[0];
 const login_type_container = login_form.querySelector(
@@ -7,7 +8,6 @@ const login_type_container = login_form.querySelector(
 const input_id = login_form.querySelector(".input-login-id");
 const input_password = login_form.querySelector(".input-login-password");
 const msg = login_form.querySelector(".msg");
-const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
 const referrer = document.referrer;
 let display_msg = false;
 let login_type = "BUYER";
@@ -16,17 +16,11 @@ let password = "";
 
 async function postLogin() {
   try {
-    const response = await fetch(`${BASE_URL}/accounts/login/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: user_name,
-        password: password,
-        login_type: login_type,
-      }),
+    const json = await post_fetch("accounts/login/", {
+      username: user_name,
+      password: password,
+      login_type: login_type,
     });
-
-    const json = await response.json();
 
     if (Object.hasOwn(json, "error")) {
       //validation 실패시
@@ -35,6 +29,7 @@ async function postLogin() {
       input_password.focus();
       return;
     }
+    console.log(json);
 
     //로그인 성공 시
     //토큰 저장

@@ -1,7 +1,7 @@
 import { get_access_token, check_login } from "../utils/auth.js";
-import { get_fetch } from "../utils/fetch.js";
+import { auth_post_fetch, get_fetch } from "../utils/fetch.js";
 import { displayModal } from "./modal.js";
-import { post_cart } from "./shoppingcart_utils.js";
+
 const detail_contanier = document.querySelector(
   ".product-detail-price-container"
 );
@@ -101,7 +101,12 @@ btn_shopping_cart.addEventListener("click", async (e) => {
     alert("재고가 없습니다.");
     return;
   }
-  post_cart(detail_product.product.id, quantity, access_token);
+  auth_post_fetch(
+    "/cart",
+    { product_id: detail_product.product.id, quantity: quantity },
+    access_token
+  );
+
   location.href = "/src/html/shoppingcart.html";
 });
 

@@ -7,6 +7,13 @@ const shoppingcart_container = document.querySelector(
   ".shoppingcart-container"
 );
 
+const shoppingcart_menu =
+  shoppingcart_container.querySelector(".shoppingcart-menu");
+
+const btn_select_all = shoppingcart_menu.querySelector(
+  ".btn-shoppingcart-check"
+);
+
 const cart_list = { item: null };
 
 async function get_shoppingcart() {
@@ -30,4 +37,9 @@ async function init() {
   cart_list.item = new Shoppingcart_list(item.results);
 }
 
+btn_select_all.addEventListener("click", () => {
+  cart_list.item.click_select_all();
+  cart_list.item.calc_total_price();
+  cart_list.item.display_order_fee();
+});
 init();

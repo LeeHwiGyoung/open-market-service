@@ -52,7 +52,6 @@
                 <img src="/assets/images/icon-user.svg" alt="" />
                 <p>마이페이지</p>
               </button>
-
               <ul class="dropdown-list">
                 <li>
                   <button type="button">마이페이지</button>
@@ -77,6 +76,29 @@
           <li class="menu-product-quantity">수량</li>
           <li class="menu-product-price">상품금액</li>
         </ul>
+
+        <section class="order-amount-container">
+          <h2 class="sr-only">선택된 상품 금액 정보</h2>
+          <div class="total-price-wrap">
+            <p>총 상품금액</p>
+            <p><span class="total-price">0</span>원</p>
+          </div>
+          <img src="/assets/images/icon-minus.svg" alt="할인 가격 빼기" />
+          <div class="price-discount-wrap">
+            <p>상품 할인</p>
+            <p><span class="total-discount">0</span>원</p>
+          </div>
+          <img src="/assets/images/icon-plus.svg" alt="배달비 더하기" />
+          <div class="price-delivery-wrap">
+            <p>배송비</p>
+            <p><span class="total-delivery-fee">0</span>원</p>
+          </div>
+          <div class="expected-price-wrap">
+            <p>결제 예정 금액</p>
+            <p><span class="order-fee">0</span>원</p>
+          </div>
+        </section>
+        <a class="btn-total-order" href="#">주문하기</a>
       </section>
     </main>
     <footer>

@@ -1,8 +1,7 @@
-import { get_access_token, check_login } from "./auth.js";
+import { get_access_token, check_login } from "../utils/auth.js";
+import { auth_post_fetch, get_fetch } from "../utils/fetch.js";
 import { displayModal } from "./modal.js";
-import { post_cart } from "./shoppingcart_utils.js";
 
-const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
 const detail_contanier = document.querySelector(
   ".product-detail-price-container"
 );
@@ -21,12 +20,11 @@ const total_price = detail_contanier.querySelector(".total-price");
 const btn_shopping_cart = detail_contanier.querySelector(".btn-shopping-cart");
 const btn_buy = detail_contanier.querySelector(".btn-buy");
 
-let product = {};
+let detail_product = { product: null };
 let quantity = 1;
 
 async function getDetail(product_id) {
-  const res = await fetch(`${BASE_URL}/products/${product_id}`);
-  const json = await res.json();
+  const json = await get_fetch(`products/${product_id}`);
   return json;
 }
 
@@ -49,7 +47,7 @@ function click_btn_quantity(e) {
   if (!button) return; // 버튼이 아니면 아무 작업도 하지 않음
 
   const type = button.dataset.type;
-  if (type === "plus" && product.stock > quantity) {
+  if (type === "plus" && detail_product.product.stock > quantity) {
     quantity++;
   } else if (type === "minus" && quantity > 1) {
     quantity--;
@@ -73,7 +71,7 @@ Object.defineProperty(input_product_quantity, "value", {
     console.log("Value changed (by script or user):", new_value); // 값 변경 감지
     original_value = new_value; // 값을 업데이트
     original_Descriptor.set.call(this, new_value); // 실제로 값을 설정
-    calc_price(product.price);
+    calc_price(detail_product.product.price);
   },
   get() {
     return original_Descriptor.get.call(this); // 값을 반환
@@ -99,11 +97,16 @@ btn_shopping_cart.addEventListener("click", async (e) => {
     return;
   }
 
-  if (product.stock === 0) {
+  if (detail_product.product.stock === 0) {
     alert("재고가 없습니다.");
     return;
   }
-  post_cart(product.id, quantity, access_token);
+  auth_post_fetch(
+    "/cart",
+    { product_id: detail_product.product.id, quantity: quantity },
+    access_token
+  );
+
   location.href = "/src/html/shoppingcart.html";
 });
 
@@ -131,7 +134,8 @@ btn_buy.addEventListener("click", (e) => {
   const urlParams = new URLSearchParams(window.location.search);
   const product_id = urlParams.get("id");
 
-  product = await getDetail(product_id);
-  setDetail(product);
-  calc_price(product.price);
+  detail_product.product = await getDetail(product_id);
+
+  setDetail(detail_product.product);
+  calc_price(detail_product.product.price);
 })();

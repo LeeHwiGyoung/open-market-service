@@ -1,3 +1,5 @@
+import { post_fetch } from "../utils/fetch.js";
+
 const join_form = document.getElementsByName("join")[0];
 const join_type_container = join_form.querySelector(".join-select-container");
 const btn_select_buyer = join_form.querySelector(".btn-select-buyer");
@@ -27,7 +29,6 @@ const BUYER_MAX_IDX = 4;
 const SELLER_MAX_IDX = 6;
 const input_valid = new Array(7).fill(false); // 0 : username , 1 : password , 2:password_check , 3:name , 4:phone , 5~6 : seller
 const SCROLL_THUMBS_HEIGHT = 90;
-const BASE_URL = "https://estapi.openmarket.weniv.co.kr";
 
 dropdown_scroll_track.style.height = `${dropdown_menu.scrollHeight}px`;
 
@@ -100,12 +101,7 @@ function checkFormValidity() {
 
 async function post_signup(userdata) {
   try {
-    const response = await fetch(`${BASE_URL}/accounts/buyer/signup/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userdata),
-    });
-    const json = await response.json();
+    const json = await post_fetch("accounts/buyer/signup", userdata);
     const phone_number = json.phone_number;
     if (typeof phone_number !== "string") {
       //phone_number 중복
@@ -161,12 +157,9 @@ function remove_msg(idx) {
 
 async function duplicated_id(username) {
   try {
-    const response = await fetch(`${BASE_URL}/accounts/validate-username/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: username }),
+    const json = await post_fetch("accounts/validate-username/", {
+      username: username,
     });
-    const json = await response.json();
 
     if (Object.hasOwn(json, "error")) {
       //error 메시지를 갖고 있으면

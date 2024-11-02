@@ -1,5 +1,5 @@
-import { displayModal } from "./modal.js";
-
+import { displayLoginModal } from "./login_modal.js";
+import { displayDeleteModal, setTargetElement } from "./delete_modal.js";
 const shoppingcart_container = document.querySelector(
   ".shoppingcart-container"
 );
@@ -106,15 +106,15 @@ class Shoppingcart_list {
 
   click_del_btn(context) {
     context.addEventListener("click", (e) => {
-      displayModal();
-      // e.currentTarget.parentNode.remove();
+      displayDeleteModal();
+      setTargetElement(context);
     });
   }
 
   click_quantity(context) {
     context.addEventListener("click", (e) => {
       if (e.target.nodeName === "BUTTON") {
-        displayModal();
+        displayLoginModal();
       }
     });
   }

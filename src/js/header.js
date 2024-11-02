@@ -4,8 +4,7 @@ import {
   remove_access_token,
   remove_refresh_token,
 } from "../utils/auth.js";
-
-import { displayModal } from "./modal.js";
+import { displayLoginModal } from "./login_modal.js";
 const btn_shoppingcart = document.querySelector("#btn-nav-shoppingcart");
 const btn_login = document.querySelector("#btn-nav-login");
 const dropdown_trigger = document.querySelector("#btn-nav-dropdown-trigger");
@@ -26,17 +25,17 @@ async function init() {
 btn_shoppingcart.addEventListener("click", async (e) => {
   e.preventDefault();
   const access_token = get_access_token();
-
+  console.log(access_token);
   if (access_token === null) {
     // 로그인 모달 띄우기
-    displayModal();
+    displayLoginModal();
     return;
   }
 
   const state = await check_login("cart");
 
   if (!state) {
-    displayModal();
+    displayLoginModal();
   }
   location.href = "/src/html/shoppingcart.html";
 });

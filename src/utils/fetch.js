@@ -44,7 +44,7 @@ export async function get_fetch(url) {
  */
 export async function auth_post_fetch(url, body_data, token) {
   try {
-    await fetch(`${BASE_URL}/${url}`, {
+    const res = await fetch(`${BASE_URL}/${url}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -52,6 +52,8 @@ export async function auth_post_fetch(url, body_data, token) {
       },
       body: JSON.stringify(body_data),
     });
+    const json = await res.json();
+    return json;
   } catch (err) {
     console.error(err);
   }

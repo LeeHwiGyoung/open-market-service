@@ -1,6 +1,6 @@
 import { get_access_token, check_login } from "../utils/auth.js";
 import { auth_post_fetch, get_fetch } from "../utils/fetch.js";
-import { displayModal } from "./modal.js";
+import { displayLoginModal } from "./login_modal.js";
 
 const detail_contanier = document.querySelector(
   ".product-detail-price-container"
@@ -87,13 +87,13 @@ btn_shopping_cart.addEventListener("click", async (e) => {
   const access_token = get_access_token();
 
   if (access_token === null) {
-    displayModal(); // 로그인 모달 띄우기
+    displayLoginModal(); // 로그인 모달 띄우기
     return;
   }
   const state = await check_login("cart");
 
   if (!state) {
-    displayModal();
+    displayLoginModal();
     return;
   }
 
@@ -101,8 +101,9 @@ btn_shopping_cart.addEventListener("click", async (e) => {
     alert("재고가 없습니다.");
     return;
   }
-  auth_post_fetch(
-    "/cart",
+
+  await auth_post_fetch(
+    "cart/",
     { product_id: detail_product.product.id, quantity: quantity },
     access_token
   );
@@ -114,7 +115,7 @@ btn_buy.addEventListener("click", (e) => {
   e.preventDefault();
   const access_token = get_access_token();
   if (access_token === null) {
-    displayModal(); // 로그인 모달 띄우기
+    displayLoginModal(); // 로그인 모달 띄우기
     return;
   }
   check_login("order")
@@ -126,7 +127,7 @@ btn_buy.addEventListener("click", (e) => {
       }
     })
     .catch((error) => {
-      displayModal();
+      displayLoginModal();
     });
 });
 

@@ -1,6 +1,6 @@
-import { displayLoginModal } from "./login_modal.js";
 import { displayDeleteModal, setTargetElement } from "./delete_modal.js";
 import { displayModifyModal, setModifyTargetItem } from "./modify_modal.js";
+import selectedcartItemList from "./selectedCartItem.js";
 const shoppingcart_container = document.querySelector(
   ".shoppingcart-container"
 );
@@ -17,11 +17,6 @@ const total_order_fee = order_cotainer.querySelector(".order-fee");
 class Shoppingcart_list {
   constructor(items) {
     this.items = items;
-    this.checked = new Map(
-      this.items.map((item) => {
-        return [item.id, false];
-      })
-    );
     this.order_fee = 0;
     this.total_price = 0;
     this.total_delivery_fee = 0;
@@ -49,7 +44,8 @@ class Shoppingcart_list {
       <button class="btn-remove" type="button">
         <img src="/assets/images/icon-delete.svg" alt="삭제 버튼">
       </button>
-      <button class="btn-shoppingcart-check" type="button"></button>
+      <label for="check-${item.id}" class='btn-shoppingcart-check'></label>
+      <input id="check-${item.id}"class="sr-only" type="checkbox"/>
       <div class="product-info-container">
         <img src="${item.product.image}" alt="상품 이미지" />
         <div>
@@ -94,7 +90,7 @@ class Shoppingcart_list {
         <a class="btn-order" href="./payment.html">주문하기</a>
       </div>`;
       const qunatity_input = li.querySelector(".input-product-quantity");
-      const btn_check = li.querySelector(".btn-shoppingcart-check");
+      const btn_check = li.querySelector("input[type='checkbox']");
       const product_quantity_container = li.querySelector(
         ".product-quantity-container"
       );
@@ -148,17 +144,34 @@ class Shoppingcart_list {
   click_btn_check(context) {
     context.addEventListener("click", (e) => {
       const id = parseInt(e.target.parentNode.dataset.id);
-      this.checked.set(id, !this.checked.get(id));
+      e.target.checked
+        ? selectedcartItemList.addItem(id)
+        : selectedcartItemList.removeItem(id);
       this.calc_total_price();
       this.display_order_fee();
     });
   }
 
-  click_select_all() {
-    this.items.forEach((item) =>
-      this.checked.set(item.id, !this.checked.get(item.id))
+  select_all() {
+    const inputs = shoppingcart_container.querySelectorAll(
+      "input[type='checkbox']"
     );
+    inputs.forEach((input) => {
+      input.checked = true;
+    });
+    this.items.forEach((item) => selectedcartItemList.addItem(item.id));
   }
+
+  unselect_all() {
+    const inputs = shoppingcart_container.querySelectorAll(
+      "input[type='checkbox']"
+    );
+    inputs.forEach((input) => {
+      input.checked = false;
+    });
+    selectedcartItemList.clearCartList();
+  }
+
   display_order_fee() {
     total_price.textContent = this.total_price;
     total_delivery_fee.textContent = this.total_delivery_fee;
@@ -172,7 +185,7 @@ class Shoppingcart_list {
     let total_delivery_fee = 0;
     let order_fee = 0;
     this.items.forEach((item) => {
-      if (this.checked.get(item.id)) {
+      if (selectedcartItemList.has(item.id)) {
         total_price += item.product.price * item.quantity;
         total_delivery_fee += item.product.shipping_fee;
       }

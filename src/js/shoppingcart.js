@@ -1,7 +1,8 @@
 import { auth_get_fetch } from "../utils/fetch.js";
 import { check_login, get_access_token } from "../utils/auth.js";
-import { displayModal } from "./modal.js";
+import { displayLoginModal } from "./login_modal.js";
 import Shoppingcart_list from "./shoppingcart_list.js";
+import selectedcartItemList from "./selectedCartItem.js";
 
 const shoppingcart_container = document.querySelector(
   ".shoppingcart-container"
@@ -10,9 +11,7 @@ const shoppingcart_container = document.querySelector(
 const shoppingcart_menu =
   shoppingcart_container.querySelector(".shoppingcart-menu");
 
-const btn_select_all = shoppingcart_menu.querySelector(
-  ".btn-shoppingcart-check"
-);
+const btn_select_all = shoppingcart_menu.querySelector("#select-all");
 
 const cart_list = { item: null };
 
@@ -30,16 +29,20 @@ async function init() {
   const state = await check_login("cart");
 
   if (!state) {
-    displayModal();
+    displayLoginModal();
   }
 
   const item = await get_shoppingcart();
   cart_list.item = new Shoppingcart_list(item.results);
+  selectedcartItemList.clearCartList();
 }
 
-btn_select_all.addEventListener("click", () => {
-  cart_list.item.click_select_all();
+btn_select_all.addEventListener("click", (e) => {
+  e.target.checked
+    ? cart_list.item.select_all()
+    : cart_list.item.unselect_all();
   cart_list.item.calc_total_price();
   cart_list.item.display_order_fee();
 });
+
 init();

@@ -1,5 +1,6 @@
 import { displayLoginModal } from "./login_modal.js";
 import { displayDeleteModal, setTargetElement } from "./delete_modal.js";
+import { displayModifyModal, setModifyTargetItem } from "./modify_modal.js";
 const shoppingcart_container = document.querySelector(
   ".shoppingcart-container"
 );
@@ -71,9 +72,11 @@ class Shoppingcart_list {
           item.id
         }">선택된 수량</label>
         <input
+          style= "width:calc(${item.quantity.toString().length}ch + 4.3rem)"
           type="text"
           name="product-quantity"
           id="product-quantity-${item.id}"
+          data-id="${item.id}"
           class="input-product-quantity"
           min="1"
           value="${item.quantity}"
@@ -87,9 +90,10 @@ class Shoppingcart_list {
         </button>
       </div>
       <div class="product-price-info-container">
-        <p>17500원</p>
-        <a class="btn-order" herf="#">주문하기</a>
+        <p>${item.product.price.toLocaleString()}원</p>
+        <a class="btn-order" href="./payment.html">주문하기</a>
       </div>`;
+      const qunatity_input = li.querySelector(".input-product-quantity");
       const btn_check = li.querySelector(".btn-shoppingcart-check");
       const product_quantity_container = li.querySelector(
         ".product-quantity-container"
@@ -98,10 +102,31 @@ class Shoppingcart_list {
       this.click_del_btn(btn_remove_shoppingcart_item);
       this.click_quantity(product_quantity_container);
       this.click_btn_check(btn_check);
+      this.change_input_value(qunatity_input);
       ul.append(li);
     });
+
     fragment.append(ul);
     shoppingcart_container.insertBefore(fragment, order_cotainer);
+  }
+
+  change_input_value(context) {
+    context.addEventListener("change", (e) => {
+      console.log(this.items);
+      const newQuantity = e.target.value;
+      e.target.style.width = `calc(${
+        newQuantity.toString().length
+      }ch + 4.3rem)`;
+
+      const item = this.items.find(
+        (item) => item.id === parseInt(e.target.dataset.id)
+      );
+      if (item && !isNaN(newQuantity) && newQuantity > 0) {
+        item.quantity = newQuantity;
+        this.calc_total_price();
+        this.display_order_fee();
+      }
+    });
   }
 
   click_del_btn(context) {
@@ -113,8 +138,9 @@ class Shoppingcart_list {
 
   click_quantity(context) {
     context.addEventListener("click", (e) => {
-      if (e.target.nodeName === "BUTTON") {
-        displayLoginModal();
+      if (e.target.closest("BUTTON")) {
+        displayModifyModal();
+        setModifyTargetItem(context);
       }
     });
   }

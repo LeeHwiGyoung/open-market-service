@@ -13,14 +13,14 @@
   src: url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff");
   font-weight: 700;
 }
-.modal-container {
+.login-modal-container, .delete-modal-container, .modify-modal-container {
   display: none;
   position: fixed;
   top: 0;
   width: 100vw;
   height: 100vh;
 }
-.modal-container.active {
+.login-modal-container.active , .delete-modal-container.active , .modify-modal-container.active {
   display: block;
 }
 
@@ -95,3 +95,37 @@
   padding: 0;
   cursor: pointer;
 }/*# sourceMappingURL=modal.css.map */
+
+
+
+
+.modal-modify-content {
+  display: inline-flex;
+  border: 1px solid #c4c4c4;
+  border-radius: 0.5rem;
+  background-color: #FFF;
+
+}
+.modal-modify-content .btn-quantity {
+  border: none;
+  background-color: transparent;
+  padding: 1.5rem 1.4rem;
+  cursor: pointer;
+}
+.btn-quantity img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.input-product-quantity {
+  width: calc(1ch + 4.2rem);
+  padding: 1.3rem 2.1rem 1.4rem 2rem;
+  border: 1px solid #c4c4c4;
+  border-top: none;
+  border-bottom: none;
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.254rem;
+}

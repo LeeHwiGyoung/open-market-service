@@ -86,7 +86,7 @@ class Shoppingcart_list {
         </button>
       </div>
       <div class="product-price-info-container">
-        <p>${item.product.price.toLocaleString()}원</p>
+        <p>${(item.product.price * item.quantity).toLocaleString()}원</p>
         <a class="btn-order" href="./payment.html">주문하기</a>
       </div>`;
       const qunatity_input = li.querySelector(".input-product-quantity");
@@ -109,7 +109,7 @@ class Shoppingcart_list {
   change_input_value(context) {
     context.addEventListener("change", (e) => {
       console.log(this.items);
-      const newQuantity = e.target.value;
+      const newQuantity = parseInt(e.target.value);
       e.target.style.width = `calc(${
         newQuantity.toString().length
       }ch + 4.3rem)`;

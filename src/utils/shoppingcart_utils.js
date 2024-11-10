@@ -1,5 +1,11 @@
 import { get_access_token } from "./auth.js";
-import { BASE_URL } from "./fetch.js";
+import { auth_get_fetch, BASE_URL } from "./fetch.js";
+
+export async function get_shoppingcart() {
+  const access_token = get_access_token();
+  const json = await auth_get_fetch("cart", access_token);
+  return json;
+}
 
 export const deleteShoppingItem = async (url) => {
   try {

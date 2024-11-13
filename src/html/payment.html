@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../scss/payment.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <h1>
+          <a href="/src/html/home.html"
+            ><img
+              src="/assets/images/Logo-hodu.png"
+              alt="호두 메인페이지로 이동"
+          /></a>
+        </h1>
+        <div class="search-bar-wrap">
+          <label class="sr-only" for="search-bar">검색창</label>
+          <input
+            type="text"
+            name="search-bar"
+            id="search-bar"
+            placeholder="상품을 검색해보세요!"
+          />
+          <button class="btn-search" type="button">
+            <img src="/assets/images/icon-search.svg" alt="" />
+          </button>
+        </div>
+        <nav class="gnb-nav">
+          <ul>
+            <li class="gnb-nav-item" id="btn-nav-shoppingcart">
+              <a href="/src/html/shoppingcart.html">
+                <img
+                  src="/assets/images/icon-shopping-cart.svg"
+                  alt="장바구니"
+                />
+                <p>장바구니</p>
+              </a>
+            </li>
+            <li class="gnb-nav-item" id="btn-nav-login">
+              <a href="/src/html/login.html">
+                <img src="/assets/images/icon-user.svg" alt="" />
+                <p>로그인</p>
+              </a>
+            </li>
+            <li class="gnb-nav-item hide" id="btn-nav-dropdown-trigger">
+              <button type="button">
+                <img src="/assets/images/icon-user.svg" alt="" />
+                <p>마이페이지</p>
+              </button>
+              <ul class="dropdown-list">
+                <li>
+                  <button type="button">마이페이지</button>
+                </li>
+                <li>
+                  <button type="button" id="btn-nav-logout">로그아웃</button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="payment-container">
+      <h2>주문/결제하기</h2>
+      <article class="shoppingcart-container">
+        <h2 class="sr-only">구매할 물품</h2>
+        <ul class="payment-menu">
+          <li class="menu-product-info">상품정보</li>
+          <li class="menu-product-discount">할인</li>
+          <li class="menu-product-delivery">배송비</li>
+          <li class="menu-product-price">상품금액</li>
+        </ul>
+        <ul>
+          <li class="cartItem">
+            <div class="cartItem-product-image">
+              <img
+                src="https://estapi.openmarket.weniv.co.kr/media/products/2024/10/14/%E1%84%80%E1%85%A2%E1%84%85%E1%85%B5_%E1%84%90%E1%85%AC%E1%84%80%E1%85%B3%E1%86%AB.png"
+                alt=""
+              />
+            </div>
+            <section class="cartItem-productInfo-container">
+              <h3 class="sr-only">상품 정보</h3>
+              <p class="cartItem-store-name">스토어명</p>
+              <strong class="cartItem-product-name">상품명</strong>
+              <p class="cartItem-product-quantity">
+                수량 <data value="quantity">1</data>개
+              </p>
+            </section>
+            <p class="cartItem-discount">할인가</p>
+            <p class="cartItem-delivery-fee">배송비</p>
+            <strong class="cartItem-product-price">
+              <data value="price">price</data>
+            </strong>
+          </li>
+        </ul>
+        <strong class="shoppingcart-total-price"
+          >총 주문금액 <data value="price">price원</data></strong
+        >
+      </article>
+      <form class="delivery-info-container">
+        <h2>배송정보</h2>
+        <fieldset>
+          <legend>주문자 정보</legend>
+          <div class="input-wrapper">
+            <label> 이름 </label>
+            <input type="text" name="" id="" />
+          </div>
+          <div class="input-wrapper">
+            <label for=""> 휴대폰 </label>
+            <input class="input-phone" type="tel" name="" id="" />
+            <span>-</span>
+            <input class="input-phone" type="tel" name="" id="" />
+            <span>-</span>
+            <input class="input-phone" type="tel" name="" id="" />
+          </div>
+          <div class="input-wrapper">
+            <label for=""> 이메일 </label>
+            <input type="email" name="" id="" />
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>배송지 정보</legend>
+          <div class="input-wrapper">
+            <label for="">수령인</label>
+            <input type="text" name="" id="" />
+          </div>
+          <div class="input-wrapper">
+            <label for=""> 휴대폰 </label>
+            <input type="tel" name="" id="" />
+            <span>-</span>
+            <input type="tel" name="" id="" />
+            <span>-</span>
+            <input type="tel" name="" id="" />
+          </div>
+          <div class="input-wrapper">
+            <label>배송주소</label>
+            <input type="text" name="" id="" readonly />
+            <button type="button">우편번호 조회</button>
+            <input class="full-width" type="text" />
+            <input class="full-width" type="text" />
+          </div>
+          <div class="input-wrapper">
+            <label for="">배송메세지</label>
+            <input class="full-width" type="text" name="" id="" />
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>결제수단</legend>
+          <label for="">신용/체크카드</label>
+          <input type="radio" name="" id="" />
+          <label for="">무통장 입금</label>
+          <input type="radio" name="" id="" />
+          <label for="">휴대폰 결제</label>
+          <input type="radio" name="" id="" />
+          <label for="">네이버페이</label>
+          <input type="radio" name="" id="" />
+          <label for="">카카오페이</label>
+          <input type="radio" name="" id="" />
+        </fieldset>
+        <fieldset>
+          <legend>최종결제 정보</legend>
+          <article>
+            <h2>결제정보</h2>
+            <p>-상품금액 <data value="price">price</data><span>원</span></p>
+            <p>-할인금액 <data value="price">price</data><span>원</span></p>
+            <p>-배송비 <data value="price">price</data><span>원</span></p>
+            <p>
+              결제금액 <strong><data value="price">price</data>원</strong>
+            </p>
+            <section>
+              <h3>결제 동의 및 결제하기</h3>
+              <label for=""></label>
+              <input type="checkbox" name="" id="" />
+              <button type="submit">결제하기</button>
+            </section>
+          </article>
+        </fieldset>
+      </form>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <nav>
+          <ul class="footer-nav-list">
+            <li><a href="#"> 호두샵 소개</a></li>
+            <li><a href="#"> 이용약관</a></li>
+            <li>
+              <a href="#"> <em>개인정보처리방침</em></a>
+            </li>
+            <li><a href="#"> 전자금융거래약관</a></li>
+            <li><a href="#"> 청소년보호정책</a></li>
+            <li><a href="#"> 제휴문의</a></li>
+          </ul>
+          <ul class="sns-list">
+            <li>
+              <a href="">
+                <img
+                  src="/assets/images/icon-insta.svg"
+                  alt="호두샵 인스타그램으로 이동"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img
+                  src="/assets/images/icon-fb.svg"
+                  alt="호두샵 페이스북으로 이동"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <img
+                  src="/assets/images/icon-insta.svg"
+                  alt="호두샵 유튜브로 이동"
+                />
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <hr />
+        <section>
+          <address>
+            <h2>(주)HODU SHOP</h2>
+            <p>제주특별자치도 제주시 동광고 137 제주코딩베이스캠프</p>
+            <p>사업자 번호 : 000-0000-0000 | 통신판매업</p>
+            <p>대표 : 김호두</p>
+          </address>
+        </section>
+      </div>
+    </footer>
+    <script src="../js/payment.js" type="module"></script>
+  </body>
+</html>

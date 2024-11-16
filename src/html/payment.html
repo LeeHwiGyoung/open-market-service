@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../scss/payment.css" />
+    <link rel="stylesheet" href="../css/payment.css" />
     <title>Document</title>
   </head>
   <body>
@@ -138,47 +138,67 @@
           </div>
           <div class="input-wrapper">
             <label>배송주소</label>
-            <input type="text" name="" id="" readonly />
-            <button type="button">우편번호 조회</button>
-            <input class="full-width" type="text" />
-            <input class="full-width" type="text" />
+            <section class="address-info-container">
+              <input type="text" name="" id="" readonly />
+              <button type="button">우편번호 조회</button>
+              <input class="large-width" type="text" />
+              <input class="large-width" type="text" />
+            </section>
           </div>
           <div class="input-wrapper">
             <label for="">배송메세지</label>
-            <input class="full-width" type="text" name="" id="" />
+            <input class="large-width" type="text" name="" id="" />
           </div>
         </fieldset>
-        <fieldset>
-          <legend>결제수단</legend>
-          <label for="">신용/체크카드</label>
-          <input type="radio" name="" id="" />
-          <label for="">무통장 입금</label>
-          <input type="radio" name="" id="" />
-          <label for="">휴대폰 결제</label>
-          <input type="radio" name="" id="" />
-          <label for="">네이버페이</label>
-          <input type="radio" name="" id="" />
-          <label for="">카카오페이</label>
-          <input type="radio" name="" id="" />
-        </fieldset>
-        <fieldset>
-          <legend>최종결제 정보</legend>
-          <article>
-            <h2>결제정보</h2>
-            <p>-상품금액 <data value="price">price</data><span>원</span></p>
-            <p>-할인금액 <data value="price">price</data><span>원</span></p>
-            <p>-배송비 <data value="price">price</data><span>원</span></p>
-            <p>
-              결제금액 <strong><data value="price">price</data>원</strong>
-            </p>
-            <section>
-              <h3>결제 동의 및 결제하기</h3>
-              <label for=""></label>
-              <input type="checkbox" name="" id="" />
-              <button type="submit">결제하기</button>
-            </section>
-          </article>
-        </fieldset>
+        <section class="payment-info-container">
+          <h3 class="sr-only">결제수단 선택 및 결제 정보</h3>
+          <fieldset class="payment-method-container">
+            <legend>결제수단</legend>
+            <input type="radio" name="payment-method" id="card" />
+            <label for="card"> 신용/체크카드</label>
+            <input type="radio" name="payment-method" id="deposit" />
+            <label for="deposit">무통장 입금</label>
+            <input type="radio" name="payment-method" id="phone-payment" />
+            <label for="phone-payment">휴대폰 결제</label>
+            <input type="radio" name="payment-method" id="naver-pay" />
+            <label for="naver-pay">네이버페이</label>
+            <input type="radio" name="payment-method" id="kakao-pay" />
+            <label for="kakao-pay">카카오페이</label>
+          </fieldset>
+          <fieldset class="payment-confirm-container">
+            <legend>최종결제 정보</legend>
+            <article>
+              <h4 class="sr-only">결제정보</h4>
+              <p>
+                - 상품금액 <span><data value="price">price</data>원</span>
+              </p>
+              <p>
+                - 할인금액<span><data value="price">price</data>원</span>
+              </p>
+              <p>
+                - 배송비 <span><data value="price">price</data>원</span>
+              </p>
+              <p>
+                - 결제금액 <strong><data value="price">price</data>원</strong>
+              </p>
+              <section class="payment-consent-container">
+                <h5 class="sr-only">결제 동의 및 결제하기</h5>
+                <input
+                  class="sr-only"
+                  type="checkbox"
+                  name="payment-consent"
+                  id="payment-consent"
+                />
+                <label for="payment-consent"
+                  ><em>
+                    주문 내용을 확인하였으며,정보 제공 등에 동의합니다.
+                  </em>
+                </label>
+                <button type="submit">결제하기</button>
+              </section>
+            </article>
+          </fieldset>
+        </section>
       </form>
     </main>
     <footer>

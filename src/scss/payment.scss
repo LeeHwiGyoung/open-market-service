@@ -1,0 +1,327 @@
+@use 'mixin.scss';
+@import '_variable.scss';
+@import '_footer.scss';
+@import '_header.scss';
+
+
+.sr-only { 
+    @include mixin.sr-only;
+}
+
+%button {
+  color : $btn-font-color;
+  background-color: $btn-background-color;
+  border: none;
+  border-radius: 0.5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+.payment-container { 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      max-width: 128rem;
+      margin: 0 auto;
+      padding-top : 5.4rem;
+
+      h2 {
+        font-family: $font-bold;
+        font-size : 3.6rem;
+        font-weight: 700;
+        line-height: 4.4rem;
+      }
+  }
+
+.shoppingcart-container {
+  @include mixin.flexCenter;
+  flex-direction: column;
+  gap : 1.6rem;
+  font-family: $font-regular;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.254rem;
+  margin-top: 5.2rem;
+}
+
+.payment-menu {
+    @include mixin.flexCenter;
+    width: 100%;
+    height: 6rem;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 1rem;
+}
+
+.menu-product-info , .menu-product-delivery, .menu-product-discount , .menu-product-price {
+  text-align: center;
+}
+.menu-product-info {
+  flex-basis: 59rem;
+  
+}
+
+.menu-product-discount,.menu-product-delivery,.menu-product-price {
+  flex-basis: 23rem;
+}
+ 
+.cartItem {
+  @include mixin.flexCenter;
+  padding : 0.8rem 0 1.8rem 0.8rem;
+  border-bottom: 1px solid $border-color;
+  text-align: center;
+  color : #767676;
+}
+
+.cartItem-product-image {
+  margin-right: 3.6rem;
+  flex-basis: 10.4rem;
+
+  & > img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+}
+
+.cartItem-productInfo-container{
+  flex-basis: 44.2rem;
+  font-size: 1.4rem;
+  line-height: 1.753rem;
+  text-align: left;
+  color : #767676;
+}
+
+.cartItem-product-name {
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+  color : black
+}
+
+.cartItem-discount ,
+.cartItem-delivery-fee , 
+.cartItem-product-price {
+  flex-basis: 23rem;
+  text-align: center;
+}
+
+.cartItem-product-price {
+  font-family: $font-bold;
+  color : black;
+}
+
+.shoppingcart-total-price {
+  font-family: $font-medium;
+  font-weight: 500;
+  align-self: flex-end;
+
+  & > data  {
+    margin-left: 1rem;
+    font-family: $font-bold;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 3.005rem;
+    color : #EB5757;
+  }
+}
+
+.delivery-info-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap :4rem;
+  font-family: $font-regular;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.003rem;
+
+  h2 , legend{
+    width: 100%;
+    font-family: $font-medium;
+    font-weight: 500;
+    border-bottom: 2px solid $border-color;
+  }
+
+  h2 {
+    font-size : 2.4rem;
+    line-height: 3.005rem;
+    padding-bottom: 1.8rem;
+  }
+
+  legend {
+    font-size : 1.8rem;
+    line-height: 2.254rem;
+    padding-bottom: 0.8rem;
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  border-bottom: 1px solid $border-color;
+  align-items: center;
+  padding : 0.8rem 0rem;
+  label {
+    min-width: 17rem;
+    width: 13.3%;
+  }
+
+  input {
+    height: 4rem;
+    min-width: 33.4rem;
+    width: 26.1%;
+    position: relative;
+    border : 1px solid $border-color;
+  }
+
+  input[type='tel'] {
+    width: 7.8%;
+    min-width: 10rem;
+    
+  }
+
+  input[type='tel']:first-of-type {
+    width: 6.25%;
+    min-width: 8rem;
+  }
+
+  input[type='tel'] + span{
+    margin : 0  1rem;
+  }
+  .large-width {
+    width: 62.5%;
+  }
+}
+
+.address-info-container {
+  flex-shrink: 0;
+
+  button {
+    @extend %button;
+    padding  : 1rem 3.1rem;
+    margin-left: 1rem;
+  }
+  input:not(:last-of-type) {
+    margin-bottom: 0.8rem;
+  } 
+}
+
+.payment-info-container {
+  margin-top : 3rem;
+  display: flex;
+  gap: 4rem;
+  legend {   
+    font-size: 2.4rem;
+    line-height: 3.005rem;
+    padding-bottom: 1.8rem;
+  }
+}
+
+.payment-method-container { 
+  display: flex;
+  width: 59.375%;
+  height: 10.8rem;
+  border-bottom: 2px solid $border-color;
+  padding: 1.8rem 0 2rem;
+
+  label {
+    font-family: $font-regular;
+    font-size: 1.6rem;
+    line-height: 2.003rem;
+    margin-left: 1rem;
+    vertical-align: bottom;
+    white-space: nowrap;
+  }
+
+  input { 
+    width: 2rem;
+    height: 2rem;
+    vertical-align: bottom;
+    margin : 0;
+
+    &:first-of-type {
+      margin-left: 1.2rem;
+    }
+
+    &:not(:first-of-type) {
+      margin-left: 2rem;
+    }
+  }
+}
+.payment-confirm-container {
+  width: 37.5%;
+  legend { 
+    border-bottom: none;
+  }
+
+  article {
+    border-radius: 1rem;
+    border : 2px solid $identity-color;
+    padding-top : 3.4rem;
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 3rem 1.5rem;
+    }
+
+    p:last-of-type {
+      margin : 1.9rem 3rem 2rem;
+      padding-top: 2.4rem;
+      border-top : 1px solid $border-color;
+      strong,data {
+        font-family: $font-bold;
+        font-size: 2.4rem;
+        line-height: 3.005rem;
+        color: #EB5757;
+      }
+    }
+
+    data {
+      font-family: $font-bold;
+      font-weight: 700;
+      font-size: 1.8rem;
+      line-height: 2.254rem;
+    }
+    span {
+      font-size: 1.4rem;
+      line-height: 1.753rem;
+    }
+  }
+}
+
+.payment-consent-container {
+  @include mixin.flexCenter;
+  flex-direction: column;
+  gap: 3rem;
+  padding : 3rem 3rem 3.4rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background-color: #f2f2f2;
+
+  label {
+    cursor: pointer;
+  }
+  label::before {
+    display: inline-block;
+    content: url("/assets/images/check-box.svg");
+    margin: 0.2rem 1rem 0 0;
+    width: 1.6rem;
+    vertical-align: middle;
+
+  }
+  #payment-consent:checked + label::before{
+    content: url("/assets/images/check-fill-box.svg");
+  }
+  
+
+  button {
+    @extend %button;
+    font-family: $font-bold;
+    font-size: 2.4rem;
+    line-height: 3.005rem;
+    padding : 1.9rem 6.5rem;
+    &:disabled {
+      background-color: #c4c4c4;
+    }
+  }
+}

@@ -1,9 +1,9 @@
 import { deleteShoppingItem } from "../utils/shoppingcart_utils.js";
 
-const deletemodalContianer = document.querySelector(".delete-modal-container");
-const dimd = deletemodalContianer.querySelector(".dimd");
-const btnCancle = deletemodalContianer.querySelector(".btn-cancle");
-const modalBtnWrap = deletemodalContianer.querySelector(".modal-btn-wrap");
+const deleteModalContianer = document.querySelector(".delete-modal-container");
+const dimd = deleteModalContianer.querySelector(".dimd");
+const btnCancle = deleteModalContianer.querySelector(".btn-cancle");
+const modalBtnWrap = deleteModalContianer.querySelector(".modal-btn-wrap");
 const btnNo = modalBtnWrap.querySelector(".btn-modal-no");
 const btnYes = modalBtnWrap.querySelector(".btn-modal-yes");
 
@@ -17,11 +17,11 @@ export const setTargetElement = (context) => {
 };
 
 export const displayDeleteModal = () => {
-  deletemodalContianer.classList.add("active");
+  deleteModalContianer.classList.add("active");
 };
 
 const removeModal = () => {
-  deletemodalContianer.classList.remove("active");
+  deleteModalContianer.classList.remove("active");
 };
 
 dimd.addEventListener("click", () => removeModal());

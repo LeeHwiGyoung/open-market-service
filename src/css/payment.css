@@ -1,0 +1,490 @@
+@font-face {
+  font-family: "SpoqaHanSansNeo-Regular";
+  src: url("../../assets/fonts/SpoqaHanSansNeo-Regular.woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Medium";
+  src: url("../../assets/fonts/SpoqaHanSansNeo-Medium.woff");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Bold";
+  src: url("../../assets/fonts/SpoqaHanSansNeo-Bold.woff");
+  font-weight: 700;
+}
+footer {
+  background-color: #f2f2f2;
+}
+
+.footer-container {
+  margin: 0 auto;
+  max-width: 128rem;
+  padding: 5.4rem 0 6.3rem;
+}
+.footer-container nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-container .footer-nav-list {
+  display: flex;
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.753rem;
+  color: #000000;
+}
+.footer-container .footer-nav-list em {
+  font-family: "SpoqaHanSansNeo-Bold";
+  font-weight: 700;
+}
+.footer-container .footer-nav-list :not(:last-child)::after {
+  content: "|";
+  padding: 0 1.4rem;
+}
+.footer-container .footer-nav-list a:visited {
+  color: #000000;
+}
+.footer-container .sns-list {
+  display: flex;
+  gap: 1.4rem;
+}
+.footer-container hr {
+  margin: 2.2rem auto 3rem;
+}
+.footer-container address {
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  color: #767676;
+}
+.footer-container address h2 {
+  font-family: "SpoqaHanSansNeo-Bold";
+  font-weight: 700;
+}
+
+header {
+  background-color: #FFF;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1019607843);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 128rem;
+  margin: 0 auto;
+  height: 9rem;
+}
+.header-container h1 {
+  width: 12.4rem;
+}
+.header-container h1 img {
+  width: 100%;
+  height: auto;
+}
+
+.search-bar-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 auto 0 3rem;
+}
+.search-bar-wrap #search-bar {
+  border: #21BF48 2px solid;
+  border-radius: 5rem;
+  padding: 1.3rem 5rem 1.3rem 2.2rem;
+  width: 40rem;
+}
+.search-bar-wrap .btn-search {
+  position: absolute;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  top: 50%;
+  right: 2.2rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.gnb-nav > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.6rem;
+}
+.gnb-nav .gnb-nav-item {
+  position: relative;
+  text-align: center;
+}
+.gnb-nav .gnb-nav-item > button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.gnb-nav .gnb-nav-item p {
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  color: #767676;
+}
+.gnb-nav .gnb-nav-item.hide {
+  display: none;
+}
+
+.dropdown-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  position: absolute;
+  z-index: 100;
+  width: 13rem;
+  height: 10.8rem;
+  border-radius: 1rem;
+  background-color: #FFF;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2509803922);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+.dropdown-list > li {
+  width: 100%;
+}
+.dropdown-list > li > button {
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding: 1rem 1.8rem;
+  flex-grow: 1;
+  cursor: pointer;
+}
+.dropdown-list > li > button:focus, .dropdown-list > li > button:hover {
+  outline: none;
+  border: 1px solid #767676;
+  border-radius: 1rem;
+}
+.dropdown-list.active {
+  display: flex;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+.payment-consent-container button, .address-info-container button {
+  color: #FFF;
+  background-color: #21BF48;
+  border: none;
+  border-radius: 0.5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.payment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 128rem;
+  margin: 0 auto;
+  padding-top: 5.4rem;
+}
+.payment-container h2 {
+  font-family: "SpoqaHanSansNeo-Bold";
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 4.4rem;
+}
+
+.shoppingcart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.6rem;
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.254rem;
+  margin-top: 5.2rem;
+}
+
+.payment-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 6rem;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 1rem;
+}
+
+.menu-product-info, .menu-product-delivery, .menu-product-discount, .menu-product-price {
+  text-align: center;
+}
+
+.menu-product-info {
+  flex-basis: 59rem;
+}
+
+.menu-product-discount, .menu-product-delivery, .menu-product-price {
+  flex-basis: 23rem;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 0 1.8rem 0.8rem;
+  border-bottom: 1px solid #c4c4c4;
+  text-align: center;
+  color: #767676;
+}
+
+.cartItem-product-image {
+  margin-right: 3.6rem;
+  flex-basis: 10.4rem;
+}
+.cartItem-product-image > img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 1rem;
+}
+
+.cartItem-productInfo-container {
+  flex-basis: 44.2rem;
+  font-size: 1.4rem;
+  line-height: 1.753rem;
+  text-align: left;
+  color: #767676;
+}
+
+.cartItem-product-name {
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+  color: black;
+}
+
+.cartItem-discount,
+.cartItem-delivery-fee,
+.cartItem-product-price {
+  flex-basis: 23rem;
+  text-align: center;
+}
+
+.cartItem-product-price {
+  font-family: "SpoqaHanSansNeo-Bold";
+  color: black;
+}
+
+.shoppingcart-total-price {
+  font-family: "SpoqaHanSansNeo-Medium";
+  font-weight: 500;
+  align-self: flex-end;
+}
+.shoppingcart-total-price > data {
+  margin-left: 1rem;
+  font-family: "SpoqaHanSansNeo-Bold";
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 3.005rem;
+  color: #EB5757;
+}
+
+.delivery-info-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 4rem;
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.003rem;
+}
+.delivery-info-container h2, .delivery-info-container legend {
+  width: 100%;
+  font-family: "SpoqaHanSansNeo-Medium";
+  font-weight: 500;
+  border-bottom: 2px solid #c4c4c4;
+}
+.delivery-info-container h2 {
+  font-size: 2.4rem;
+  line-height: 3.005rem;
+  padding-bottom: 1.8rem;
+}
+.delivery-info-container legend {
+  font-size: 1.8rem;
+  line-height: 2.254rem;
+  padding-bottom: 0.8rem;
+}
+
+.input-wrapper {
+  display: flex;
+  border-bottom: 1px solid #c4c4c4;
+  align-items: center;
+  padding: 0.8rem 0rem;
+}
+.input-wrapper label {
+  min-width: 17rem;
+  width: 13.3%;
+}
+.input-wrapper input {
+  height: 4rem;
+  min-width: 33.4rem;
+  width: 26.1%;
+  position: relative;
+  border: 1px solid #c4c4c4;
+}
+.input-wrapper input[type=tel] {
+  width: 7.8%;
+  min-width: 10rem;
+}
+.input-wrapper input[type=tel]:first-of-type {
+  width: 6.25%;
+  min-width: 8rem;
+}
+.input-wrapper input[type=tel] + span {
+  margin: 0 1rem;
+}
+.input-wrapper .large-width {
+  width: 62.5%;
+}
+
+.address-info-container {
+  flex-shrink: 0;
+}
+.address-info-container button {
+  padding: 1rem 3.1rem;
+  margin-left: 1rem;
+}
+.address-info-container input:not(:last-of-type) {
+  margin-bottom: 0.8rem;
+}
+
+.payment-info-container {
+  margin-top: 3rem;
+  display: flex;
+  gap: 4rem;
+}
+.payment-info-container legend {
+  font-size: 2.4rem;
+  line-height: 3.005rem;
+  padding-bottom: 1.8rem;
+}
+
+.payment-method-container {
+  display: flex;
+  width: 59.375%;
+  height: 10.8rem;
+  border-bottom: 2px solid #c4c4c4;
+  padding: 1.8rem 0 2rem;
+}
+.payment-method-container label {
+  font-family: "SpoqaHanSansNeo-Regular";
+  font-size: 1.6rem;
+  line-height: 2.003rem;
+  margin-left: 1rem;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+.payment-method-container input {
+  width: 2rem;
+  height: 2rem;
+  vertical-align: bottom;
+  margin: 0;
+}
+.payment-method-container input:first-of-type {
+  margin-left: 1.2rem;
+}
+.payment-method-container input:not(:first-of-type) {
+  margin-left: 2rem;
+}
+
+.payment-confirm-container {
+  width: 37.5%;
+}
+.payment-confirm-container legend {
+  border-bottom: none;
+}
+.payment-confirm-container article {
+  border-radius: 1rem;
+  border: 2px solid #21BF48;
+  padding-top: 3.4rem;
+}
+.payment-confirm-container article p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 3rem 1.5rem;
+}
+.payment-confirm-container article p:last-of-type {
+  margin: 1.9rem 3rem 2rem;
+  padding-top: 2.4rem;
+  border-top: 1px solid #c4c4c4;
+}
+.payment-confirm-container article p:last-of-type strong, .payment-confirm-container article p:last-of-type data {
+  font-family: "SpoqaHanSansNeo-Bold";
+  font-size: 2.4rem;
+  line-height: 3.005rem;
+  color: #EB5757;
+}
+.payment-confirm-container article data {
+  font-family: "SpoqaHanSansNeo-Bold";
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.254rem;
+}
+.payment-confirm-container article span {
+  font-size: 1.4rem;
+  line-height: 1.753rem;
+}
+
+.payment-consent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 3rem 3rem 3.4rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background-color: #f2f2f2;
+}
+.payment-consent-container label {
+  cursor: pointer;
+}
+.payment-consent-container label::before {
+  display: inline-block;
+  content: url("/assets/images/check-box.svg");
+  margin: 0.2rem 1rem 0 0;
+  width: 1.6rem;
+  vertical-align: middle;
+}
+.payment-consent-container #payment-consent:checked + label::before {
+  content: url("/assets/images/check-fill-box.svg");
+}
+.payment-consent-container button {
+  font-family: "SpoqaHanSansNeo-Bold";
+  font-size: 2.4rem;
+  line-height: 3.005rem;
+  padding: 1.9rem 6.5rem;
+}
+.payment-consent-container button:disabled {
+  background-color: #c4c4c4;
+}/*# sourceMappingURL=payment.css.map */
